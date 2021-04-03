@@ -31,7 +31,7 @@ class App extends React.Component {
     let navBar;
     switch (displayPage) {
       case 0:
-        navBar = LargeSearchBar;
+        // navBar = LargeSearchBar;
         break;
       case 4:
         navBar = <div />;
@@ -43,13 +43,13 @@ class App extends React.Component {
         navBar = <div />;
         break;
       default:
-        navBar = SmallSearchBar;
+        // navBar = SmallSearchBar;
     }
     return (
 
       // Navbar
       <>
-        {navBar}
+        {/* {navBar} */}
         {displayPage === 0
           && (
             <LandingPage
