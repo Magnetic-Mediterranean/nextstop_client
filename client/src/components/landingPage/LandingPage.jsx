@@ -1,18 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
+import DealData from './FeatureDealData';
+import FeatureDeal from './FeatureDeal';
 
-class LandingPage extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <button onClick={this.props.incrementDisplayPage}>Click Me</button>
-    )
-  }
+const LandingPage = ({incrementDisplayPage}) => {
+  return (
+    <div>
+      <h3>Go Anywhere</h3>
+      <DealContainer>
+      {DealData.map((deal) => <FeatureDeal data={deal}/>)}
+      </DealContainer>
+    <button onClick={incrementDisplayPage}>Click Me</button>
+    </div>
+  )
 }
 
 export default LandingPage;
+
+const DealContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
