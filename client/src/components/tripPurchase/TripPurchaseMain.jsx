@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import FlightInfo from './FlightInfo';
-// import HotelInfo from './HotelInfo';
-// import ExperiencesInfo from './ExperiencesInfo';
-// import CostInfo from './CostInfo';
-
-
+import TravelerList from './TravelerList';
 
 class TripPurchaseMain extends React.Component {
   constructor(props) {
@@ -27,6 +22,7 @@ class TripPurchaseMain extends React.Component {
           <PageTitle> Trip Checkout </PageTitle>
           <CheckoutButton onClick={this.props.next}> Purchase! </CheckoutButton>
         </Header>
+        <TravelerList />
         <CheckoutButton
         onClick={this.props.next}
         style={{

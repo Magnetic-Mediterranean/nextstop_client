@@ -6,16 +6,16 @@ const TravelerList = (props) => {
 
   return (
     <TravelerListContainer>
-
+      <div> Who's traveling?</div>
+      <TravelerInfo />
     </TravelerListContainer>
   )
 }
 
-export default CostInfo;
+export default TravelerList;
 
-const CostInfoContainer = styled.div`
+const TravelerListContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
 `;
