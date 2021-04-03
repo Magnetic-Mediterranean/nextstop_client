@@ -1,5 +1,6 @@
 import React from 'react';
 import LandingPage from './components/landingPage/LandingPage';
+import TripReviewMain from './components/tripReview/TripReviewMain';
 
 class App extends React.Component {
   constructor(props) {
@@ -73,7 +74,10 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <div> Trip Review </div>
+            <TripReviewMain
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+            />
           )}
 
         {displayPage === 5
