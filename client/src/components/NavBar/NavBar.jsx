@@ -57,4 +57,8 @@ const Login = styled.button`
   }
   position: absolute;
   right: 5%;
+  &:hover {
+    background-color: #FFE66D;
+  }
+  transition: 0.2s  ease-in;
 `;
