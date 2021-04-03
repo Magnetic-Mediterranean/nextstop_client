@@ -13,7 +13,6 @@ class App extends React.Component{
   }
 
   incrementDisplayPage(currentPage) {
-    console.log('getting to app')
     const nextPage = this.state.displayPage + 1;
     this.setState({
       displayPage: nextPage,
