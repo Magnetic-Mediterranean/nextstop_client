@@ -57,7 +57,7 @@ class App extends React.Component {
 
       // Navbar
       <>
-        {/* {navBar} */}
+        {navBar}
         {displayPage === 0
           && (
             <LandingPage
