@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 4,
+      displayPage: 0,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -37,7 +37,11 @@ class App extends React.Component {
     let navBar;
     switch (displayPage) {
       case 0:
-        navBar = <NavBar />;
+        navBar =
+        <div>
+          <NavBar />
+          <SmallSearchBar />
+        </div>
         // navBar = LargeSearchBar;
         break;
       case 4:
