@@ -5,7 +5,12 @@ class TravelerInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      phoneNumber: '',
+      gender: '',
+      dateOfBirth: '',
     }
   }
 
