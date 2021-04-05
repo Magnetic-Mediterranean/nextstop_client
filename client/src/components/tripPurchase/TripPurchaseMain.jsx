@@ -6,7 +6,7 @@ class TripPurchaseMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      travellers: ['Dana', 3],
     }
   }
 
@@ -15,14 +15,15 @@ class TripPurchaseMain extends React.Component {
   }
 
   render () {
+    const { travellers } = this.state;
     return (
-      <Container>
+      <Container style={{overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
           <PageTitle> Trip Checkout </PageTitle>
           <CheckoutButton onClick={this.props.next}> Purchase! </CheckoutButton>
         </Header>
-        <TravelerList />
+        <TravelerList travellers={travellers} />
         <CheckoutButton
         onClick={this.props.next}
         style={{

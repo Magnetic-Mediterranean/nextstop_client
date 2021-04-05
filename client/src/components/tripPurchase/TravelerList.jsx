@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import TravelerInfo from './TravelerInfo';
 
 const TravelerList = (props) => {
-
+  const { travellers } = props;
   return (
     <TravelerListContainer>
-      <div> Who's traveling?</div>
-      <TravelerInfo />
+      {travellers.map((traveler) =>
+        <TravelerInfo />)}
     </TravelerListContainer>
   )
 }
