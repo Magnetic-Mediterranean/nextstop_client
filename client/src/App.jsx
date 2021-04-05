@@ -1,5 +1,11 @@
 import React from 'react';
 import LandingPage from './components/landingPage/LandingPage';
+import TripReviewMain from './components/tripReview/TripReviewMain';
+import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
+import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
+import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
+import NavBar from './components/NavBar/NavBar.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -31,19 +37,25 @@ class App extends React.Component {
     let navBar;
     switch (displayPage) {
       case 0:
-        navBar = LargeSearchBar;
+        navBar =
+        <div>
+          <NavBar />
+          <SmallSearchBar />
+        </div>
+        // navBar = LargeSearchBar;
         break;
       case 4:
-        navBar = <div />;
+        navBar = <NavBar />;
         break;
       case 5:
-        navBar = <div />;
+        navBar = <NavBar />;
         break;
       case 6:
-        navBar = <div />;
+        navBar = <NavBar />;
         break;
       default:
-        navBar = SmallSearchBar;
+        navBar = <SmallSearchBar />;
+        // navBar = SmallSearchBar;
     }
     return (
 
@@ -73,12 +85,18 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <div> Trip Review </div>
+            <TripReviewMain
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+            />
           )}
 
         {displayPage === 5
           && (
-            <div> Trip Purchase </div>
+            <TripPurchaseMain
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+            />
           )}
 
         {displayPage === 6
@@ -91,3 +109,4 @@ class App extends React.Component {
 }
 
 export default App;
+
