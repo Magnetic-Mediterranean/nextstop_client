@@ -37,7 +37,11 @@ class App extends React.Component {
     let navBar;
     switch (displayPage) {
       case 0:
-        navBar = <NavBar />;
+        navBar =
+        <div>
+          <NavBar />
+          <SmallSearchBar />
+        </div>
         // navBar = LargeSearchBar;
         break;
       case 4:
