@@ -5,13 +5,14 @@ import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
 import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
+import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 4,
+      displayPage: 0,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -57,7 +58,7 @@ class App extends React.Component {
 
       // Navbar
       <>
-        {/* {navBar} */}
+        {navBar}
         {displayPage === 0
           && (
             <LandingPage
@@ -66,7 +67,7 @@ class App extends React.Component {
 
         {displayPage === 1
           && (
-            <div> Flights </div>
+            <DepartFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
           )}
 
         {displayPage === 2
