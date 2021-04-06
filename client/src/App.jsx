@@ -6,6 +6,8 @@ import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Hotels from './components/Hotels';
+import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
+import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
 
 
 class App extends React.Component {
@@ -45,13 +47,13 @@ class App extends React.Component {
         </div>
         // navBar = LargeSearchBar;
         break;
-      case 4:
-        navBar = <NavBar />;
-        break;
       case 5:
         navBar = <NavBar />;
         break;
       case 6:
+        navBar = <NavBar />;
+        break;
+      case 7:
         navBar = <NavBar />;
         break;
       default:
@@ -71,22 +73,27 @@ class App extends React.Component {
 
         {displayPage === 1
           && (
-            <div> Flights </div>
+            <DepartFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
           )}
 
         {displayPage === 2
+          && (
+            <ReturnFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
+          )}
+
+        {displayPage === 3
           && (
             <Hotels
             next={this.incrementDisplayPage}
             back={this.decrementDisplayPage} />
           )}
 
-        {displayPage === 3
+        {displayPage === 4
           && (
             <div> Experiences </div>
           )}
 
-        {displayPage === 4
+        {displayPage === 5
           && (
             <TripReviewMain
               next={this.incrementDisplayPage}
@@ -94,7 +101,7 @@ class App extends React.Component {
             />
           )}
 
-        {displayPage === 5
+        {displayPage === 6
           && (
             <TripPurchaseMain
               next={this.incrementDisplayPage}
@@ -102,7 +109,7 @@ class App extends React.Component {
             />
           )}
 
-        {displayPage === 6
+        {displayPage === 7
           && (
             <div> Confirmation </div>
           )}
@@ -110,6 +117,5 @@ class App extends React.Component {
     )
   }
 }
-
 export default App;
 
