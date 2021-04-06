@@ -7,7 +7,7 @@ const TravelerList = (props) => {
   return (
     <TravelerListContainer>
       {travellers.map((traveler) =>
-        <TravelerInfo />)}
+        <TravelerInfo travelerNumber={traveler}/>)}
     </TravelerListContainer>
   )
 }

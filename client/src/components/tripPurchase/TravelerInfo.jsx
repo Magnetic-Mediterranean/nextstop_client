@@ -49,7 +49,10 @@ class TravelerInfo extends React.Component {
 
     return (
       <TravelerDetails>
-        <Form style={{marginTop: "25px"}}>
+        <TravelerTitle>
+          {`Traveler #${this.props.travelerNumber}`}
+          </TravelerTitle>
+        <Form style={{marginTop: "13px"}}>
           <TextFields>
             <Label>First Name*</Label>
             <Input
@@ -134,7 +137,6 @@ class TravelerInfo extends React.Component {
           </div>
         </Form>
       </TravelerDetails>
-
     )
   }
 }
@@ -144,10 +146,10 @@ export default TravelerInfo;
 
 const TravelerDetails = styled.div`
   width: 95%;
-  height: 310px;
+  height: 320px;
   margin: 10px auto;
   background: white;
-  border-radius: 3px;
+  border-radius: 8px;
 `;
 
 const GenderOptions = styled.span`
@@ -163,6 +165,12 @@ const DropDown = styled.select`
   margin-right: 8px;
 `;
 
+const TravelerTitle = styled.div`
+  margin-left: 15px;
+  margin-top: 10px;
+  font-size: 17px;
+`;
+
 const Form = styled.form`
   margin: 5px;
   display: flex;
@@ -172,7 +180,7 @@ const Form = styled.form`
 const Input = styled.input`
   margin: 3px 30px 20px;
   line-height: 30px;
-  width: 200px;
+  width: 230px;
   background: #E4E5DF;
   border: transparent;
   border-radius: 8px;
