@@ -5,7 +5,12 @@ import Flight from './Flight';
 
 
 const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
-  const [flightSelected, setfligthSelected] = useState(false);
+  const [flightSelected, setfligthSelected] = useState();
+  const handleOnClick = () => {
+    incrementDisplayPage();
+    console.log("depart", flightSelected);
+    localStorage.setItem('depart', flightSelected);
+  }
 
   return (
     <div>
@@ -13,11 +18,11 @@ const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
       <button onClick={decrementDisplayPage}>Back</button>
       {
         flightSelected && (
-          <button onClick={incrementDisplayPage}>Next</button>
+          <button onClick={handleOnClick}>Next</button>
           )
       }
       {
-        FlightDeals.map((flight) => <Flight key={flight.airline + flight.price} FligthDetail={flight} setfligthSelected={setfligthSelected} />)
+        FlightDeals.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected}/>)
       }
     </div>
   )

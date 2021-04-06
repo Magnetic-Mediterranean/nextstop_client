@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Flight = ({ FligthDetail, setfligthSelected }) => {
+const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
 
   const airlineIcon = {
-    "United Airline": "icons/UnitedAirline.png",
+    "UNITED AIRLINES": "icons/UnitedAirline.png",
+    "PHILIPPINE AIRLINES": "icons/PhilippineAirlines.png",
+    "HAWAIIAN AIRLINES": "icons/haiwaiianAirline.png",
     "Delta": "icons/delta.png",
     "Southwest": "icons/southwest.png",
     "American Airline": "icons/AA.png",
@@ -40,12 +42,12 @@ const Flight = ({ FligthDetail, setfligthSelected }) => {
 
   const handleSelected = () => {
     setSelected(!selected);
-    setfligthSelected(true);
+    setfligthSelected(FligthDetail);
   }
 
   return (
     <FlightContainer>
-      { selected ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
+      { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
       <div>
         {
           <Icon src={airlineIcon[FligthDetail.airline]} />
