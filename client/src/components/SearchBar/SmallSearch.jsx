@@ -102,6 +102,7 @@ const SmallPhotoContainer = styled.div `
   background-repeat: no-repeat;
   position: sticky;
   top: 100px;
+  margin-top:8px;
   z-index: 2;
 `;
 

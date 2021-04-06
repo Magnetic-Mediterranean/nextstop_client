@@ -5,7 +5,7 @@ import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
 import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
-import Checkout from './components/Checkout/Checkout.jsx';
+import Checkout from './components/TripBooked/Booked.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,7 +62,6 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false}/>
         </React.Fragment>;
         break;
       default:
