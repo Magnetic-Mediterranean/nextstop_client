@@ -21,7 +21,7 @@ class TripReviewMain extends React.Component {
 
   render () {
     return (
-      <Container>
+      <Container style={{overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
           <PageTitle> Trip Confirmation </PageTitle>
@@ -50,7 +50,7 @@ export default TripReviewMain;
 const Header = styled.div`
   display: flex;
   justify-contents: center;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 15px;
 `;
 

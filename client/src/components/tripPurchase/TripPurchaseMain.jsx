@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-// import FlightInfo from './FlightInfo';
-// import HotelInfo from './HotelInfo';
-// import ExperiencesInfo from './ExperiencesInfo';
-// import CostInfo from './CostInfo';
-
-
+import TravelerList from './TravelerList';
+import BillingInfo from './BillingInfo';
+import BillingAddress from './BillingAddress';
 
 class TripPurchaseMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      travellers: [1, 2],
     }
   }
 
@@ -20,39 +17,65 @@ class TripPurchaseMain extends React.Component {
   }
 
   render () {
+    const { travellers } = this.state;
     return (
-      <Container>
-        <Header>
-          <BackButton onClick={this.props.back}> Back </BackButton>
-          <PageTitle> Trip Checkout </PageTitle>
-          <CheckoutButton onClick={this.props.next}> Purchase! </CheckoutButton>
-        </Header>
-        <CheckoutButton
-        onClick={this.props.next}
-        style={{
-          margin: "auto",
-          display: "flex",
-          justifyContent: "center",
-          padding: "15px 30px",
-          fontSize: "15px"
-          }}> Purchase! </CheckoutButton>
-      </Container>
+      <SurroundingDiv>
+        <Container>
+          <Header>
+            <BackButton onClick={this.props.back}> Back </BackButton>
+            <PageTitle> Trip Checkout </PageTitle>
+            <CheckoutButton onClick={this.props.next}> Purchase! </CheckoutButton>
+          </Header>
+          <Section>Traveler Information: </Section>
+          <TravelerList travellers={travellers} />
+          <LineBreak />
+          <Section>Billing Information: </Section>
+          <BillingInfo />
+
+          <BillingAddress />
+          <CheckoutButton
+            onClick={this.props.next}
+            style={{
+              margin: "auto",
+              display: "flex",
+              justifyContent: "center",
+              padding: "15px 30px",
+              fontSize: "15px"
+            }}> Purchase! </CheckoutButton>
+        </Container>
+      </SurroundingDiv>
     )
   }
 }
 
 export default TripPurchaseMain;
 
+const SurroundingDiv = styled.div`
+  height: 100%
+  width: 100%
+  overflow: hidden;
+`;
+
 const Header = styled.div`
   display: flex;
   justify-contents: center;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 15px;
+`;
+
+const LineBreak = styled.div`
+  border-bottom: 2px solid black;
+  margin-bottom: 4px;
 `;
 
 const PageTitle = styled.span`
   margin: auto;
   font-size: 30px;
+`;
+
+const Section = styled.div`
+  font-size: 20px;
+  margin-left: 10px;
 `;
 
 const Container = styled.div`
@@ -63,6 +86,7 @@ const Container = styled.div`
   min-height: 500px;
   margin: auto;
   background: #E4E5E0;
+  overflow: auto;
 `;
 
 const BackButton = styled.button`
