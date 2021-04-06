@@ -155,12 +155,15 @@ const WhosTraveling = styled.div `
 const TravelContainer = styled.div `
   display: flex;
   flex-direction: column;
-  height:55%;
+  height: 55%;
+  min-height: 55%;
   border-bottom: 1px solid black;
   width: 90%;
   position: relative;
   left: 5%;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-bottom: 50px;
 `
 
 const NameInput = styled.div `

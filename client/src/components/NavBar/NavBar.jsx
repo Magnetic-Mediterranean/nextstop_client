@@ -31,6 +31,7 @@ const Navbar = styled.div `
   top: 0px;
   z-index: 2;
   box-shadow: 0 10px 10px -5px #cccc;
+
 `;
 
 const Icon = styled.div`

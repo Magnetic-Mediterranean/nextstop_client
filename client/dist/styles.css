@@ -1,9 +1,15 @@
-html, body {
+html{
   width: 100%;
-  height: 100%;
+  height: auto;
+  margin: 0px;
+}
+body {
+  width: 100%;
+  height: auto;
+  margin: 0px;
 }
 
 #app {
-  width:100%;
+  width:98.75%;
   height: 100%;
 }

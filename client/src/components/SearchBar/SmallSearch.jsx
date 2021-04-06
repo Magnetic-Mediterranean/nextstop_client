@@ -93,14 +93,16 @@ export default SmallSearch;
 const SmallPhotoContainer = styled.div `
   display: flex;
   flex-direction: row;
-  width: 102%;
+  width: 100%;
   height: ${props => (props.size ? '450px' : '250px')};
-  margin-left: -8px;
   align-items: center;
   justify-content: center;
   background-image: url('https://www.jacadatravel.com/wp-content/uploads/fly-images/247256/costa-rica-cloud-forest-1-1600x700-cc.jpg');
   background-position: center;
   background-repeat: no-repeat;
+  position: sticky;
+  top: 100px;
+  z-index: 2;
 `;
 
 

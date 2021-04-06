@@ -1,7 +1,8 @@
 import React from 'react';
-import TravelUser from './TravelUser.jsx';
 import styled from 'styled-components';
-
+import TravelUser from './TravelUser.jsx';
+import Payment from './Payment.jsx';
+import Billing from './BillingAdd.jsx';
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,8 @@ class Checkout extends React.Component {
     return(
       <TripCheckout>
         <TravelUser />
+        <Payment />
+        <Billing />
       </TripCheckout>
     )
   }
@@ -26,4 +29,6 @@ const TripCheckout = styled.div `
   flex-direction: column;
   height: 100%;
   width: 100%;
+  overflow-behavior: smooth;
+
 `
