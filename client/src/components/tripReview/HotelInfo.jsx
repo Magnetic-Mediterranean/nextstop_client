@@ -22,5 +22,5 @@ const HotelDetails = styled.div`
   height: 100px;
   margin: 10px auto;
   background: white;
-  border-radius: 3px;
+  border-radius: 8px;
 `;
