@@ -38,39 +38,39 @@ class App extends React.Component {
     switch (displayPage) {
       case 0:
         navBar =
-        <div>
+        <React.Fragment>
           <NavBar />
           <SmallSearchBar size={true}/>
-        </div>
+        </React.Fragment>
         // navBar = LargeSearchBar;
         break;
       case 4:
         navBar =
-      <div>
-        <NavBar />
-        <SmallSearchBar size={false}/>
-      </div>;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false}/>
+        </React.Fragment>;
         break;
       case 5:
         navBar =
-      <div>
-        <NavBar />
-        <SmallSearchBar size={false}/>
-      </div>;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false}/>
+        </React.Fragment>;
         break;
       case 6:
         navBar =
-        <div>
+        <React.Fragment>
           <NavBar />
           <SmallSearchBar size={false}/>
-        </div>;
+        </React.Fragment>;
         break;
       default:
         navBar =
-        <div>
+        <React.Fragment>
           <NavBar />
           <SmallSearchBar size={true}/>
-        </div>;
+        </React.Fragment>;
         // navBar = SmallSearchBar;
     }
     return (
