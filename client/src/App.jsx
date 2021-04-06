@@ -5,6 +5,7 @@ import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
 import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
+import Hotels from './components/Hotels';
 
 
 class App extends React.Component {
@@ -75,7 +76,9 @@ class App extends React.Component {
 
         {displayPage === 2
           && (
-            <div> Hotels </div>
+            <Hotels
+            next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage} />
           )}
 
         {displayPage === 3
