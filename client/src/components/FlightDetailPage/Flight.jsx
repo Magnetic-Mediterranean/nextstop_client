@@ -46,18 +46,16 @@ const Flight = ({FligthDetail}) => {
       <p>{FligthDetail.airline}</p>
       </div>
 
-      {
-        !FligthDetail.numberOfStops && (
-          <div> NON-STOP </div>
-        )
-      }
-
+      <div>
       { stop(FligthDetail) }
       { stops !== 0 && (
         <div>{stops} stop(s)</div>
       )}
+      </div>
+
       <div>
       {flightLegs(FligthDetail.airports)}
+      <br />
       {FligthDetail.duration}
       </div>
 
