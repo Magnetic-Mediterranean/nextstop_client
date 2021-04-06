@@ -6,7 +6,7 @@ const CostInfo = (props) => {
   return (
     <CostInfoContainer>
       <div> Cost Breakdown: </div>
-      <CostDetails>Hotel Info</CostDetails>
+      <CostDetails>Cost Info</CostDetails>
     </CostInfoContainer>
   )
 }
@@ -22,5 +22,5 @@ const CostDetails = styled.div`
   height: 100px;
   margin: 10px auto;
   background: white;
-  border-radius: 3px;
+  border-radius: 8px;
 `;
