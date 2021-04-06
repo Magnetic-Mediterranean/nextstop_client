@@ -5,13 +5,13 @@ import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
 import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
-
+import Checkout from './components/Checkout/Checkout.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 0,
+      displayPage: 6,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -40,21 +40,37 @@ class App extends React.Component {
         navBar =
         <div>
           <NavBar />
-          <SmallSearchBar />
+          <SmallSearchBar size={true}/>
         </div>
         // navBar = LargeSearchBar;
         break;
       case 4:
-        navBar = <NavBar />;
+        navBar =
+      <div>
+        <NavBar />
+        <SmallSearchBar size={false}/>
+      </div>;
         break;
       case 5:
-        navBar = <NavBar />;
+        navBar =
+      <div>
+        <NavBar />
+        <SmallSearchBar size={false}/>
+      </div>;
         break;
       case 6:
-        navBar = <NavBar />;
+        navBar =
+        <div>
+          <NavBar />
+          <SmallSearchBar size={false}/>
+        </div>;
         break;
       default:
-        navBar = <SmallSearchBar />;
+        navBar =
+        <div>
+          <NavBar />
+          <SmallSearchBar size={true}/>
+        </div>;
         // navBar = SmallSearchBar;
     }
     return (
@@ -101,7 +117,7 @@ class App extends React.Component {
 
         {displayPage === 6
           && (
-            <div> Confirmation </div>
+            <Checkout />
           )}
       </>
     )

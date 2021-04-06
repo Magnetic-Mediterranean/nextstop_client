@@ -29,6 +29,7 @@ const Navbar = styled.div `
   margin-top: -8px;
   position: sticky;
   top: 0px;
+  z-index: 2;
   box-shadow: 0 10px 10px -5px #cccc;
 `;
 

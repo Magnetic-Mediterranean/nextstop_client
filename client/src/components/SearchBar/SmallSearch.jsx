@@ -29,7 +29,7 @@ class SmallSearch extends React.Component {
   }
   render() {
     return (
-      <SmallPhotoContainer>
+      <SmallPhotoContainer size={this.props.size ? value : undefined}>
         <SearchBar>
           <Autocomplete
           onChange={this.onChangeFrom}
@@ -37,10 +37,16 @@ class SmallSearch extends React.Component {
           options={this.state.options}
           getOptionLabel={(option) => option.state}
           style={{
-            backgroundColor: 'white',
-            width: 300,
-            marginLeft: '90px',
-            borderRadius: '8px',
+            backgroundColor: '#ececec',
+            width: '30%',
+            borderRadius: '5px',
+            position: 'relative',
+            left: '5%',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+                        color: 'black',
+
           }}
           renderInput={(params) => <TextField {...params} label="Destination From" variant="outlined" />}
           />
@@ -52,10 +58,15 @@ class SmallSearch extends React.Component {
           getOptionLabel={(option) => option.state}
 
           style={{
-            backgroundColor: 'white',
-            width: 300,
-            marginLeft: '30px',
-            borderRadius: '8px',
+            backgroundColor: '#ececec',
+            width: '30%',
+            position: 'relative',
+            borderRadius: '4px',
+            left: '7.5%',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            color: 'black',
           }}
           renderInput={(params) => <TextField {...params} label="Destination To" variant="outlined" />}
           />
@@ -63,6 +74,12 @@ class SmallSearch extends React.Component {
           {
             border: '1.5px solid #cccc',
             textAlign: 'center',
+            position: 'relative',
+            left: '10%',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            backgroundColor: '#ececec'
           }
           }/>
         </SearchBar>
@@ -77,7 +94,7 @@ const SmallPhotoContainer = styled.div `
   display: flex;
   flex-direction: row;
   width: 102%;
-  height: 450px;
+  height: ${props => (props.size ? '450px' : '250px')};
   margin-left: -8px;
   align-items: center;
   justify-content: center;
@@ -85,6 +102,7 @@ const SmallPhotoContainer = styled.div `
   background-position: center;
   background-repeat: no-repeat;
 `;
+
 
 const SearchBar = styled.div `
   display: flex;
@@ -96,12 +114,17 @@ const SearchBar = styled.div `
   box-shadow: 0 10px 10px -5px #cccc;
   align-items: center;
   border-radius: 8px;
+  overflow: scroll;
 `;
 
 const Calendar = styled.input `
   display: flex;
-  margin-left: 40px;
-  width: 300px;
+  position: 'relative',
+  left: '5%',
+  width: 30%;
   height: 54px;
   border-radius: 5px;
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'scroll',
 `;
