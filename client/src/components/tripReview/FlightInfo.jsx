@@ -5,6 +5,7 @@ import SubContainer from '../sharedStyles/subContainer'
 const FlightInfo = ({departingFlight, returningFlight}) => {
   let stops = 0;
   const stop = (FligthDetail) => {
+
     if (FligthDetail.numberOfStops) {
       let display = FligthDetail.airports.slice(1, FligthDetail.airports.length - 1);
       stops = display.length;
@@ -144,6 +145,7 @@ const InnerDiv = styled.div`
   flex-direction: column;
   align-items: center;
   width: 16.6%;
+  font-family: 'Roboto', sans-serif;
 `;
 
 const InnerP = styled.p`
