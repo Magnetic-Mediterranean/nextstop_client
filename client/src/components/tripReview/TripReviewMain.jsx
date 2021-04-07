@@ -30,8 +30,8 @@ class TripReviewMain extends React.Component {
     // console.log('this is departingFlight', departingFlight);
     // const returningFlight = JSON.parse(window.localStorage.getItem('return'));
     // console.log('this is returningFlight', returningFlight)
-    // const hotel = JSON.parse(window.localStorage.getItem('hotel'));
-    // const experiences = JSON.parse(window.localStorage.getItem('experiences'));
+    const hotel = JSON.parse(window.localStorage.getItem('hotel'));
+    const experiences = JSON.parse(window.localStorage.getItem('experiences'));
 
     // dummy data
     const departingFlight = {
