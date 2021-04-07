@@ -4,9 +4,9 @@ import styled from 'styled-components';
 var Buttons = (props) => {
   return(
     <Title>
-      <BackButton>Back</BackButton>
+      <BackButton onClick={props.back}>Back</BackButton>
       <Logo> Select One Or More Experiences </Logo>
-      <CheckoutButton>Book</CheckoutButton>
+      <CheckoutButton onClick={props.next}>Book</CheckoutButton>
     </Title>
   )
 }
