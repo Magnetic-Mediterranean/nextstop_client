@@ -49,17 +49,20 @@ const ImageContainer = styled.div`
     // border: 2px solid black;
     width: 360px;
     height: 300px;
+    box-shadow: 0 10px 10px -5px #cccc;
   }
 `;
 
 const DetailsContainer = styled.div`
  display: flex;
  width: auto;
- width: 520px;
+ width: 574px;
  height: 300px;
  background: white;
  border-radius: 8px;
  flex-direction: column;
  padding-left: 15px;
  box-shadow: 0 10px 10px -5px #cccc;
+ align-items: center;
+ justify-content: center;
 `;

@@ -44,10 +44,7 @@ const FlightInfo = ({departingFlight, returningFlight}) => {
       <SectionTitle> Flight Details: </SectionTitle>
       <SubContainer style={{justifyContent: "space-around"}}>
 
-      <InnerDiv style={{
-        marginTop: "15px",
-        marginRight: "-50px",
-        marginLeft: "-20px"}}>
+      <InnerDiv>
         {
           <Icon src={airlineIcon[departingFlight.airline]} />
         }
@@ -82,10 +79,7 @@ const FlightInfo = ({departingFlight, returningFlight}) => {
       </SubContainer>
       <SubContainer style={{justifyContent: "space-around"}}>
 
-      <InnerDiv style={{
-        marginTop: "15px",
-        marginRight: "-50px",
-        marginLeft: "-20px"}}>
+      <InnerDiv>
         {
           <Icon src={airlineIcon[returningFlight.airline]} />
         }

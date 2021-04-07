@@ -26,32 +26,14 @@ class TripReviewMain extends React.Component {
 
   componentDidMount() {
     // get info from localstorage
-    // const departingFlight1 = JSON.parse(window.localStorage.getItem('depart'));
-    // const returningFlight1 = JSON.parse(window.localStorage.getItem('return'));
-    // console.log('this is returningFlight', returningFlight)
+    const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
+    const returningFlight = JSON.parse(window.localStorage.getItem('return'));
+    console.log(returningFlight)
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
-    console.log(hotel);
+    console.log(hotel)
+
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
 
-    // dummy data
-    const departingFlight = {
-      airline: "Delta",
-      departureTime: "2021-08-06T13:05:00",
-      arrivalTime: "2021-08-08T08:30:00",
-      duration: "29H25M",
-      numberOfStops: 1,
-      airports: ["SFO", "LAX", "ERW"],
-      price: "813.53"
-    };
-    const returningFlight = {
-      airline: "Southwest",
-      departureTime: "2021-08-06T18:05:00",
-      arrivalTime: "2021-08-08T05:30:00",
-      duration: "12H25M",
-      numberOfStops: 0,
-      airports: ["SFO", "ERW"],
-      price: "813.53"
-    };
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
@@ -78,7 +60,8 @@ class TripReviewMain extends React.Component {
       </Container>
     )}
       {infoLoaded &&
-      (<Container style={{overflow: 'auto'}}>
+      (<Container style={{
+        overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
           <PageTitle> Trip Confirmation </PageTitle>
@@ -90,7 +73,11 @@ class TripReviewMain extends React.Component {
         />
         <HotelInfo hotel={hotel}/>
         <ExperiencesInfo />
-        <CostInfo />
+        <CostInfo
+          hotel={hotel}
+          departingFlight={departingFlight}
+          returningFlight={returningFlight}
+         />
         <CheckoutButton
         onClick={this.handleClick}
         style={{
@@ -98,7 +85,9 @@ class TripReviewMain extends React.Component {
           display: "flex",
           justifyContent: "center",
           padding: "15px 30px",
-          fontSize: "15px"
+          fontSize: "15px",
+          marginBottom: "40px",
+          marginTop: "20px",
           }}> Checkout </CheckoutButton>
       </Container>
     )}

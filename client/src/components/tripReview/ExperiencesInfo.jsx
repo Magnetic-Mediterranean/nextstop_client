@@ -22,3 +22,4 @@ const ExperiencesContainer = styled.div`
 const SectionTitle = styled.div`
   margin-left: 23.828px;
 `;
+
