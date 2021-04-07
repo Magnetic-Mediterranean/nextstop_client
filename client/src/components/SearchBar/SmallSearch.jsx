@@ -24,10 +24,14 @@ class SmallSearch extends React.Component {
     this.onChangeInputTo = this.onChangeInputTo.bind(this);
   }
   onChangeFrom(event, values, inputValue) {
-    this.setState({SelectedFrom: values})
+    this.setState({SelectedFrom: values}, () => {
+      this.props.setFrom(values);
+    })
   }
   onChangeTo(event, values) {
-    this.setState({SelectedTo: values});
+    this.setState({SelectedTo: values}, () => {
+      this.props.setTo(values);
+    })
   }
   onChangeInputFrom(event, values) {
     this.setState({from: values}, () => {
@@ -60,7 +64,7 @@ class SmallSearch extends React.Component {
   }
   render() {
     return (
-      <SmallPhotoContainer size={this.props.size ? 'values' : undefined} >
+      <SmallPhotoContainer size={this.props.size ? this.props : undefined}>
         <SearchBar>
           <Autocomplete
           onInputChange={this.onChangeInputFrom}
