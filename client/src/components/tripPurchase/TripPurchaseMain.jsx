@@ -10,10 +10,32 @@ class TripPurchaseMain extends React.Component {
     this.state = {
       travellers: [1, 2],
     }
+    this.compileTravelData = this.compileTravelData.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     // get info from localstorage
+  }
+
+  compileTravelData (keyValue, value) {
+    if (value.dateOfBirth) {
+      value.dateOfBirth = value.dobMonth + ' ' + value.dobDay + ' ' + value.dobYear;
+      delete value.dobMonth;
+      delete value.dobDay;
+      delete value.dobYear;
+    }
+    this.setState({[keyValue]: value})
+  }
+
+  handleSubmit (event) {
+    event.preventDefault();
+    console.log(this.state);
+    this.props.next();
+  }
+
+  getDataFromChildren () {
+
   }
 
   render () {
@@ -26,22 +48,33 @@ class TripPurchaseMain extends React.Component {
             <PageTitle> Trip Checkout </PageTitle>
             <CheckoutButton onClick={this.props.next}> Purchase! </CheckoutButton>
           </Header>
+
           <Section>Traveler Information: </Section>
-          <TravelerList travellers={travellers} />
+          <TravelerList
+            travellers={travellers}
+            compileTravelData={this.compileTravelData}
+          />
           <LineBreak />
           <Section>Billing Information: </Section>
-          <BillingInfo />
+          <BillingInfo
+            compileTravelData={this.compileTravelData}
+          />
 
-          <BillingAddress />
+          <BillingAddress
+            compileTravelData={this.compileTravelData}
+          />
           <CheckoutButton
-            onClick={this.props.next}
+            onClick={this.handleSubmit}
             style={{
               margin: "auto",
               display: "flex",
               justifyContent: "center",
               padding: "15px 30px",
               fontSize: "15px"
-            }}> Purchase! </CheckoutButton>
+            }}
+          > Purchase! </CheckoutButton>
+
+
         </Container>
       </SurroundingDiv>
     )
