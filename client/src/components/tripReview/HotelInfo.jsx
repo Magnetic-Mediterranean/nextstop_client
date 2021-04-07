@@ -7,9 +7,26 @@ const HotelInfo = (props) => {
   return (
     <HotelInfoContainer>
       <SectionTitle> Hotel Details: </SectionTitle>
-      <SubContainer>
-
-      </SubContainer>
+      <SubContainer
+        className="card"
+        style={{
+          height: "300px"
+        }}>
+      <ImageContainer>
+      <img
+            className="default-image"
+            src={props.hotel.image}
+            alt={props.hotel.name}
+            // height="226px"
+            // width="226px"
+          />
+    </ImageContainer>
+    <DetailsContainer>
+      <p>{props.hotel.type}</p>
+      <p>{props.hotel.name}</p>
+      <p>{`$${props.hotel.original_price} / night`}</p>
+    </DetailsContainer>
+    </SubContainer>
     </HotelInfoContainer>
   )
 }
@@ -22,4 +39,27 @@ const HotelInfoContainer = styled.div`
 
 const SectionTitle = styled.div`
   margin-left: 23.828px;
+`;
+
+const ImageContainer = styled.div`
+  .default-image{
+    align-items: center;
+    object-fit: cover;
+    border-radius: 8px;
+    // border: 2px solid black;
+    width: 360px;
+    height: 300px;
+  }
+`;
+
+const DetailsContainer = styled.div`
+ display: flex;
+ width: auto;
+ width: 520px;
+ height: 300px;
+ background: white;
+ border-radius: 8px;
+ flex-direction: column;
+ padding-left: 15px;
+ box-shadow: 0 10px 10px -5px #cccc;
 `;

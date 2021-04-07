@@ -151,3 +151,17 @@ const InnerDiv = styled.div`
 const InnerP = styled.p`
   margin: auto;
 `;
+
+const FlightContainer = styled.div`
+display: flex;
+width: 95%;
+height: 100px;
+margin: 10px auto;
+background: white;
+border-radius: 8px;
+box-shadow: 0 10px 10px -5px #cccc;
+display: flex;
+justify-content: space-around;
+align-items: center;
+`;
+

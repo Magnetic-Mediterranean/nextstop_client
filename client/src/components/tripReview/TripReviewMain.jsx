@@ -26,11 +26,11 @@ class TripReviewMain extends React.Component {
 
   componentDidMount() {
     // get info from localstorage
-    // const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
-    // console.log('this is departingFlight', departingFlight);
-    // const returningFlight = JSON.parse(window.localStorage.getItem('return'));
+    // const departingFlight1 = JSON.parse(window.localStorage.getItem('depart'));
+    // const returningFlight1 = JSON.parse(window.localStorage.getItem('return'));
     // console.log('this is returningFlight', returningFlight)
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
+    console.log(hotel);
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
 
     // dummy data
@@ -55,7 +55,7 @@ class TripReviewMain extends React.Component {
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
-      // hotel: hotel,
+      hotel: hotel,
       // experiences: experiences,
       infoLoaded: true,
     })
@@ -67,7 +67,7 @@ class TripReviewMain extends React.Component {
   }
 
   render () {
-    const { departingFlight, returningFlight, infoLoaded } = this.state;
+    const { departingFlight, returningFlight, infoLoaded, hotel } = this.state;
     return (
       <>
             {!infoLoaded &&
@@ -88,7 +88,7 @@ class TripReviewMain extends React.Component {
           departingFlight={departingFlight}
           returningFlight={returningFlight}
         />
-        <HotelInfo />
+        <HotelInfo hotel={hotel}/>
         <ExperiencesInfo />
         <CostInfo />
         <CheckoutButton
