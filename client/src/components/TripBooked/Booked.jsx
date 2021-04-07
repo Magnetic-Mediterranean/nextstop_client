@@ -17,7 +17,7 @@ class Checkout extends React.Component {
           width={window.innerWidth}
           height={window.innerHeight}
         />
-        <LeftBox destination='Paris' type='none' price='1234' total='2468'/>
+        <LeftBox back={this.props.back} destination='Paris' type='none' price='1234' total='2468'/>
       </TripCheckout>
     )
   }

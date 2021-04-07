@@ -8,7 +8,7 @@ const LandingPage = ({incrementDisplayPage}) => {
     <div>
       <h3>Go Anywhere</h3>
       <DealContainer>
-      {DealData.map((deal) => <FeatureDeal data={deal}/>)}
+      {DealData.map((deal) => <FeatureDeal key={deal.airline + deal.price} data={deal}/>)}
       </DealContainer>
     <button onClick={incrementDisplayPage}>Click Me</button>
     </div>

@@ -2,14 +2,17 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import styled from 'styled-components';
-
+import axios from 'axios';
 
 
 class SmallSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: [{state: 'CA'}, {state: 'NV'}],
+      SelectedFrom: '',
+      SelectedTo: '',
+      optionsFrom: [],
+      optionsTo: [],
       from: '',
       to: '',
       date: '',
@@ -17,12 +20,40 @@ class SmallSearch extends React.Component {
     this.onChangeFrom = this.onChangeFrom.bind(this);
     this.onChangeTo = this.onChangeTo.bind(this);
     this.dateChange = this.dateChange.bind(this);
+    this.onChangeInputFrom = this.onChangeInputFrom.bind(this);
+    this.onChangeInputTo = this.onChangeInputTo.bind(this);
   }
-  onChangeFrom(event, values) {
-    this.setState({from: values})
+  onChangeFrom(event, values, inputValue) {
+    this.setState({SelectedFrom: values})
   }
   onChangeTo(event, values) {
-    this.setState({to: values})
+    this.setState({SelectedTo: values});
+  }
+  onChangeInputFrom(event, value) {
+    this.setState({from: value}, () => {
+      if(this.state.from !== '') {
+        axios.get(`/search/${this.state.from}`)
+          .then((result) => {
+            this.setState({optionsFrom: result.data});
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      }
+    });
+  }
+  onChangeInputTo(event, value) {
+    this.setState({to: value}, () => {
+      if(this.state.to !== '') {
+        axios.get(`/search/${this.state.to}`)
+          .then((result) => {
+            this.setState({optionsTo: result.data});
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      }
+    });
   }
   dateChange(event) {
     this.setState({date: event.target.value});
@@ -32,45 +63,41 @@ class SmallSearch extends React.Component {
       <SmallPhotoContainer size={this.props.size ? value : undefined}>
         <SearchBar>
           <Autocomplete
+          onInputChange={this.onChangeInputFrom}
           onChange={this.onChangeFrom}
           id="DestinationFrom"
-          options={this.state.options}
-          getOptionLabel={(option) => option.state}
+          options={this.state.optionsFrom}
+          getOptionLabel={(option) => `${option.city + ', ' + option.country}`}
           style={{
             backgroundColor: '#ececec',
-            width: '30%',
+            width: '20%',
             borderRadius: '5px',
             position: 'relative',
             left: '5%',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-                        color: 'black',
+            color: 'black',
 
           }}
-          renderInput={(params) => <TextField {...params} label="Destination From" variant="outlined" />}
+          renderInput={(params) => <TextField {...params} label="From" variant="outlined" />}
           />
            <Autocomplete
-           name='to'
-          onChange={this.onChangeTo}
-          id="DestinationTo"
-          options={this.state.options}
-          getOptionLabel={(option) => option.state}
+            name='to'
+            onInputChange={this.onChangeInputTo}
+            onChange={this.onChangeTo}
+            id="DestinationTo"
+            options={this.state.optionsTo}
+            getOptionLabel={(option) => `${option.city + ', ' + option.country}`}
 
           style={{
             backgroundColor: '#ececec',
-            width: '30%',
+            width: '20%',
+            borderRadius: '5px',
             position: 'relative',
-            borderRadius: '4px',
             left: '7.5%',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
             color: 'black',
           }}
-          renderInput={(params) => <TextField {...params} label="Destination To" variant="outlined" />}
+          renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
           />
-        <Calendar type='date' onChange={this.dateChange} style={
+        <Calendar className='Cal' type='date' onChange={this.dateChange} style={
           {
             border: '1.5px solid #cccc',
             textAlign: 'center',
@@ -82,6 +109,19 @@ class SmallSearch extends React.Component {
             backgroundColor: '#ececec'
           }
           }/>
+          <Calendar className='Cal' type='date' onChange={this.dateChange} style={
+          {
+            border: '1.5px solid #cccc',
+            textAlign: 'center',
+            position: 'relative',
+            left: '12.5%',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            backgroundColor: '#ececec',
+          }
+          }/>
+          <SubmitButton>Find</SubmitButton>
         </SearchBar>
       </SmallPhotoContainer>
     )
@@ -102,7 +142,6 @@ const SmallPhotoContainer = styled.div `
   background-repeat: no-repeat;
   position: sticky;
   top: 100px;
-  margin-top:8px;
   z-index: 2;
 `;
 
@@ -112,7 +151,7 @@ const SearchBar = styled.div `
   flex-direction: row;
   background-color: white;
   width: 60%;
-  height: 80px;
+  height: 100px;
   margin-left: -8px;
   box-shadow: 0 10px 10px -5px #cccc;
   align-items: center;
@@ -130,4 +169,27 @@ const Calendar = styled.input `
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   overflow: 'scroll',
+`;
+
+const SubmitButton = styled.button `
+  display: flex;
+  position: relative;
+  left: 15%;
+  width: 12.5%;
+  height: 54px;
+  border-radius: 5px;
+  overflow: 'scroll';
+  justify-content: center;
+  align-items: center;
+  backgroundColor: #ececec;
+  border: 1.5px solid #cccc;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: #FFE66D;
+  }
+  transition: 0.2s  ease-in;
+
 `;

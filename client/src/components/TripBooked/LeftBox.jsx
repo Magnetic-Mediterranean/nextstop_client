@@ -12,14 +12,14 @@ class LeftBox extends React.Component {
     return(
       <React.Fragment>
         <Title>
-          <BackButton>Back</BackButton>
+          <BackButton onClick={this.props.back}>Back</BackButton>
           <Logo> Booked Trip </Logo>
         </Title>
         <Container>
-          <TripCheckout>
-            <FN>Congratulations! Your package to {this.props.destination} is complete</FN>
+          <TripCheckout style={{position: 'relative', left: '7%'}}>
+            <FN >Congrats! Your package to {this.props.destination} is complete</FN>
           </TripCheckout>
-          <TripCheckout>
+          <TripCheckout style={{position: 'relative', left: '10%'}}>
             <FN style={{fontSize: '60px'}}>Price Package Details</FN>
             <FN style={{fontSize: '30px'}}>Destination: {this.props.destination}</FN>
             <FN style={{fontSize: '30px'}}>Type: {this.props.type}</FN>
@@ -39,7 +39,7 @@ const TripCheckout = styled.div `
   display: flex;
   flex-direction: column;
   height: 70%;
-  width: 50%;
+  width: 40%;
   overflow-behavior: smooth;
   border: 1px solid black;
   background-color: #cccc;
@@ -98,6 +98,6 @@ const Title = styled.div `
 const Container = styled.div `
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 800px;
   width: 100%;
 `
