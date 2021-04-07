@@ -1,16 +1,25 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import DealData from './FeatureDealData';
 import FeatureDeal from './FeatureDeal';
 
-const LandingPage = ({incrementDisplayPage}) => {
+const LandingPage = ({ incrementDisplayPage }) => {
+
+  const handleOnSubmit = () => {
+    axios.get('/flights')
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+  }
+
   return (
     <div>
       <h3>Go Anywhere</h3>
       <DealContainer>
-      {DealData.map((deal) => <FeatureDeal key={deal.airline + deal.price} data={deal}/>)}
+        {DealData.map((deal) => <FeatureDeal data={deal} />)}
       </DealContainer>
-    <button onClick={incrementDisplayPage}>Click Me</button>
+      <button onClick={handleOnSubmit}>Search</button>
+      <button onClick={incrementDisplayPage}>Click Me</button>
     </div>
   )
 }

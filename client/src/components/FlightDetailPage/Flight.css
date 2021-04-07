@@ -1,0 +1,6 @@
+flight {
+  width: 100vh;
+  height: 100px;
+  border-radius: 5px;
+  border: 2px solid #e6e5e5;
+}
