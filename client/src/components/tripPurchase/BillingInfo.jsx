@@ -8,6 +8,7 @@ class BillingInfo extends React.Component{
       years: [],
     }
     this.determineDates = this.determineDates.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -22,11 +23,21 @@ class BillingInfo extends React.Component{
           years.push(currentYear);
           currentYear++;
       }
-
-
     this.setState({
       years: years,
     })
+  }
+
+  handleChange (event) {
+    this.setState({[event.target.name]: event.target.value}, () => {
+      var travelObj = Object.assign({}, this.state);
+      delete travelObj.years;
+      travelObj.expirationDate = travelObj.Month + '/' + travelObj.Year;
+      delete travelObj.Month;
+      delete travelObj.Year;
+
+    this.props.compileTravelData(`billingInfo`, travelObj)
+    });
   }
 
   render() {
@@ -37,32 +48,43 @@ class BillingInfo extends React.Component{
       <>
         <Section>
           <SectionTitle>Payment Details</SectionTitle>
-          <Form>
+          <Form onChange={this.handleChange}>
             <TextFields>
               <Label> Name on Card* </Label>
-              <Input />
+              <Input
+                name="nameOnCard"
+              />
             </TextFields>
             <TextFields>
               <Label> Card Number* </Label>
-              <Input />
+              <Input
+                name="cardNumber"
+              />
             </TextFields>
             <Label>Expiration Date* </Label>
           <div style={{
             marginLeft: "30px",
             marginTop: "2px",
             marginBottom: "20px"}}>
-            <DropDown name="Month">
-              {months.map((month) => <option value={`${month}`}>{month}</option>
+            <DropDown
+              name="Month">
+              {months.map((month, i) => <option value={`${month}`}
+              key={i}>{month}</option>
               )}
             </DropDown>
-            <DropDown name="Year">
-              {years.map((year) => <option value={`${year}`}>{year}</option>
+            <DropDown
+              name="Year">
+              {years.map((year, i) => <option value={`${year}`}
+              key={i}>{year}</option>
               )}
             </DropDown>
           </div>
           <TextFields>
               <Label> CVV* </Label>
-              <Input style={{width: "65px"}} />
+              <Input
+                style={{width: "65px"}}
+                name="cvv"
+              />
             </TextFields>
           </Form>
         </Section>
@@ -91,7 +113,7 @@ const SectionTitle = styled.div`
 
 const Section = styled.div`
   width: 95%;
-  height: 330px;
+  min-height: 330px;
   margin: 10px auto;
   background: white;
   border-radius: 8px;

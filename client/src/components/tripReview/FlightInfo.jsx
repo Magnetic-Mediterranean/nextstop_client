@@ -6,7 +6,11 @@ const FlightInfo = (props) => {
   return (
     <FlightInfoContainer>
       <div> Flight Details: </div>
-      <IndividualFlights>Flight to Destination</IndividualFlights>
+      <IndividualFlights>
+        <InfoDiv>
+
+        </InfoDiv>
+      </IndividualFlights>
       <IndividualFlights>Flight back Home</IndividualFlights>
     </FlightInfoContainer>
   )
@@ -19,9 +23,14 @@ const FlightInfoContainer = styled.div`
 `;
 
 const IndividualFlights = styled.div`
+  display: flex;
   width: 95%;
   height: 100px;
   margin: 10px auto;
   background: white;
   border-radius: 8px;
+`;
+
+const InfoDiv = styled.div`
+
 `;
