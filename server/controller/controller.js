@@ -26,7 +26,7 @@ module.exports = {
   },
   search: (req, res) => {
     var val = req.params.id;
-    axios.get(`http://ec2-13-52-163-50.us-west-1.compute.amazonaws.com/search/${val}`)
+    axios.get(`http://ec2-3-142-95-22.us-east-2.compute.amazonaws.com:3000/flights/translate?search=${val}`)
       .then((result) => {
         var newArr = [];
         for(var i = 0; i < 10; i++) {

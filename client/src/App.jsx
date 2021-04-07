@@ -17,10 +17,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       displayPage: 0,
+      SelectedFrom: '',
+      SelectedTo: '',
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
+    this.setFrom = this.setFrom.bind(this);
+    this.setTo = this.setTo.bind(this);
 
+  }
+  setFrom(val) {
+    this.setState({SelectedFrom: val});
+  }
+  setTo(val) {
+    this.setState({SelectedTo: val});
   }
 
   incrementDisplayPage(currentPage) {
@@ -43,36 +53,43 @@ class App extends React.Component {
     switch (displayPage) {
       case 0:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={false}/>
-          </React.Fragment>
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo}/>
+        </React.Fragment>
         // navBar = LargeSearchBar;
+        break;
+      case 4:
+        navBar =
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
+        </React.Fragment>;
         break;
       case 5:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={false}/>
-          </React.Fragment>;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
+        </React.Fragment>;
         break;
       case 6:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={false}/>
-          </React.Fragment>;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
+        </React.Fragment>;
         break;
       case 7:
         navBar = <NavBar />;
         break;
       default:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={true}/>
-          </React.Fragment>;
-      // navBar = SmallSearchBar;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo}/>
+        </React.Fragment>;
+        // navBar = SmallSearchBar;
     }
     return (
 
@@ -114,7 +131,8 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <Experiences />
+            <Experiences next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage}/>
           )}
 
         {displayPage === 5
