@@ -17,7 +17,6 @@ const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
         <Button onClick={decrementDisplayPage}>Back</Button>
         <h3>Select a Departing Flight</h3>
         { flightSelected ? <Button onClick={handleOnClick}>Next</Button> : <ButtonPlacedHolder></ButtonPlacedHolder>}
-        
     </HeaderContainer>
     <FlightContainer>
       {
