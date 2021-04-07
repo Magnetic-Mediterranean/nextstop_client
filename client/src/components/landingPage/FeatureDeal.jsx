@@ -18,15 +18,16 @@ const FeatureDeal = ({ data }) => {
 export default FeatureDeal;
 
 const P = styled.p`
-  color: palevioletred;
   font-size: 1em;
+  text-align: center;
 `;
 
 const Img = styled.img`
   width: 300px;
   height: 250px;
-  border-radius: 10px;
   object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -5px #cccc;
 `;
 
 

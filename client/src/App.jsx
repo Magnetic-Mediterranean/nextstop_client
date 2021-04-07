@@ -1,10 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 import LandingPage from './components/landingPage/LandingPage';
 import TripReviewMain from './components/tripReview/TripReviewMain';
 import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
 import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
+import Hotels from './components/Hotels';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
@@ -14,7 +16,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 4,
+      displayPage: 0,
       SelectedFrom: '',
       SelectedTo: '',
     }
@@ -102,17 +104,29 @@ class App extends React.Component {
 
         {displayPage === 1
           && (
-            <DepartFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
+            <FlexContainer>
+              <DepartFlight
+                incrementDisplayPage={this.incrementDisplayPage}
+                decrementDisplayPage={this.decrementDisplayPage}
+              />
+            </FlexContainer>
           )}
 
         {displayPage === 2
           && (
-            <ReturnFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
+            <FlexContainer>
+              <ReturnFlight
+                incrementDisplayPage={this.incrementDisplayPage}
+                decrementDisplayPage={this.decrementDisplayPage}
+              />
+            </FlexContainer>
           )}
 
         {displayPage === 3
           && (
-            <div> Hotels </div>
+            <Hotels
+            next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage} />
           )}
 
         {displayPage === 4
@@ -139,7 +153,7 @@ class App extends React.Component {
 
         {displayPage === 7
           && (
-            <Checkout back={this.decrementDisplayPage}/>
+            <Checkout back={this.decrementDisplayPage} />
           )}
       </>
     )
@@ -147,3 +161,7 @@ class App extends React.Component {
 }
 export default App;
 
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;

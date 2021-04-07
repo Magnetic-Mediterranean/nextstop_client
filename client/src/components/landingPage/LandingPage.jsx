@@ -14,7 +14,7 @@ const LandingPage = ({ incrementDisplayPage }) => {
 
   return (
     <div>
-      <h3>Go Anywhere</h3>
+      <CatchPhrase>Go Anywhere</CatchPhrase>
       <DealContainer>
         {DealData.map((deal) => <FeatureDeal data={deal} />)}
       </DealContainer>
@@ -29,4 +29,10 @@ export default LandingPage;
 const DealContainer = styled.div`
   display: flex;
   justify-content: space-around;
+`;
+
+const CatchPhrase = styled.h2`
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-align: center;
 `;

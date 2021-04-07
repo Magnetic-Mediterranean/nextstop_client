@@ -33,8 +33,8 @@ class SmallSearch extends React.Component {
       this.props.setTo(values);
     })
   }
-  onChangeInputFrom(event, value) {
-    this.setState({from: value}, () => {
+  onChangeInputFrom(event, values) {
+    this.setState({from: values}, () => {
       if(this.state.from !== '') {
         axios.get(`/search/${this.state.from}`)
           .then((result) => {
@@ -46,8 +46,8 @@ class SmallSearch extends React.Component {
       }
     });
   }
-  onChangeInputTo(event, value) {
-    this.setState({to: value}, () => {
+  onChangeInputTo(event, values) {
+    this.setState({to: values}, () => {
       if(this.state.to !== '') {
         axios.get(`/search/${this.state.to}`)
           .then((result) => {
@@ -138,13 +138,12 @@ const SmallPhotoContainer = styled.div `
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: ${props => (props.size ? '450px' : '250px')};
+  height: ${props => (props.size ? '60vh' : '250px')};
   align-items: center;
   justify-content: center;
   background-image: url('https://www.jacadatravel.com/wp-content/uploads/fly-images/247256/costa-rica-cloud-forest-1-1600x700-cc.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  position: sticky;
   top: 100px;
   z-index: 2;
 `;
