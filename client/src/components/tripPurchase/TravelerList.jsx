@@ -7,7 +7,11 @@ const TravelerList = (props) => {
   return (
     <TravelerListContainer>
       {travellers.map((traveler) =>
-        <TravelerInfo travelerNumber={traveler}/>)}
+        <TravelerInfo
+          travelerNumber={traveler}
+          compileTravelData={props.compileTravelData}
+          key={traveler}
+        />)}
     </TravelerListContainer>
   )
 }

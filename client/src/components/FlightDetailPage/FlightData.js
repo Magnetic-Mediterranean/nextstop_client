@@ -1,48 +1,159 @@
 const FlightDeals = [
   {
-    airline: "United Airline",
-    departureTime: "2021-08-06T11:05:00",
-    arrivalTime: "2021-08-08T06:30:00",
-    duration: "9H25M",
-    numberOfStops: 0,
-    airports: ["SFO", "ERW"],
-    price: "813.53"
+      "airports": [
+          "SYD",
+          "MNL",
+          "JFK"
+      ],
+      "airline": "PHILIPPINE AIRLINES",
+      "departureTime": "2021-10-06T11:25:00",
+      "arrivalTime": "2021-10-06T22:40:00",
+      "duration": "26H15M",
+      "numberOfStops": 1,
+      "price": "657.10"
   },
   {
-    airline: "Delta",
-    departureTime: "2021-08-06T13:05:00",
-    arrivalTime: "2021-08-08T08:30:00",
-    duration: "29H25M",
-    numberOfStops: 1,
-    airports: ["SFO", "LAX", "ERW"],
-    price: "813.53"
+      "airports": [
+          "SYD",
+          "HNL",
+          "JFK"
+      ],
+      "airline": "HAWAIIAN AIRLINES",
+      "departureTime": "2021-10-06T21:40:00",
+      "arrivalTime": "2021-10-07T06:45:00",
+      "duration": "24H5M",
+      "numberOfStops": 1,
+      "price": "745.17"
   },
   {
-    airline: "Southwest",
-    departureTime: "2021-08-06T18:05:00",
-    arrivalTime: "2021-08-08T05:30:00",
-    duration: "12H25M",
-    numberOfStops: 0,
-    airports: ["SFO", "ERW"],
-    price: "813.53"
+      "airports": [
+          "SYD",
+          "SFO",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T11:30:00",
+      "arrivalTime": "2021-10-06T16:46:00",
+      "duration": "20H16M",
+      "numberOfStops": 1,
+      "price": "930.17"
   },
   {
-    airline: "United Airline",
-    departureTime: "2021-08-06T11:05:00",
-    arrivalTime: "2021-08-08T06:30:00",
-    duration: "12H01M",
-    numberOfStops: 0,
-    airports: ["SFO", "ERW"],
-    price: "823.53"
+      "airports": [
+          "SYD",
+          "LAX",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T10:30:00",
+      "arrivalTime": "2021-10-06T16:16:00",
+      "duration": "20H46M",
+      "numberOfStops": 1,
+      "price": "930.17"
   },
   {
-    airline: "American Airline",
-    departureTime: "2021-08-06T10:05:00",
-    arrivalTime: "2021-08-08T02:30:00",
-    duration: "29H25M",
-    numberOfStops: 0,
-    airports: ["SFO", "ERW"],
-    price: "455.53"
+      "airports": [
+          "SYD",
+          "SFO",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T11:30:00",
+      "arrivalTime": "2021-10-06T17:53:00",
+      "duration": "21H23M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "LAX",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T10:30:00",
+      "arrivalTime": "2021-10-06T17:22:00",
+      "duration": "21H52M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "SFO",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T11:30:00",
+      "arrivalTime": "2021-10-06T19:23:00",
+      "duration": "22H53M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "LAX",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T10:30:00",
+      "arrivalTime": "2021-10-06T18:38:00",
+      "duration": "23H8M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "SFO",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T11:30:00",
+      "arrivalTime": "2021-10-06T20:08:00",
+      "duration": "23H38M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "SFO",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T11:30:00",
+      "arrivalTime": "2021-10-06T21:08:00",
+      "duration": "24H38M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "LAX",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T10:30:00",
+      "arrivalTime": "2021-10-06T20:38:00",
+      "duration": "25H8M",
+      "numberOfStops": 1,
+      "price": "930.17"
+  },
+  {
+      "airports": [
+          "SYD",
+          "SFO",
+          "EWR"
+      ],
+      "airline": "UNITED AIRLINES",
+      "departureTime": "2021-10-06T11:30:00",
+      "arrivalTime": "2021-10-06T22:08:00",
+      "duration": "25H38M",
+      "numberOfStops": 1,
+      "price": "930.17"
   }
 ];
 

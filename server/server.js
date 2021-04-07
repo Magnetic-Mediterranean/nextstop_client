@@ -1,4 +1,5 @@
 const path = require('path');
+const cors = require('cors');
 const express = require('express');
 
 const app = express();
@@ -8,6 +9,9 @@ const controller = require('./controller/controller.js');
 
 // Static Middleware
 app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// CORS
+app.use(cors());
 
 // Parse
 app.use(express.json());

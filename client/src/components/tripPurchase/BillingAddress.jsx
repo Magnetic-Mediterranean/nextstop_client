@@ -5,12 +5,17 @@ class BillingAddress extends React.Component {
   constructor(props) {
     super(props);
     this.state= {
-
     }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange (event) {
+    this.setState({[event.target.name]: event.target.value}, () => {this.props.compileTravelData(`billingAddress`, this.state);
+    });
   }
 
   render () {
-        var country_list = ["United States of America", "Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+        var country_list = ["Select", "United States of America", "Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
         let states = [ "Select", "AK - Alaska",
         "AL - Alabama",
         "AR - Arkansas",
@@ -71,44 +76,52 @@ class BillingAddress extends React.Component {
         height: "500px"
       }}>
         <SectionTitle>Billing Address</SectionTitle>
-        <Form>
+        <Form onChange={this.handleChange}>
         <Label>Country/Territory* </Label>
         <div style={{
           marginLeft: "30px",
           marginTop: "2px",
           marginBottom: "20px"}}>
-          <DropDown name="country"
-          style={{width: "230px"}}>
-            {country_list.map((country) => <option value={`${country}`}>{country}</option>
-            )}
+          <DropDown
+              name="country"
+              style={{ width: "230px" }}>
+              {country_list.map((country, i) => <option value={`${country}`} key={i}>{country}</option>
+              )}
           </DropDown>
         </div>
         <TextFields>
             <Label> Billing Address 1* </Label>
-            <Input />
+            <Input
+              name="billingAddress1" />
           </TextFields>
           <TextFields>
             <Label> Billing Address 2 </Label>
-            <Input />
+            <Input
+              name="billingAddress2"
+            />
           </TextFields>
           <TextFields>
             <Label> City* </Label>
-            <Input />
+            <Input
+              name="city"
+            />
           </TextFields>
-          <Label>Country/Territory* </Label>
+          <Label>State* </Label>
         <div style={{
           marginLeft: "30px",
           marginTop: "2px",
           marginBottom: "20px"}}>
           <DropDown name="state"
           style={{width: "230px"}}>
-            {states.map((state) => <option value={`${state}`}>{state}</option>
+            {states.map((state, i) => <option value={`${state}`} key={i}>{state}</option>
             )}
           </DropDown>
         </div>
         <TextFields>
             <Label> Zip Code* </Label>
-            <Input />
+            <Input
+              name="zipcode"
+            />
           </TextFields>
         </Form>
       </Section>
@@ -136,7 +149,7 @@ const SectionTitle = styled.div`
 
 const Section = styled.div`
   width: 95%;
-  height: 330px;
+  min-height: 330px;
   margin: 10px auto;
   background: white;
   border-radius: 8px;

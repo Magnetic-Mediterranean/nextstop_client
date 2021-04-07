@@ -5,27 +5,53 @@ import Flight from './Flight';
 
 
 const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
-  const [flightSelected, setfligthSelected] = useState(false);
-
+  const [flightSelected, setfligthSelected] = useState();
+  const handleOnClick = () => {
+    incrementDisplayPage();
+    localStorage.setItem('return', flightSelected);
+  }
   return (
     <div>
-      <h3>Select a Returning Flight</h3>
-      <button onClick={decrementDisplayPage}>Back</button>
+    <HeaderContainer>
+        <Button onClick={decrementDisplayPage}>Back</Button>
+        <h3>Select a Returning Flight</h3>
+        { flightSelected ? <Button onClick={handleOnClick}>Next</Button> : <ButtonPlacedHolder></ButtonPlacedHolder>}
+
+    </HeaderContainer>
+    <FlightContainer>
       {
-        flightSelected && (
-          <button onClick={incrementDisplayPage}>Next</button>
-          )
+        FlightDeals.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
       }
-      {
-        FlightDeals.map((flight) => <Flight key={flight.airline + flight.price} FligthDetail={flight} setfligthSelected={setfligthSelected} />)
-      }
+    </FlightContainer>
     </div>
   )
 }
 
 export default ReturnFlight;
 
-const DealContainer = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
+`;
+
+const FlightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Button = styled.button`
+  width: 78px;
+  height: 35px;
+  background: #C4C4C4;
+  border-radius: 7px;
+  border-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const ButtonPlacedHolder = styled.div`
+width: 78px;
+height: 35px;
 `;

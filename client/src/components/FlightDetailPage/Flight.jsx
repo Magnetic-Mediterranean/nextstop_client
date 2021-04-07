@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Flight = ({ FligthDetail, setfligthSelected }) => {
+const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
 
   const airlineIcon = {
-    "United Airline": "icons/UnitedAirline.png",
+    "UNITED AIRLINES": "icons/UnitedAirline.png",
+    "PHILIPPINE AIRLINES": "icons/PhilippineAirlines.png",
+    "HAWAIIAN AIRLINES": "icons/haiwaiianAirline.png",
     "Delta": "icons/delta.png",
     "Southwest": "icons/southwest.png",
     "American Airline": "icons/AA.png",
@@ -40,12 +42,12 @@ const Flight = ({ FligthDetail, setfligthSelected }) => {
 
   const handleSelected = () => {
     setSelected(!selected);
-    setfligthSelected(true);
+    setfligthSelected(FligthDetail);
   }
 
   return (
     <FlightContainer>
-      { selected ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
+      { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
       <div>
         {
           <Icon src={airlineIcon[FligthDetail.airline]} />
@@ -66,8 +68,8 @@ const Flight = ({ FligthDetail, setfligthSelected }) => {
         {FligthDetail.duration}
       </div>
 
-      <div> Departing: {convertToTime(FligthDetail.departureTime)} </div>
-      <div> Arriving: {convertToTime(FligthDetail.arrivalTime)} </div>
+      <div> Depart: {convertToTime(FligthDetail.departureTime)} </div>
+      <div> Arrive: {convertToTime(FligthDetail.arrivalTime)} </div>
 
       <p>${FligthDetail.price}</p>
     </FlightContainer>
@@ -79,6 +81,10 @@ export default Flight;
 const FlightContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  width: 88%;
+  background-color: #e6e5e5;
+  border-radius: 5px;
+  margin: 2px;
 `;
 
 const Icon = styled.img`
