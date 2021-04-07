@@ -4,7 +4,11 @@ import FlightInfo from './FlightInfo';
 import HotelInfo from './HotelInfo';
 import ExperiencesInfo from './ExperiencesInfo';
 import CostInfo from './CostInfo';
-
+import BackButton from '../sharedStyles/backButton'
+import CheckoutButton from '../sharedStyles/checkoutButton';
+import Container from '../sharedStyles/container'
+import Header from '../sharedStyles/header'
+import PageTitle from '../sharedStyles/pageTitle'
 
 
 class TripReviewMain extends React.Component {
@@ -102,48 +106,50 @@ class TripReviewMain extends React.Component {
 
 export default TripReviewMain;
 
-const Header = styled.div`
-  display: flex;
-  justify-contents: center;
-  margin-top: 20px;
-  padding: 15px;
-`;
+// const Header = styled.div`
+//   display: flex;
+//   justify-contents: center;
+//   margin-top: 20px;
+//   padding: 15px;
+// `;
 
-const PageTitle = styled.span`
-  margin: auto;
-  font-size: 30px;
-`;
+// const PageTitle = styled.span`
+//   margin: auto;
+//   font-size: 30px;
+//   font-weight: bold;
+// `;
 
-const Container = styled.div`
-  width: 90%;
-  height: 100%;
-  min-width: 500px;
-  max-width: 1000px;
-  min-height: 500px;
-  margin: auto;
-  background: #E4E5E0;
-`;
+// const Container = styled.div`
+//   width: 90%;
+//   height: 100%;
+//   min-width: 500px;
+//   max-width: 1000px;
+//   min-height: 500px;
+//   margin: auto;
+//   background: #ececec;
+// `;
 
-const BackButton = styled.button`
-  background: #C4C4C4;
-  padding: 5px 15px;
-  border-radius: 7px;
-  margin: 2px;
-  border-color: transparent;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+// const BackButton = styled.button`
+//   background: #C4C4C4;
+//   padding: 5px 15px;
+//   border-radius: 7px;
+//   margin: 2px;
+//   border-color: transparent;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
-const CheckoutButton = styled.button`
-  background: #FF6B6B;
-  padding: 5px 15px;
-  border-radius: 7px;
-  margin: 2px;
-  border-color: transparent;
-  &:hover {
-    cursor: pointer;
-    background: #4ECDC4;
-    transition: 0.5s;
-  }
-`;
+// const CheckoutButton = styled.button`
+//   background: #FF6B6B;
+//   padding: 5px 15px;
+//   border-radius: 7px;
+//   margin: 2px;
+//   border-color: transparent;
+//   &:hover {
+//     cursor: pointer;
+//     background: #FFE66D;
+//     transition: 0.5s;
+//     border: 1px #CCCC solid;
+//   }
+// `;

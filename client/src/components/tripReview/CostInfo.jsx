@@ -21,6 +21,6 @@ const CostDetails = styled.div`
   width: 95%;
   height: 100px;
   margin: 10px auto;
-  background: white;
+  background: #4ECDC4;
   border-radius: 8px;
 `;
