@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
+import PageTitle from '../sharedStyles/pageTitle';
 
 
 const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
@@ -11,27 +12,35 @@ const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
     localStorage.setItem('return', flightSelected);
   }
   return (
-    <div>
-    <HeaderContainer>
+    <Body>
+      <HeaderContainer>
         <Button onClick={decrementDisplayPage}>Back</Button>
-        <h3>Select a Returning Flight</h3>
-        { flightSelected ? <Button onClick={handleOnClick}>Next</Button> : <ButtonPlacedHolder></ButtonPlacedHolder>}
+        <PageTitle>Select a Returning Flight</PageTitle>
+        {flightSelected ? <Button onClick={handleOnClick}>Next</Button> : <ButtonPlacedHolder></ButtonPlacedHolder>}
 
-    </HeaderContainer>
-    <FlightContainer>
-      {
-        FlightDeals.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
-      }
-    </FlightContainer>
-    </div>
+      </HeaderContainer>
+      <FlightContainer>
+        {
+          FlightDeals.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
+        }
+      </FlightContainer>
+    </Body>
   )
 }
 
 export default ReturnFlight;
 
+const Body = styled.div`
+  width: 90%;
+  height: 100%;
+  background: #E4E5E0;
+`;
+
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10vh;
 `;
 
 const FlightContainer = styled.div`
@@ -45,6 +54,7 @@ const Button = styled.button`
   height: 35px;
   background: #C4C4C4;
   border-radius: 7px;
+  margin: 30px;
   border-color: transparent;
   &:hover {
     cursor: pointer;
@@ -52,6 +62,7 @@ const Button = styled.button`
 `;
 
 const ButtonPlacedHolder = styled.div`
-width: 78px;
-height: 35px;
+  width: 78px;
+  height: 35px;
+  margin: 30px;
 `;

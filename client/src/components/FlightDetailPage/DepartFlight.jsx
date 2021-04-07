@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
-
+import PageTitle from '../sharedStyles/pageTitle';
 
 const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
   const [flightSelected, setfligthSelected] = useState();
@@ -12,10 +12,10 @@ const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
   }
 
   return (
-    <div>
+    <Body>
     <HeaderContainer>
         <Button onClick={decrementDisplayPage}>Back</Button>
-        <h3>Select a Departing Flight</h3>
+        <PageTitle>Select a Departing Flight</PageTitle>
         { flightSelected ? <Button onClick={handleOnClick}>Next</Button> : <ButtonPlacedHolder></ButtonPlacedHolder>}
     </HeaderContainer>
     <FlightContainer>
@@ -23,15 +23,23 @@ const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
         FlightDeals.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
       }
     </FlightContainer>
-    </div>
+    </Body>
   )
 }
 
 export default DepartFlight;
 
+const Body = styled.div`
+  width: 90%;
+  height: 100%;
+  background: #E4E5E0;
+`;
+
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10vh;
 `;
 
 const FlightContainer = styled.div`
@@ -45,6 +53,7 @@ const Button = styled.button`
   height: 35px;
   background: #C4C4C4;
   border-radius: 7px;
+  margin: 30px;
   border-color: transparent;
   &:hover {
     cursor: pointer;
@@ -52,6 +61,7 @@ const Button = styled.button`
 `;
 
 const ButtonPlacedHolder = styled.div`
-width: 78px;
-height: 35px;
+  width: 78px;
+  height: 35px;
+  margin: 30px;
 `;

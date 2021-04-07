@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import LandingPage from './components/landingPage/LandingPage';
 import TripReviewMain from './components/tripReview/TripReviewMain';
 import TripPurchaseMain from './components/tripPurchase/TripPurchaseMain';
@@ -14,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 0,
+      displayPage: 1,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -41,43 +42,43 @@ class App extends React.Component {
     switch (displayPage) {
       case 0:
         navBar =
-        <React.Fragment>
-          <NavBar />
-          <SmallSearchBar size={true}/>
-        </React.Fragment>
+          <React.Fragment>
+            <NavBar />
+            <SmallSearchBar size={true}/>
+          </React.Fragment>
         // navBar = LargeSearchBar;
         break;
       case 4:
         navBar =
-        <React.Fragment>
-          <NavBar />
-          <SmallSearchBar size={false}/>
-        </React.Fragment>;
+          <React.Fragment>
+            <NavBar />
+            <SmallSearchBar size={false}/>
+          </React.Fragment>;
         break;
       case 5:
         navBar =
-        <React.Fragment>
-          <NavBar />
-          <SmallSearchBar size={false}/>
-        </React.Fragment>;
+          <React.Fragment>
+            <NavBar />
+            <SmallSearchBar size={false}/>
+          </React.Fragment>;
         break;
       case 6:
         navBar =
-        <React.Fragment>
-          <NavBar />
-          <SmallSearchBar size={false}/>
-        </React.Fragment>;
+          <React.Fragment>
+            <NavBar />
+            <SmallSearchBar size={false}/>
+          </React.Fragment>;
         break;
       case 7:
         navBar = <NavBar />;
         break;
       default:
         navBar =
-        <React.Fragment>
-          <NavBar />
-          <SmallSearchBar size={true}/>
-        </React.Fragment>;
-        // navBar = SmallSearchBar;
+          <React.Fragment>
+            <NavBar />
+            <SmallSearchBar size={true}/>
+          </React.Fragment>;
+      // navBar = SmallSearchBar;
     }
     return (
 
@@ -92,12 +93,22 @@ class App extends React.Component {
 
         {displayPage === 1
           && (
-            <DepartFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
+            <FlexContainer>
+              <DepartFlight
+                incrementDisplayPage={this.incrementDisplayPage}
+                decrementDisplayPage={this.decrementDisplayPage}
+              />
+            </FlexContainer>
           )}
 
         {displayPage === 2
           && (
-            <ReturnFlight incrementDisplayPage={this.incrementDisplayPage} decrementDisplayPage={this.decrementDisplayPage}/>
+            <FlexContainer>
+              <ReturnFlight
+                incrementDisplayPage={this.incrementDisplayPage}
+                decrementDisplayPage={this.decrementDisplayPage}
+              />
+            </FlexContainer>
           )}
 
         {displayPage === 3
@@ -128,7 +139,7 @@ class App extends React.Component {
 
         {displayPage === 7
           && (
-            <Checkout back={this.decrementDisplayPage}/>
+            <Checkout back={this.decrementDisplayPage} />
           )}
       </>
     )
@@ -136,3 +147,7 @@ class App extends React.Component {
 }
 export default App;
 
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
