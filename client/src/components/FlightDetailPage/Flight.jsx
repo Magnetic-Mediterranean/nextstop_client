@@ -68,8 +68,8 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
         {FligthDetail.duration}
       </div>
 
-      <div> Departing: {convertToTime(FligthDetail.departureTime)} </div>
-      <div> Arriving: {convertToTime(FligthDetail.arrivalTime)} </div>
+      <div> Depart: {convertToTime(FligthDetail.departureTime)} </div>
+      <div> Arrive: {convertToTime(FligthDetail.arrivalTime)} </div>
 
       <p>${FligthDetail.price}</p>
     </FlightContainer>
@@ -81,6 +81,10 @@ export default Flight;
 const FlightContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  width: 88%;
+  background-color: #e6e5e5;
+  border-radius: 5px;
+  margin: 2px;
 `;
 
 const Icon = styled.img`

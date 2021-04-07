@@ -8,7 +8,6 @@ const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
   const [flightSelected, setfligthSelected] = useState();
   const handleOnClick = () => {
     incrementDisplayPage();
-    console.log("return", flightSelected);
     localStorage.setItem('return', flightSelected);
   }
   return (
