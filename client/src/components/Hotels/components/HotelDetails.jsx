@@ -5,7 +5,7 @@ const HotelDetails = ({ hotel }) => {
     <div>
       <p>{hotel.type}</p>
       <p>{hotel.name}</p>
-      <p>{hotel.original_price}</p>
+      <p>{`$${hotel.original_price} / night`}</p>
     </div>
   )
 }
