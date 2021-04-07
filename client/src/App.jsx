@@ -8,13 +8,13 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-
+import Experiences from './components/Experiences/Experience.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 5,
+      displayPage: 4,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -107,7 +107,7 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <div> Experiences </div>
+            <Experiences />
           )}
 
         {displayPage === 5
