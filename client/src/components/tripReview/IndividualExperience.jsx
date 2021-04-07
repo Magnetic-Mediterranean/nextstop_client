@@ -18,4 +18,5 @@ const ExperienceInfo = styled.div`
   margin: 10px auto;
   background: white;
   border-radius: 8px;
+  box-shadow: 0 10px 10px -5px #cccc;
 `;
