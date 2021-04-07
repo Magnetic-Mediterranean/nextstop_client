@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const HotelAssets = ({ image, name }) => {
   return (
-    <div>
+    <ImageContainer>
       <img
             className="default-image"
             src={image}
@@ -10,8 +11,19 @@ const HotelAssets = ({ image, name }) => {
             // height="226px"
             // width="226px"
           />
-    </div>
+    </ImageContainer>
   )
 }
 
 export default HotelAssets;
+
+const ImageContainer = styled.div`
+  .default-image{
+    align-items: center;
+    object-fit: cover;
+    border-radius: 8px;
+    // border: 2px solid black;
+    width: 360px;
+    height: 300px;
+  }
+`;

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import HotelList from './components/HotelList.jsx'
+import BackButton from '../../components/sharedStyles/backButton.js'
 
 const dummyData = [
   {
@@ -73,7 +74,7 @@ class Hotels extends React.Component {
     this.state = {
       // hotels: []
       hotels: dummyData,
-      selectedHotelId: null
+      selectedHotelId: null,
     }
     this.getHotels = this.getHotels.bind(this)
     this.handleSelectedHotel = this.handleSelectedHotel.bind(this)
@@ -81,6 +82,9 @@ class Hotels extends React.Component {
 
   componentDidMount() {
     this.getHotels()
+    const hotel = JSON.parse(window.localStorage.getItem('hotel'));
+    const hotelId = JSON.parse(window.localStorage.getItem('id'))
+    this.setState({selectedHotelId: hotelId})
   }
 
   getHotels() {
@@ -100,19 +104,27 @@ class Hotels extends React.Component {
   }
 
   handleSelectedHotel(id) {
-    this.setState({selectedHotelId: id})
+    const filtered = this.state.hotels.filter(hotel => {
+      this.setState({hotel: hotel})
+      return hotel.id === id})
+    if (filtered.length > 0) {
+      const setHotel = window.localStorage.setItem('hotel', JSON.stringify(filtered[0]))
+      // this.setState({hotel: setHotel})
+      const setId = window.localStorage.setItem('id', id)
+      this.setState({selectedHotelId: id})
+    }
   }
 
   render() {
     return (
-      <div>
-      <HeaderContainer>
-        <Button onClick={this.props.back}>Back</Button>
+      <Container>
+      <Header>
+        <BackButton onClick={this.props.back}>Back</BackButton>
         <p>Select a Hotel</p>
-        <Button onClick={this.props.next}>Next</Button>
-      </HeaderContainer>
+        <BackButton onClick={this.props.next}>Next</BackButton>
+      </Header>
       <HotelList hotels={this.state.hotels} handleSelectedHotel={this.handleSelectedHotel} selectedHotelId={this.state.selectedHotelId} />
-      </div>
+      </Container>
     )
   }
 
@@ -120,19 +132,18 @@ class Hotels extends React.Component {
 
 export default Hotels;
 
-const HeaderContainer = styled.div`
-  display: flex;
-  // flex-direction: row;
-  justify-content: space-between;
-  padding: 15px;
-  margin: 15px;
+const Container = styled.div`
+ width: 90%;
+ min-width: 500px;
+ max-width: 1000px;
+ min-height: 500px;
+ margin: auto;
+ background: #ececec;
 `;
 
-const Button = styled.button`
-  font-size: 14px;
-  font-weight: 700;
-  border: 0px;
-  border-radius: 3px;
-  appearance: none;
-  cursor: pointer;
+const Header = styled.div`
+ display: flex;
+ justify-content: space-between;
+ margin-top: 20px;
+ padding: 15px;
 `;
