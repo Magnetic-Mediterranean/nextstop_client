@@ -9,13 +9,13 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-
+import Experiences from './components/Experiences/Experience.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 1,
+      displayPage: 0,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -44,16 +44,9 @@ class App extends React.Component {
         navBar =
           <React.Fragment>
             <NavBar />
-            <SmallSearchBar size={true}/>
+            <SmallSearchBar size={false}/>
           </React.Fragment>
         // navBar = LargeSearchBar;
-        break;
-      case 4:
-        navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={false}/>
-          </React.Fragment>;
         break;
       case 5:
         navBar =
@@ -118,7 +111,7 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <div> Experiences </div>
+            <Experiences />
           )}
 
         {displayPage === 5
