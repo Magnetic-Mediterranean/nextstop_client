@@ -13,7 +13,7 @@ class Experience extends React.Component {
   render() {
     return(
       <TripCheckout>
-        <Buttons />
+        <Buttons back={this.props.back} next={this.props.next}/>
         <Images />
       </TripCheckout>
     )
