@@ -23,13 +23,13 @@ const Navbar = styled.div `
   display: flex;
   flex-direction: row;
   background-color: #4ECDC4;
-  width: 102%;
+  width: 100%;
   height: 100px;
-  margin-left: -8px;
-  margin-top: -8px;
   position: sticky;
   top: 0px;
+  z-index: 2;
   box-shadow: 0 10px 10px -5px #cccc;
+
 `;
 
 const Icon = styled.div`
