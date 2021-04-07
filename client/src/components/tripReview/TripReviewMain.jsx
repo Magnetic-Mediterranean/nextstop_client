@@ -84,7 +84,10 @@ class TripReviewMain extends React.Component {
           <PageTitle> Trip Confirmation </PageTitle>
           <CheckoutButton onClick={this.props.next}> Checkout </CheckoutButton>
         </Header>
-        <FlightInfo />
+        <FlightInfo
+          departingFlight={departingFlight}
+          returningFlight={returningFlight}
+        />
         <HotelInfo />
         <ExperiencesInfo />
         <CostInfo />
