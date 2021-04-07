@@ -6,15 +6,16 @@ import SmallSearchBar from './components/SearchBar/SmallSearch.jsx';
 import LargeSearchBar from './components/SearchBar/LargeSearch.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Hotels from './components/Hotels';
+import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-
+import Experiences from './components/Experiences/Experience.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPage: 5,
+      displayPage: 4,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -41,23 +42,42 @@ class App extends React.Component {
     switch (displayPage) {
       case 0:
         navBar =
-        <div>
+        <React.Fragment>
           <NavBar />
-          <SmallSearchBar />
-        </div>
+          <SmallSearchBar size={true}/>
+        </React.Fragment>
         // navBar = LargeSearchBar;
         break;
+      case 4:
+        navBar =
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false}/>
+        </React.Fragment>;
+        break;
       case 5:
-        navBar = <NavBar />;
+        navBar =
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false}/>
+        </React.Fragment>;
         break;
       case 6:
-        navBar = <NavBar />;
+        navBar =
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false}/>
+        </React.Fragment>;
         break;
       case 7:
         navBar = <NavBar />;
         break;
       default:
-        navBar = <SmallSearchBar />;
+        navBar =
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={true}/>
+        </React.Fragment>;
         // navBar = SmallSearchBar;
     }
     return (
@@ -90,7 +110,7 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <div> Experiences </div>
+            <Experiences />
           )}
 
         {displayPage === 5
@@ -111,7 +131,7 @@ class App extends React.Component {
 
         {displayPage === 7
           && (
-            <div> Confirmation </div>
+            <Checkout back={this.decrementDisplayPage}/>
           )}
       </>
     )
