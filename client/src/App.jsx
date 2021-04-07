@@ -15,10 +15,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       displayPage: 4,
+      SelectedFrom: '',
+      SelectedTo: '',
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
+    this.setFrom = this.setFrom.bind(this);
+    this.setTo = this.setTo.bind(this);
 
+  }
+  setFrom(val) {
+    this.setState({SelectedFrom: val});
+  }
+  setTo(val) {
+    this.setState({SelectedTo: val});
   }
 
   incrementDisplayPage(currentPage) {
@@ -43,7 +53,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={true}/>
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>
         // navBar = LargeSearchBar;
         break;
@@ -51,21 +61,21 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>;
         break;
       case 5:
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>;
         break;
       case 6:
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>;
         break;
       case 7:
@@ -75,7 +85,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={true}/>
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>;
         // navBar = SmallSearchBar;
     }
@@ -107,7 +117,8 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <Experiences />
+            <Experiences next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage}/>
           )}
 
         {displayPage === 5

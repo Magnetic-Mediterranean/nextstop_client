@@ -95,6 +95,7 @@ const Smallbox = styled.img `
   border-radius: 8px;
   box-shadow: 0 10px 10px -5px #cccc;
   position: relative;
+  object-fit: cover;
 `
 
 const BoxRow = styled.div `
