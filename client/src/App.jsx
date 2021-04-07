@@ -16,11 +16,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       displayPage: 0,
-=======
-      displayPage: 1,
->>>>>>> 3c2cae7df1635f7dc75e464876d918b51e66823e
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
