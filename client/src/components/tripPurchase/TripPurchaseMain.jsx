@@ -15,7 +15,7 @@ class TripPurchaseMain extends React.Component {
   }
 
   componentDidMount() {
-    // get info from localstorage
+
   }
 
   compileTravelData (keyValue, value) {
@@ -34,9 +34,6 @@ class TripPurchaseMain extends React.Component {
     this.props.next();
   }
 
-  getDataFromChildren () {
-
-  }
 
   render () {
     const { travellers } = this.state;
