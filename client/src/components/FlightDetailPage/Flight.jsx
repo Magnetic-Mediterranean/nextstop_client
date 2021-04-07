@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import SubContainer from '../sharedStyles/subContainer';
 
 const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
@@ -8,9 +9,9 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
     "PHILIPPINE AIRLINES": "icons/PhilippineAirlines.png",
     "HAWAIIAN AIRLINES": "icons/haiwaiianAirline.png",
-    "Delta": "icons/delta.png",
-    "Southwest": "icons/southwest.png",
-    "American Airline": "icons/AA.png",
+    "DELTA": "icons/delta.png",
+    "SOUTHWEST": "icons/southwest.png",
+    "AMERICAN AIRLINES": "icons/AA.png",
   }
 
   const flightLegs = (array) => {
@@ -79,12 +80,16 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
 export default Flight;
 
 const FlightContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 88%;
-  background-color: #e6e5e5;
-  border-radius: 5px;
-  margin: 2px;
+display: flex;
+width: 95%;
+height: 100px;
+margin: 10px auto;
+background: white;
+border-radius: 8px;
+box-shadow: 0 10px 10px -5px #cccc;
+display: flex;
+justify-content: space-around;
+align-items: center;
 `;
 
 const Icon = styled.img`
@@ -97,6 +102,6 @@ const Icon = styled.img`
 const Circle = styled.span`
   height: 25px;
   width: 25px;
-  background-color: ${props => props.selected ? "Green" : "#CDCDCD"};
+  background-color: ${props => props.selected ? "#4ECDC4" : "#CDCDCD"};
   border-radius: 50%;
 `;
