@@ -35,10 +35,29 @@ class TripReviewMain extends React.Component {
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
     console.log('this is experiences', experiences);
 
+    // dummy data
+    // const departingFlight = {
+    //   airline: "Delta",
+    //   departureTime: "2021-08-06T13:05:00",
+    //   arrivalTime: "2021-08-08T08:30:00",
+    //   duration: "29H25M",
+    //   numberOfStops: 1,
+    //   airports: ["SFO", "LAX", "ERW"],
+    //   price: "813.53"
+    // };
+    // const returningFlight = {
+    //   airline: "Southwest",
+    //   departureTime: "2021-08-06T18:05:00",
+    //   arrivalTime: "2021-08-08T05:30:00",
+    //   duration: "12H25M",
+    //   numberOfStops: 0,
+    //   airports: ["SFO", "ERW"],
+    //   price: "813.53"
+    // };
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
-      hotel: hotel,
+      // hotel: hotel,
       // experiences: experiences,
       infoLoaded: true,
     })
@@ -50,7 +69,7 @@ class TripReviewMain extends React.Component {
   }
 
   render () {
-    const { departingFlight, returningFlight, infoLoaded, hotel } = this.state;
+    const { departingFlight, returningFlight, infoLoaded } = this.state;
     return (
       <>
             {!infoLoaded &&
@@ -61,24 +80,16 @@ class TripReviewMain extends React.Component {
       </Container>
     )}
       {infoLoaded &&
-      (<Container style={{
-        overflow: 'auto'}}>
+      (<Container style={{overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
           <PageTitle> Trip Confirmation </PageTitle>
           <CheckoutButton onClick={this.props.next}> Checkout </CheckoutButton>
         </Header>
-        <FlightInfo
-          departingFlight={departingFlight}
-          returningFlight={returningFlight}
-        />
-        <HotelInfo hotel={hotel}/>
+        <FlightInfo />
+        <HotelInfo />
         <ExperiencesInfo />
-        <CostInfo
-          hotel={hotel}
-          departingFlight={departingFlight}
-          returningFlight={returningFlight}
-         />
+        <CostInfo />
         <CheckoutButton
         onClick={this.handleClick}
         style={{
@@ -86,9 +97,7 @@ class TripReviewMain extends React.Component {
           display: "flex",
           justifyContent: "center",
           padding: "15px 30px",
-          fontSize: "15px",
-          marginBottom: "40px",
-          marginTop: "20px",
+          fontSize: "15px"
           }}> Checkout </CheckoutButton>
       </Container>
     )}

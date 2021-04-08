@@ -8,7 +8,7 @@ class TripPurchaseMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      travellers: [1],
+      travellers: [1, 2],
     }
     this.compileTravelData = this.compileTravelData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
