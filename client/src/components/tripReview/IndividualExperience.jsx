@@ -58,8 +58,7 @@ const ImageContainer = styled.div`
 
 const DetailsContainer = styled.div`
  display: flex;
- width: auto;
- width: 574px;
+ width: 70%;
  height: 300px;
  background: white;
  border-radius: 8px;
