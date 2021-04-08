@@ -14,7 +14,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "DELTA AIR LINES": "icons/delta.png",
     "SOUTHWEST": "icons/southwest.png",
     "AMERICAN AIRLINES": "icons/AA.png",
-    "TURKISH AIRLINES": "icons/turisk.png",
+    "TURKISH AIRLINES": "icons/turkisk.png",
     "QATAR AIRWAYS": "icons/qatar.png",
     "AIR CANADA": "icons/aircanada.png",
     "JETBLUE AIRWAYS": "icons/jetBlue.png",
@@ -60,11 +60,6 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     let date = new Date(APIdate);
     return (
     <div onMouseEnter={() => { handleMouseEnter(APIdate)} }>
-      {/* {
-        hoverDate && (
-          {displayDate}
-        )
-      } */}
      {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
     </div> )
   }
@@ -85,15 +80,20 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   }
 
   return (
-    <FlightContainer>
+    <FlightContainer onClick={handleSelected}>
       { flightSelected === FligthDetail ?
-        <Circle selected onClick={handleSelected} ></Circle>
-        : <Circle onClick={handleSelected}></Circle>}
+        <Circle selected ></Circle>
+        : <Circle></Circle>}
       {
         <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.jpg"} />
       }
 
       <AlignWrapper>
+      {/* {
+        hoverDate && (
+          {displayDate}
+        )
+      } */}
         <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
@@ -148,6 +148,10 @@ const FlightContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.01);
+    transition: .5s;
+  }
 `;
 
 const Icon = styled.img`
