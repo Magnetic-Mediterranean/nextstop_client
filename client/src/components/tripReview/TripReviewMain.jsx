@@ -31,6 +31,7 @@ class TripReviewMain extends React.Component {
   componentDidMount() {
     // get info from localstorage
     const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
+    console.log(departingFlight)
     const returningFlight = JSON.parse(window.localStorage.getItem('return'));
 
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
@@ -43,7 +44,6 @@ class TripReviewMain extends React.Component {
       returningFlight: returningFlight,
       hotel: hotel,
       // experiences: experiences,
-
     })
 
     setTimeout(() => {
@@ -53,6 +53,7 @@ class TripReviewMain extends React.Component {
     }, 1000)
     this.calculateNumberOfNights();
     this.totalExperienceCost();
+
   }
 
   calculateNumberOfNights() {
@@ -60,7 +61,6 @@ class TripReviewMain extends React.Component {
     var date2 = new Date(this.props.dateTo);
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    console.log('numberOfNights', numberOfNights)
   }
 
   totalExperienceCost() {
@@ -76,9 +76,9 @@ class TripReviewMain extends React.Component {
   }
 
   handleClick() {
-
     this.props.next();
   }
+
 
   render () {
     const { departingFlight, returningFlight, infoLoaded, hotel, experiences, numberOfNights, totalExperienceCost } = this.state;
@@ -89,6 +89,9 @@ class TripReviewMain extends React.Component {
         <Container>
            <div >
           <img
+          style={{
+            width: "100%"
+          }}
           src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
         </div>
         </Container>
@@ -103,6 +106,8 @@ class TripReviewMain extends React.Component {
           <FlightInfo
             departingFlight={departingFlight}
             returningFlight={returningFlight}
+            departDate={this.props.dateFrom}
+            returnDate={this.props.dateTo}
           />
         <HotelInfo hotel={hotel}/>
         <ExperiencesInfo
