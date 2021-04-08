@@ -20,24 +20,22 @@ class TripReviewMain extends React.Component {
       hotel: {},
       experiences: [],
       infoLoaded: false,
-      numberOfNights: '4',
-      totalExperienceCost: '',
+      numberOfNights: '',
+      departureAirline: '',
+      returnAirline: '',
     }
     this.handleClick = this.handleClick.bind(this);
     this.calculateNumberOfNights = this.calculateNumberOfNights.bind(this);
-    this.totalExperienceCost = this.totalExperienceCost.bind(this);
   }
 
   componentDidMount() {
     // get info from localstorage
     const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
-    console.log(departingFlight)
     const returningFlight = JSON.parse(window.localStorage.getItem('return'));
 
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
 
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
-    console.log('this is experiences', experiences);
 
     this.setState({
       departingFlight: departingFlight,
@@ -52,8 +50,6 @@ class TripReviewMain extends React.Component {
       })
     }, 1000)
     this.calculateNumberOfNights();
-    this.totalExperienceCost();
-
   }
 
   calculateNumberOfNights() {
@@ -61,17 +57,9 @@ class TripReviewMain extends React.Component {
     var date2 = new Date(this.props.dateTo);
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  }
 
-  totalExperienceCost() {
-    var totalCost = 0;
-    const { experiences } = this.state;
-
-    for (var i = 0; i < experiences.length; i++) {
-      totalCost += Number(experiences[i].price);
-    }
     this.setState({
-      totalExperienceCost: totalCost
+      numberOfNights: numberOfNights,
     })
   }
 
@@ -100,7 +88,7 @@ class TripReviewMain extends React.Component {
       (<Container style={{overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
-          <PageTitle> Trip Review </PageTitle>
+          <PageTitle> Your Trip </PageTitle>
           <CheckoutButton onClick={this.props.next}> Checkout </CheckoutButton>
         </Header>
           <FlightInfo
@@ -118,7 +106,6 @@ class TripReviewMain extends React.Component {
           departingFlight={departingFlight}
           returningFlight={returningFlight}
           numberOfNights={numberOfNights}
-          totalExperienceCost={totalExperienceCost}
           experiences={experiences}
         />
         <CheckoutButton
@@ -140,51 +127,3 @@ class TripReviewMain extends React.Component {
 }
 
 export default TripReviewMain;
-
-// const Header = styled.div`
-//   display: flex;
-//   justify-contents: center;
-//   margin-top: 20px;
-//   padding: 15px;
-// `;
-
-// const PageTitle = styled.span`
-//   margin: auto;
-//   font-size: 30px;
-//   font-weight: bold;
-// `;
-
-// const Container = styled.div`
-//   width: 90%;
-//   height: 100%;
-//   min-width: 500px;
-//   max-width: 1000px;
-//   min-height: 500px;
-//   margin: auto;
-//   background: #ececec;
-// `;
-
-// const BackButton = styled.button`
-//   background: #C4C4C4;
-//   padding: 5px 15px;
-//   border-radius: 7px;
-//   margin: 2px;
-//   border-color: transparent;
-//   &:hover {
-//     cursor: pointer;
-//   }
-// `;
-
-// const CheckoutButton = styled.button`
-//   background: #FF6B6B;
-//   padding: 5px 15px;
-//   border-radius: 7px;
-//   margin: 2px;
-//   border-color: transparent;
-//   &:hover {
-//     cursor: pointer;
-//     background: #FFE66D;
-//     transition: 0.5s;
-//     border: 1px #CCCC solid;
-//   }
-// `;

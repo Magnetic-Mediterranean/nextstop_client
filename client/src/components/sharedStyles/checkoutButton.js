@@ -4,6 +4,7 @@ const CheckoutButton = styled.button `
   padding: 20px;
   background-color: #4ECDC4;
   border-radius: 8px;
+  font-size: 15px;
   border: solid #cccc;
   width: 100px;
   height: 30px;

@@ -29,15 +29,12 @@ class TripPurchaseMain extends React.Component {
     this.setState({
       travellers: travelerArray,
     })
+
+    const costDetails = JSON.parse(window.localStorage.getItem('costDetails'));
+    console.log(costDetails);
   }
 
   compileTravelData (keyValue, value) {
-    // if (value.dateOfBirth) {
-    //   value.dateOfBirth = value.dobMonth + ' ' + value.dobDay + ' ' + value.dobYear;
-    //   delete value.dobMonth;
-    //   delete value.dobDay;
-    //   delete value.dobYear;
-    // }
     this.setState({[keyValue]: value, inputtedInfo: true,})
   }
 

@@ -20,7 +20,7 @@ class LeftBox extends React.Component {
 
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
     console.log('this is experiences', experiences);
-    const total = JSON.parse(window.localStorage.getItem('total'));
+    const total = JSON.parse(window.localStorage.getItem('costDetails'));
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
