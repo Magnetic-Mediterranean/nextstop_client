@@ -5,8 +5,29 @@ class LeftBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      departingFlight: '',
+      returningFlight: '',
+      hotel: '',
+      infoLoaded: false,
+      total: 4644.72,
     }
+  }
+  componentDidMount() {
+    // get info from localstorage
+    const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
+    const returningFlight = JSON.parse(window.localStorage.getItem('return'));
+    const hotel = JSON.parse(window.localStorage.getItem('hotel'));
+
+    const experiences = JSON.parse(window.localStorage.getItem('experiences'));
+    console.log('this is experiences', experiences);
+    const total = JSON.parse(window.localStorage.getItem('total'));
+    this.setState({
+      departingFlight: departingFlight,
+      returningFlight: returningFlight,
+      hotel: hotel,
+      // experiences: experiences,
+      infoLoaded:true,
+    })
   }
   render() {
     return(
@@ -20,13 +41,20 @@ class LeftBox extends React.Component {
             <FN >Congrats! Your package to {this.props.destination} is complete</FN>
           </TripCheckout>
           <TripCheckout style={{position: 'relative', left: '10%'}}>
-            <FN style={{fontSize: '60px'}}>Price Package Details</FN>
-            <FN style={{fontSize: '30px'}}>Destination: {this.props.destination}</FN>
-            <FN style={{fontSize: '30px'}}>Type: {this.props.type}</FN>
-            <FN style={{fontSize: '30px'}}>Price: ${this.props.price}</FN>
-            <FN style={{fontSize: '30px'}}>Type: {this.props.type}</FN>
-            <FN style={{fontSize: '30px', borderBottom: '1px solid black', paddingBottom:'30px'}}>Price: ${this.props.price}</FN>
-            <FN style={{fontSize: '40px', marginTop: '20px'}}>Total: ${this.props.total}</FN>
+            <FN style={{fontSize: '60px'}}>Info</FN>
+            <FN style={{fontSize: '35px'}}>Departing Flight</FN>
+            <FN style={{fontSize: '25px'}}>{this.state.departingFlight.airline}</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.departingFlight.arrivalTime}</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.departingFlight.departureTime}</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.departingFlight.price}</FN>
+            <FN style={{fontSize: '35px'}}>Returning Flight</FN>
+            <FN style={{fontSize: '25px'}}>{this.state.returningFlight.airline}</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.returningFlight.arrivalTime}</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.returningFlight.departureTime}</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.returningFlight.price}</FN>
+            <FN style={{fontSize: '35px'}}>Hotel</FN>
+            <FN style={{fontSize: '20px'}}>{this.state.hotel.name}</FN>
+            <FN style={{fontSize: '40px', marginTop: '20px'}}>Total: ${this.state.total}</FN>
           </TripCheckout>
         </Container>
 
@@ -38,17 +66,18 @@ export default LeftBox;
 const TripCheckout = styled.div `
   display: flex;
   flex-direction: column;
-  height: 70%;
+  height: 90%;
   width: 40%;
   overflow-behavior: smooth;
-  border: 1px solid black;
-  background-color: #cccc;
+  background-color: white;
   margin-left: 20px;
   margin-top: 20px;
   border-radius: 8px;
   text-align: center;
   justify-content: center;
   overflow: scroll;
+  box-shadow: 0 10px 10px -5px #cccc;
+  font-weight: bold;
 `;
 
 const FN = styled.div `
