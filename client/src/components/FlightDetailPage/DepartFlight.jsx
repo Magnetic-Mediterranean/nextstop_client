@@ -67,19 +67,27 @@ const FlightContainer = styled.div`
 
 const Button = styled.button`
   display: ${props => props.hidden ? "none" : "block"};
-  width: 78px;
-  height: 35px;
-  background: #C4C4C4;
-  border-radius: 7px;
+  background-color: white;
+  border-radius: 8px;
+  border: solid #cccc;
+  width: 100px;
+  height: 30px;
   margin: 30px;
-  border-color: transparent;
-  &:hover {
-    cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:focus {
+    outline: none;
   }
+  &:hover {
+    background-color: #FFE66D;
+  }
+  transition: 0.2s  ease-in;
 `;
 
 const ButtonPlacedHolder = styled.div`
-  width: 78px;
-  height: 35px;
+  width: 100px;
+  height: 30px;
   margin: 30px;
 `;
