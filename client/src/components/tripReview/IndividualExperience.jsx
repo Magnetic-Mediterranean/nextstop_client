@@ -10,18 +10,61 @@ const Experience = (props) => {
       style={{
         height: "300px"
       }}>
-      <ImageContainer>
-        {/* <img
-          className="default-image"
-          src={props.hotel.image}
-          alt={props.hotel.name}
-        /> */}
-      </ImageContainer>
-      <DetailsContainer>
-        {/* <p>{props.hotel.type}</p>
-        <p>{props.hotel.name}</p>
-        <p>{`$${props.hotel.original_price} / night`}</p> */}
-      </DetailsContainer>
+        <TripCheckout>
+          <BoxRow>
+            <Smallbox src={this.state.arr[0]}></Smallbox>
+          </BoxRow>
+          <LargeBox>
+            <Text>Experience Info</Text>
+            <Text style={{position: 'relative', left: '15%'}}>Price</Text>
+          </LargeBox>
+        </TripCheckout>
+        <TripCheckout>
+          <BoxRow>
+            <Smallbox src={this.state.arr[1]}></Smallbox>
+          </BoxRow>
+          <LargeBox>
+            <Text>Experience Info</Text>
+            <Text style={{position: 'relative', left: '15%'}}>Price</Text>
+          </LargeBox>
+        </TripCheckout>
+        <TripCheckout>
+          <BoxRow>
+            <Smallbox src={this.state.arr[2]}></Smallbox>
+          </BoxRow>
+          <LargeBox>
+            <Text>Experience Info</Text>
+            <Text style={{position: 'relative', left: '15%'}}>Price</Text>
+          </LargeBox>
+        </TripCheckout>
+        <TripCheckout>
+          <BoxRow>
+            <Smallbox src={this.state.arr[3]}></Smallbox>
+          </BoxRow>
+          <LargeBox>
+            <Text>Experience Info</Text>
+            <Text style={{position: 'relative', left: '15%'}}>Price</Text>
+          </LargeBox>
+        </TripCheckout>
+        <TripCheckout>
+          <BoxRow>
+            <Smallbox src={this.state.arr[4]}></Smallbox>
+          </BoxRow>
+          <LargeBox>
+            <Text>Experience Info</Text>
+            <Text style={{position: 'relative', left: '15%'}}>Price</Text>
+          </LargeBox>
+        </TripCheckout>
+        <TripCheckout>
+          <BoxRow>
+            <Smallbox src={this.state.arr[5]}></Smallbox>
+          </BoxRow>
+          <LargeBox>
+            <Text>Experience Info</Text>
+            <Text style={{position: 'relative', left: '15%'}}>Price</Text>
+          </LargeBox>
+        </TripCheckout>
+
     </SubContainer>
   )
 }
@@ -52,3 +95,47 @@ const DetailsContainer = styled.div`
  padding-left: 15px;
  box-shadow: 0 10px 10px -5px #cccc;
 `;
+
+const TripCheckout = styled.div `
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  overflow-behavior: smooth;
+`
+const Smallbox = styled.img `
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -5px #cccc;
+  position: relative;
+  object-fit: cover;
+`
+
+const BoxRow = styled.div `
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 20%;
+  margin-top: 30px;
+  position: relative;
+  left: 10%;
+  overflow-behavior: smooth;
+`
+
+const LargeBox = styled.div `
+  display: flex;
+  height: 260px;
+  width: 50%;
+  position: relative;
+  margin-top: 30px;
+  border-radius: 8px;
+  left: 15%;
+  background-color: #cccc;
+  box-shadow: 0 10px 10px -5px #cccc;
+  padding: 20px;
+  overflow: scroll;
+`
+const Text = styled.div `
+  width: 100%;
+`
