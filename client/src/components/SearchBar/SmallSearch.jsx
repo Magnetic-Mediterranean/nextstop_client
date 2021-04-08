@@ -88,7 +88,7 @@ class SmallSearch extends React.Component {
             width: '20%',
             borderRadius: '5px',
             position: 'relative',
-            left: '5%',
+            left: '3.5%',
             color: 'black',
 
           }}
@@ -107,7 +107,7 @@ class SmallSearch extends React.Component {
             width: '20%',
             borderRadius: '5px',
             position: 'relative',
-            left: '7.5%',
+            left: '5%',
             color: 'black',
           }}
           renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
@@ -117,7 +117,7 @@ class SmallSearch extends React.Component {
             border: '1.5px solid #cccc',
             textAlign: 'center',
             position: 'relative',
-            left: '10%',
+            left: '7.5%',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -129,7 +129,7 @@ class SmallSearch extends React.Component {
             border: '1.5px solid #cccc',
             textAlign: 'center',
             position: 'relative',
-            left: '12.5%',
+            left: '10%',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -226,7 +226,7 @@ const SubmitButton = styled.button `
 const SelectButton = styled.select `
   display: flex;
   position: relative;
-  left: 14%;
+  left: 12.5%;
   width: 4%;
   height: 54px;
   border-radius: 5px;
