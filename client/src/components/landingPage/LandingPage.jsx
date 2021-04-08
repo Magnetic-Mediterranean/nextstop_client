@@ -8,29 +8,51 @@ const LandingPage = ({ incrementDisplayPage }) => {
 
   const handleOnSubmit = () => {
     axios.get('/flights')
-    .then((data) => console.log(data.data))
-    .catch((err) => console.log(err));
+      .then((data) => console.log(data.data))
+      .catch((err) => console.log(err));
   }
 
   return (
-    <div>
-      <CatchPhrase>Explore New Places</CatchPhrase>
+    <PageContainer>
+      <Phrases>
+        <CatchPhrase>Explore New Places</CatchPhrase>
+        <Description>Pack your bags — it's time for an adventure</Description>
+      </Phrases>
       <DealContainer>
         {DealData.map((deal) => <FeatureDeal data={deal} />)}
       </DealContainer>
-    </div>
+      <br />
+    </PageContainer>
   )
 }
 
 export default LandingPage;
 
-const DealContainer = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  margin-left: 3%;
+  margin-right: 3%;
+`;
+
+const DealContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const CatchPhrase = styled.h2`
-  font-weight: bold;
-  font-size: 30px;
-  margin-left: 5%;
+  font-weight: 700;
+  font-size: 26px;
+  margin: 0;
+`;
+
+const Description = styled.p`
+  font-weight: 300;
+  font-size: 20px;
+  margin: 0;
+`;
+
+const Phrases = styled.div`
+  margin: 2% 0 2% 0;
 `;
