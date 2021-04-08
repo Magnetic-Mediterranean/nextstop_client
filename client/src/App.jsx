@@ -11,7 +11,7 @@ import Hotels from './components/Hotels';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-import Experiences from './components/Experiences/Experience.jsx';
+import Experiences from './components/Experiences';
 
 class App extends React.Component {
   constructor(props) {
@@ -181,8 +181,9 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <Experiences next={this.incrementDisplayPage}
-              back={this.decrementDisplayPage} />
+            <Experiences
+            next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage} />
           )}
 
         {displayPage === 5
