@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import TravelerList from './TravelerList';
 import BillingInfo from './BillingInfo';
 import BillingAddress from './BillingAddress';
+import Container from '../sharedStyles/container.js';
+import BackButton from '../sharedStyles/backButton.js';
+import CheckoutButton from '../sharedStyles/checkoutButton.js';
 
 class TripPurchaseMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       travellers: [1, 2],
+      inputtedInfo: false,
     }
     this.compileTravelData = this.compileTravelData.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,19 +32,39 @@ class TripPurchaseMain extends React.Component {
   }
 
   compileTravelData (keyValue, value) {
-    if (value.dateOfBirth) {
-      value.dateOfBirth = value.dobMonth + ' ' + value.dobDay + ' ' + value.dobYear;
-      delete value.dobMonth;
-      delete value.dobDay;
-      delete value.dobYear;
-    }
-    this.setState({[keyValue]: value})
+    // if (value.dateOfBirth) {
+    //   value.dateOfBirth = value.dobMonth + ' ' + value.dobDay + ' ' + value.dobYear;
+    //   delete value.dobMonth;
+    //   delete value.dobDay;
+    //   delete value.dobYear;
+    // }
+    this.setState({[keyValue]: value, inputtedInfo: true,})
   }
 
   handleSubmit (event) {
     event.preventDefault();
-    console.log(this.state);
-    this.props.next();
+
+    const { inputtedInfo } = this.state;
+    var verified = inputtedInfo;
+
+    var stateObj = Object.assign({}, this.state);
+      delete stateObj.inputtedInfo;
+      delete stateObj.travellers;
+    var keys = Object.keys(stateObj);
+
+    keys.forEach((outerKey) => {
+      var innerKeys = Object.keys(stateObj[outerKey]);
+      innerKeys.forEach((innerKey) => {
+        if (stateObj[outerKey][innerKey].length === 0) {
+          if (innerKey === 'billingAddress2') {} else {
+            verified = false;
+          }
+        }
+      })
+    })
+
+    verified ? this.props.next() : window.alert('Please fill out all required information')
+
   }
 
 
@@ -48,11 +72,11 @@ class TripPurchaseMain extends React.Component {
     const { travellers } = this.state;
     return (
       <SurroundingDiv>
-        <Container>
+        <Container style={{overflow: 'auto'}}>
           <Header>
             <BackButton onClick={this.props.back}> Back </BackButton>
             <PageTitle> Trip Checkout </PageTitle>
-            <CheckoutButton onClick={this.props.next}> Purchase! </CheckoutButton>
+            <CheckoutButton onClick={this.handleSubmit}> Purchase! </CheckoutButton>
           </Header>
 
           <Section>Traveler Information: </Section>
@@ -65,22 +89,24 @@ class TripPurchaseMain extends React.Component {
           <BillingInfo
             compileTravelData={this.compileTravelData}
           />
-
           <BillingAddress
             compileTravelData={this.compileTravelData}
           />
+
           <CheckoutButton
             onClick={this.handleSubmit}
             style={{
               margin: "auto",
               display: "flex",
               justifyContent: "center",
-              padding: "15px 30px",
-              fontSize: "15px"
-            }}
-          > Purchase! </CheckoutButton>
-
-
+              padding: "25px 70px",
+              fontSize: "16px",
+              marginBottom: "40px",
+              marginTop: "20px",
+              }}
+            >
+          Purchase!
+          </CheckoutButton>
         </Container>
       </SurroundingDiv>
     )
@@ -88,6 +114,10 @@ class TripPurchaseMain extends React.Component {
 }
 
 export default TripPurchaseMain;
+
+const Div = styled.div`
+  display: flex;
+`;
 
 const SurroundingDiv = styled.div`
   height: 100%
@@ -117,35 +147,35 @@ const Section = styled.div`
   margin-left: 10px;
 `;
 
-const Container = styled.div`
-  width: 90%;
-  height: 100%;
-  min-width: 500px;
-  max-width: 1000px;
-  min-height: 500px;
-  margin: auto;
-  background: #E4E5E0;
-  overflow: auto;
-`;
+// const Container = styled.div`
+//   width: 90%;
+//   height: 100%;
+//   min-width: 500px;
+//   max-width: 1000px;
+//   min-height: 500px;
+//   margin: auto;
+//   background: #E4E5E0;
+//   overflow: auto;
+// `;
 
-const BackButton = styled.button`
-  background: #C4C4C4;
-  padding: 5px 15px;
-  border-radius: 7px;
-  margin: 2px;
-  border-color: transparent;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+// const BackButton = styled.button`
+//   background: #C4C4C4;
+//   padding: 5px 15px;
+//   border-radius: 7px;
+//   margin: 2px;
+//   border-color: transparent;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
-const CheckoutButton = styled.button`
-  background: #FF6B6B;
-  padding: 5px 15px;
-  border-radius: 7px;
-  margin: 2px;
-  border-color: transparent;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+// const CheckoutButton = styled.button`
+//   background: #FF6B6B;
+//   padding: 5px 15px;
+//   border-radius: 7px;
+//   margin: 2px;
+//   border-color: transparent;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
