@@ -49,47 +49,63 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   return (
     <FlightContainer>
       { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
-      <div>
-        {
-          <Icon src={airlineIcon[FligthDetail.airline]} />
-        }
-        <p>{FligthDetail.airline}</p>
-      </div>
+      {
+        <Icon src={airlineIcon[FligthDetail.airline]} />
+      }
 
-      <div>
-        {stop(FligthDetail)}
-        {stops !== 0 && (
-          <div>{stops} stop(s)</div>
-        )}
-      </div>
+      <AlignWrapper>
+        <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
+        <SmallFont>{FligthDetail.airline}</SmallFont>
+      </AlignWrapper>
 
-      <div>
-        {flightLegs(FligthDetail.airports)}
-        <br />
-        {FligthDetail.duration}
-      </div>
+      <AlignWrapper>
+        <Bold>{FligthDetail.duration}</Bold>
+        <SmallFont>{flightLegs(FligthDetail.airports)}</SmallFont>
+      </AlignWrapper>
 
-      <div> Depart: {convertToTime(FligthDetail.departureTime)} </div>
-      <div> Arrive: {convertToTime(FligthDetail.arrivalTime)} </div>
+      <AlignWrapper>
+        <SmallFont>{stop(FligthDetail)}</SmallFont>
+          {stops !== 0 && (
+            <div>{stops} stop(s)</div>
+          )}
+      </AlignWrapper>
 
-      <p>${FligthDetail.price}</p>
+      {/* <div> Depart: {convertToTime(FligthDetail.departureTime)} </div>
+      <div> Arrive: {convertToTime(FligthDetail.arrivalTime)} </div> */}
+
+      <Bold>${FligthDetail.price}</Bold>
     </FlightContainer>
   )
 }
 
 export default Flight;
 
+const SmallFont = styled.p`
+  font-size: 13px;
+  margin: 0;
+`;
+
+const Bold = styled.p`
+  font-weight: bold;
+  margin: 0;
+`;
+
+const AlignWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const FlightContainer = styled.div`
-display: flex;
-width: 95%;
-height: 100px;
-margin: 10px auto;
-background: white;
-border-radius: 8px;
-box-shadow: 0 10px 10px -5px #cccc;
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  width: 95%;
+  height: 100px;
+  margin: 10px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -5px #cccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const Icon = styled.img`

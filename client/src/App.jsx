@@ -55,7 +55,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo}/>
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} />
         </React.Fragment>
         // navBar = LargeSearchBar;
         break;
@@ -63,7 +63,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} />
         </React.Fragment>;
         break;
       case 5:

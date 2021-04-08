@@ -125,7 +125,7 @@ class SmallSearch extends React.Component {
             backgroundColor: '#ececec',
           }
           }/>
-          <SubmitButton>Find</SubmitButton>
+          <SubmitButton onClick={this.props.incrementDisplayPage}>Find</SubmitButton>
         </SearchBar>
       </SmallPhotoContainer>
     )
