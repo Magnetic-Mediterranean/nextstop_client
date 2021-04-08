@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = {
   flights: (req, res) => {
-    axios.get("http://3.142.95.22:3000/flights/offers", {
+    axios.get("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/flights/offers", {
       params: {
         "originLocationCode": `${req.params.originLocationCode}`,
         "destinationLocationCode": `${req.params.destinationLocationCode}`,

@@ -4,6 +4,8 @@ import SubContainer from '../sharedStyles/subContainer';
 
 const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
+  const [hoverDate, sethoverDate] = useState(false);
+  const [displayDate, setDisplayDate] = useState();
 
   const airlineIcon = {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
@@ -57,7 +59,12 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const convertToTime = (APIdate) => {
     let date = new Date(APIdate);
     return (
-    <div onMouseEnter={handleMouseEnter}>
+    <div onMouseEnter={() => { handleMouseEnter(APIdate)} }>
+      {/* {
+        hoverDate && (
+          {displayDate}
+        )
+      } */}
      {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
     </div> )
   }
@@ -67,8 +74,14 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     setfligthSelected(FligthDetail);
   }
 
-  const handleMouseEnter = () => {
-    console.log('o');
+  const handleMouseEnter = (APIdate) => {
+    let date = new Date(APIdate);
+    let weekday = date.toLocaleString('en-us', {  weekday: 'short' });
+    let month = date.toLocaleString('default', { month: 'short' });
+    let day = date.toLocaleString('default', { day: 'numeric' });
+    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    setDisplayDate(`${time} on ${weekday}, ${month} ${day}`);
+    sethoverDate(true);
   }
 
   return (

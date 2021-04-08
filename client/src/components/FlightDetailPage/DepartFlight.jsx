@@ -19,7 +19,6 @@ const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
     let lastFlightInSet = ( index + 10 ) <= flightData.length - 1 ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current += 10;
-    console.log(Index.current >= flightData.length, Index.current,flightData.length)
   }
 
   return (
