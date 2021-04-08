@@ -9,7 +9,7 @@ class NavBar extends React.Component {
 
   render() {
     return(
-      <Navbar>
+      <Navbar id='NavBar'>
         <Icon>NextStop</Icon>
         <Login> Login </Login>
       </Navbar>
