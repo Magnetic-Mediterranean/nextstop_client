@@ -4,14 +4,22 @@ import SubContainer from '../sharedStyles/subContainer';
 
 const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
+  const [hoverDate, sethoverDate] = useState(false);
+  const [displayDate, setDisplayDate] = useState();
 
   const airlineIcon = {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
     "PHILIPPINE AIRLINES": "icons/PhilippineAirlines.png",
     "HAWAIIAN AIRLINES": "icons/haiwaiianAirline.png",
-    "DELTA": "icons/delta.png",
+    "DELTA AIR LINES": "icons/delta.png",
     "SOUTHWEST": "icons/southwest.png",
     "AMERICAN AIRLINES": "icons/AA.png",
+    "TURKISH AIRLINES": "icons/turisk.png",
+    "QATAR AIRWAYS": "icons/qatar.png",
+    "AIR CANADA": "icons/aircanada.png",
+    "JETBLUE AIRWAYS": "icons/jetBlue.png",
+    "ALASKA AIRLINES": "icons/alaska.png",
+    "SPIRIT AIRLINES": "icons/spirit.jpeg"
   }
 
   const flightLegs = (array) => {
@@ -19,26 +27,46 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     for (let i = 0; i < array.length; i++) {
       display += array[i];
       if (i !== array.length - 1) {
-        display += '-';
+        display += ' - ';
       }
     }
     return display;
   }
 
-  let stops = 0;
-
   const stop = (FligthDetail) => {
     if (FligthDetail.numberOfStops) {
       let display = FligthDetail.airports.slice(1, FligthDetail.airports.length - 1);
-      stops = display.length;
-      return display;
+      let length = display.length;
+      let displayStop = length === 1 ? "1 stop" : `${length} stops`;
+
+      let legs = '';
+      for (let i = 0; i < display.length; i++) {
+        if (i === display.length - 1) {
+          legs += display[i];
+        } else {
+          legs += display[i] + ", ";
+        }
+      }
+      return (
+        <div>
+          <BigFont>{displayStop}</BigFont>
+          <SmallFont>{legs}</SmallFont>
+        </div>);
     }
     return "Non-stop";
   }
 
   const convertToTime = (APIdate) => {
     let date = new Date(APIdate);
-    return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    return (
+    <div onMouseEnter={() => { handleMouseEnter(APIdate)} }>
+      {/* {
+        hoverDate && (
+          {displayDate}
+        )
+      } */}
+     {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
+    </div> )
   }
 
   const handleSelected = () => {
@@ -46,50 +74,80 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     setfligthSelected(FligthDetail);
   }
 
+  const handleMouseEnter = (APIdate) => {
+    let date = new Date(APIdate);
+    let weekday = date.toLocaleString('en-us', {  weekday: 'short' });
+    let month = date.toLocaleString('default', { month: 'short' });
+    let day = date.toLocaleString('default', { day: 'numeric' });
+    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    setDisplayDate(`${time} on ${weekday}, ${month} ${day}`);
+    sethoverDate(true);
+  }
+
   return (
     <FlightContainer>
-      { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
-      <div>
-        {
-          <Icon src={airlineIcon[FligthDetail.airline]} />
-        }
-        <p>{FligthDetail.airline}</p>
-      </div>
+      { flightSelected === FligthDetail ?
+        <Circle selected onClick={handleSelected} ></Circle>
+        : <Circle onClick={handleSelected}></Circle>}
+      {
+        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.jpg"} />
+      }
 
-      <div>
+      <AlignWrapper>
+        <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
+        <SmallFont>{FligthDetail.airline}</SmallFont>
+      </AlignWrapper>
+
+      <AlignWrapper>
+        <BigFont>{FligthDetail.duration}</BigFont>
+        <SmallFont>{flightLegs(FligthDetail.airports)}</SmallFont>
+      </AlignWrapper>
+
+      <AlignWrapper>
         {stop(FligthDetail)}
-        {stops !== 0 && (
-          <div>{stops} stop(s)</div>
-        )}
-      </div>
+      </AlignWrapper>
 
-      <div>
-        {flightLegs(FligthDetail.airports)}
-        <br />
-        {FligthDetail.duration}
-      </div>
-
-      <div> Depart: {convertToTime(FligthDetail.departureTime)} </div>
-      <div> Arrive: {convertToTime(FligthDetail.arrivalTime)} </div>
-
-      <p>${FligthDetail.price}</p>
+      <Bold>${FligthDetail.price}</Bold>
     </FlightContainer>
   )
 }
 
 export default Flight;
 
+const SmallFont = styled.p`
+  font-size: 13px;
+  margin: 0;
+`;
+
+const Bold = styled.p`
+  font-weight: bold;
+  font-size: 19px;
+  margin: 0;
+`;
+
+const BigFont = styled.p`
+  font-size: 19px;
+  margin: 0;
+`;
+
+const AlignWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 25%;
+`;
+
 const FlightContainer = styled.div`
-display: flex;
-width: 95%;
-height: 100px;
-margin: 10px auto;
-background: white;
-border-radius: 8px;
-box-shadow: 0 10px 10px -5px #cccc;
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  width: 95%;
+  height: 100px;
+  margin: 10px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -5px #cccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const Icon = styled.img`
@@ -105,3 +163,4 @@ const Circle = styled.span`
   background-color: ${props => props.selected ? "#4ECDC4" : "#CDCDCD"};
   border-radius: 50%;
 `;
+

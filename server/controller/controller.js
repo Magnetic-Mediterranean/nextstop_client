@@ -2,12 +2,12 @@ const axios = require('axios');
 
 module.exports = {
   flights: (req, res) => {
-    axios.get("http://3.142.95.22:3000/flights/offers", {
+    axios.get("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/flights/offers", {
       params: {
-        "originLocationCode": "SYD",
-        "destinationLocationCode": "NYC",
-        "departureDate": "2021-10-06",
-        "adults": 1
+        "originLocationCode": `${req.params.originLocationCode}`,
+        "destinationLocationCode": `${req.params.destinationLocationCode}`,
+        "departureDate": `${req.params.departureDate}`,
+        "adults": `${req.params.adults}`
       }
     }
     ).then((data) => {

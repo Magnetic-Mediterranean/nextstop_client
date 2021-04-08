@@ -9,7 +9,8 @@ const SubContainer = styled.div`
  border-radius: 8px;
  box-shadow: 0 10px 10px -5px #cccc;
  &:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
+  transition: .5s;
 }
 `;
 

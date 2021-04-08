@@ -2,13 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import Experience from './IndividualExperience';
 
-const ExperiencesInfo = (props) => {
+const ExperiencesInfo = ({experiences}) => {
 
   return (
     <ExperiencesContainer>
       <SectionTitle>Experiences:</SectionTitle>
 
-      <Experience />
+      {experiences.map((experience, i) =>
+        <Experience
+          experience={experience}
+          key={i}
+        />)}
     </ExperiencesContainer>
   )
   }
@@ -21,4 +25,5 @@ const ExperiencesContainer = styled.div`
 
 const SectionTitle = styled.div`
   margin-left: 23.828px;
+  font-size: 20px;
 `;

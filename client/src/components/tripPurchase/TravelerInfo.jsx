@@ -10,7 +10,6 @@ class TravelerInfo extends React.Component {
       lastName: '',
       phoneNumber: '',
       gender: '',
-      dateOfBirth: '',
       dobDay: '',
       dobMonth: '',
       dobYear: '',
