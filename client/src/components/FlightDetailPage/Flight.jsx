@@ -56,12 +56,19 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
 
   const convertToTime = (APIdate) => {
     let date = new Date(APIdate);
-    return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    return (
+    <div onMouseEnter={handleMouseEnter}>
+     {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
+    </div> )
   }
 
   const handleSelected = () => {
     setSelected(!selected);
     setfligthSelected(FligthDetail);
+  }
+
+  const handleMouseEnter = () => {
+    console.log('o');
   }
 
   return (
@@ -74,7 +81,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
       }
 
       <AlignWrapper>
-        <Bold> <div>{convertToTime(FligthDetail.departureTime)}</div> - {convertToTime(FligthDetail.arrivalTime)} </Bold>
+        <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
 
@@ -143,3 +150,4 @@ const Circle = styled.span`
   background-color: ${props => props.selected ? "#4ECDC4" : "#CDCDCD"};
   border-radius: 50%;
 `;
+
