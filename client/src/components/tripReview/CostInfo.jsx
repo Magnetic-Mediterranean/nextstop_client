@@ -5,7 +5,7 @@ import SubContainer from '../sharedStyles/subContainer'
 const CostInfo = (props) => {
   const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + (Number(props.hotel.original_price) * Number(props.numberOfNights)) + Number(props.totalExperienceCost);
   const tax = (totalCost * .20).toFixed(2);
-  const total = Number(totalCost) + Number(tax);
+  const total = (Number(totalCost) + Number(tax)).toFixed(2);
   return (
     <CostInfoContainer>
       <SectionTitle> Cost Breakdown: </SectionTitle>

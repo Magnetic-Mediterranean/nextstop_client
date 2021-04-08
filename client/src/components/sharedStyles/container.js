@@ -7,7 +7,6 @@ const Container = styled.div`
  max-width: 1300px;
  min-height: 500px;
  margin: auto;
-
 `;
 
 export default Container;
