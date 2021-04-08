@@ -11,7 +11,8 @@ class Experiences extends React.Component {
     this.state = {
       // experiences: [],
       experiences: ExperienceData,
-      selectedExperienceId: null,
+      selectedExperiences: [],
+      selectedExperienceIds: new Set(),
     }
     this.getExperiences = this.getExperiences.bind(this)
     this.handleSelectedExperience = this.handleSelectedExperience.bind(this)
@@ -19,9 +20,12 @@ class Experiences extends React.Component {
 
   componentDidMount() {
     this.getExperiences()
-    const experience = JSON.parse(window.localStorage.getItem('experience'));
-    const experienceId = JSON.parse(window.localStorage.getItem('id'))
-    this.setState({selectedExperienceId: experienceId})
+    const experiences = JSON.parse(window.localStorage.getItem('experiences'));
+    // const experienceId = JSON.parse(window.localStorage.getItem('id'))
+    // console.log('type', experiences)
+    // console.log('type', typeof experiences)
+    // this.setState({selectedExperienceIds: new Set([...experiences])})
+    this.setState({selectedExperienceIds: new Set(experiences)})
   }
 
   getExperiences() {
@@ -39,14 +43,31 @@ class Experiences extends React.Component {
   }
 
   handleSelectedExperience(id) {
-    const filtered = this.state.experiences.filter(experience => {
-      this.setState({experience: experience})
-      return experience.id === id})
-    if (filtered.length > 0) {
-      const setExperience = window.localStorage.setItem('experience', JSON.stringify(filtered[0]))
-      // this.setState({experience: setExperience})
-      const setId = window.localStorage.setItem('id', id)
-      this.setState({selectedExperienceId: id})
+    if (this.state.selectedExperienceIds.has(id)) {
+      this.state.selectedExperienceIds.delete(id)
+    } else {
+        this.setState(currentState => {
+          console.log('currentState', currentState)
+          const setTest = new Set(currentState.selectedExperienceIds.add(id))
+          console.log('setTest', setTest)
+
+          return {selectedExperienceIds: setTest}
+        }, () => {
+          const selectedIds = Array.from(this.state.selectedExperienceIds)
+          const filteredExperiences = this.state.experiences.filter(experience => {
+            return this.state.selectedExperienceIds.has(experience.id)
+          })
+          if (filteredExperiences.length > 0) {
+            this.setState({selectedExperiences: filteredExperiences})
+            const setExperiences = window.localStorage.setItem('experiences', JSON.stringify(filteredExperiences))
+
+            const experienceIds = JSON.stringify(Array.from(this.state.selectedExperienceIds))
+            const setExperience = window.localStorage.setItem('experienceIds', experienceIds)
+            console.log('experienceIds', experienceIds)
+            console.log('setExperience', setExperience)
+          }
+
+        })
     }
   }
 
@@ -60,7 +81,7 @@ class Experiences extends React.Component {
         </Header>
         <ExperienceList
         experiences={this.state.experiences}
-        handleSelectedExperience={this.handleSelectedExperience} selectedExperienceId={this.state.selectedExperienceId} />
+        handleSelectedExperience={this.handleSelectedExperience} selectedExperienceIds={this.state.selectedExperienceIds} />
       </Container>
     )
   }

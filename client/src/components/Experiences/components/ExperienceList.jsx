@@ -1,11 +1,11 @@
 import React from 'react'
 import Experience from './Experience.jsx'
 
-const ExperienceList = ({ experiences, handleSelectedExperience , selectedExperienceId}) => {
+const ExperienceList = ({ experiences, handleSelectedExperience , selectedExperienceIds}) => {
   return (
     <div>
       {experiences.map((experience, index) => {
-        const isSelected = experience.id === selectedExperienceId
+        const isSelected = selectedExperienceIds.has(experience.id)
           return(
             <Experience
             experience={experience}
