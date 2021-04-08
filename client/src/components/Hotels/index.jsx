@@ -104,11 +104,11 @@ class Hotels extends React.Component {
   }
 
   handleSelectedHotel(id) {
-    const filtered = this.state.hotels.filter(hotel => {
+    const filteredHotel = this.state.hotels.filter(hotel => {
       this.setState({hotel: hotel})
       return hotel.id === id})
-    if (filtered.length > 0) {
-      const setHotel = window.localStorage.setItem('hotel', JSON.stringify(filtered[0]))
+    if (filteredHotel.length > 0) {
+      const setHotel = window.localStorage.setItem('hotel', JSON.stringify(filteredHotel[0]))
       // this.setState({hotel: setHotel})
       const setId = window.localStorage.setItem('id', id)
       this.setState({selectedHotelId: id})
