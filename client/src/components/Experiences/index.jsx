@@ -53,11 +53,20 @@ class Experiences extends React.Component {
 
           return {selectedExperienceIds: setTest}
         }, () => {
-          console.log('ids', Array.from(this.state.selectedExperienceIds))
-          const entries = JSON.stringify(Array.from(this.state.selectedExperienceIds))
-          const setExperience = window.localStorage.setItem('experiences', entries)
-          console.log('entries', entries)
-          console.log('setExperience', setExperience)
+          const selectedIds = Array.from(this.state.selectedExperienceIds)
+          const filteredExperiences = this.state.experiences.filter(experience => {
+            return this.state.selectedExperienceIds.has(experience.id)
+          })
+          if (filteredExperiences.length > 0) {
+            this.setState({selectedExperiences: filteredExperiences})
+            const setExperiences = window.localStorage.setItem('experiences', JSON.stringify(filteredExperiences))
+
+            const experienceIds = JSON.stringify(Array.from(this.state.selectedExperienceIds))
+            const setExperience = window.localStorage.setItem('experienceIds', experienceIds)
+            console.log('experienceIds', experienceIds)
+            console.log('setExperience', setExperience)
+          }
+
         })
     }
   }
