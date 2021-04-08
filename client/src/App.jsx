@@ -92,18 +92,18 @@ class App extends React.Component {
     switch (displayPage) {
       case 0:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} />
-          </React.Fragment>
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} dateFrom={this.state.dateFrom}/>
+        </React.Fragment>
         // navBar = LargeSearchBar;
         break;
       case 4:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} />
-          </React.Fragment>;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} dateFrom={this.state.dateFrom}/>
+        </React.Fragment>;
         break;
       case 5:
         navBar =
@@ -122,11 +122,11 @@ class App extends React.Component {
         break;
       default:
         navBar =
-          <React.Fragment>
-            <NavBar />
-            <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} />
-          </React.Fragment>;
-      // navBar = SmallSearchBar;
+        <React.Fragment>
+          <NavBar />
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} dateFrom={this.state.dateFrom}/>
+        </React.Fragment>;
+        // navBar = SmallSearchBar;
     }
     let departFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
     if (displayPage === 1 && departFlights.length !== 0) {
