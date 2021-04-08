@@ -141,6 +141,7 @@ const FlightContainer = styled.div`
   width: 95%;
   height: 100px;
   margin: 10px auto;
+  max-width: 1300px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 10px 10px -5px #cccc;

@@ -4,3 +4,7 @@ html, body {
   margin: 0px;
   font-family: 'Roboto', sans-serif;
 }
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input	{
+  font-family: 'Roboto';
+}
