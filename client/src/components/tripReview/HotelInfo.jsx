@@ -25,10 +25,10 @@ const HotelInfo = (props) => {
     <DetailsContainer>
       <p style ={{
         fontSize: "17px",
-        fontWeight: "Bold"
+        fontWeight: "500"
       }}>{props.hotel.type}</p>
       <p>{props.hotel.name}</p>
-      <p>{`$${props.hotel.original_price} / night`}</p>
+      <p>{`$${props.hotel.original_price} per night`}</p>
     </DetailsContainer>
     </SubContainer>
     </HotelInfoContainer>
