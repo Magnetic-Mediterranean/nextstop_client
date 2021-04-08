@@ -56,7 +56,6 @@ const CheckoutButton = styled.button `
   transition: 0.2s  ease-in;
   position:relative;
   right: 10%;
-
 `
 
 const BackButton = styled.button `
