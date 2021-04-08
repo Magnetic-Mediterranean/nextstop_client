@@ -28,11 +28,12 @@ class TripReviewMain extends React.Component {
     // get info from localstorage
     const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
     const returningFlight = JSON.parse(window.localStorage.getItem('return'));
-    console.log(returningFlight)
+
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
-    console.log(hotel)
+
 
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
+    console.log('this is experiences', experiences);
 
     this.setState({
       departingFlight: departingFlight,
