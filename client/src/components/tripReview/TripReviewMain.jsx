@@ -57,7 +57,7 @@ class TripReviewMain extends React.Component {
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
-      // hotel: hotel,
+      hotel: hotel,
       // experiences: experiences,
       infoLoaded: true,
     })
@@ -69,7 +69,7 @@ class TripReviewMain extends React.Component {
   }
 
   render () {
-    const { departingFlight, returningFlight, infoLoaded } = this.state;
+    const { departingFlight, returningFlight, infoLoaded, hotel } = this.state;
     return (
       <>
             {!infoLoaded &&
@@ -86,10 +86,17 @@ class TripReviewMain extends React.Component {
           <PageTitle> Trip Confirmation </PageTitle>
           <CheckoutButton onClick={this.props.next}> Checkout </CheckoutButton>
         </Header>
-        <FlightInfo />
-        <HotelInfo />
+          <FlightInfo
+            departingFlight={departingFlight}
+            returningFlight={returningFlight}
+          />
+        <HotelInfo hotel={hotel}/>
         <ExperiencesInfo />
-        <CostInfo />
+        <CostInfo
+          hotel={hotel}
+          departingFlight={departingFlight}
+          returningFlight={returningFlight}
+        />
         <CheckoutButton
         onClick={this.handleClick}
         style={{
@@ -97,7 +104,9 @@ class TripReviewMain extends React.Component {
           display: "flex",
           justifyContent: "center",
           padding: "15px 30px",
-          fontSize: "15px"
+          fontSize: "15px",
+          marginBottom: "40px",
+          marginTop: "20px",
           }}> Checkout </CheckoutButton>
       </Container>
     )}
