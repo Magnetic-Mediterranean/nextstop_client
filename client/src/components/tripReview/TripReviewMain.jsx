@@ -43,14 +43,14 @@ class TripReviewMain extends React.Component {
       returningFlight: returningFlight,
       hotel: hotel,
       // experiences: experiences,
-      infoLoaded:true,
+
     })
 
-    // setTimeout(() => {
-    //   this.setState({
-    //     infoLoaded: true,
-    //   })
-    // }, 1000)
+    setTimeout(() => {
+      this.setState({
+        infoLoaded: true,
+      })
+    }, 1000)
     this.calculateNumberOfNights();
     this.totalExperienceCost();
   }
@@ -86,11 +86,13 @@ class TripReviewMain extends React.Component {
       <>
             {!infoLoaded &&
       (
-        <div >
+        <Container>
+           <div >
           <img
-
           src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
         </div>
+        </Container>
+
 
     )}
       {infoLoaded &&
@@ -121,8 +123,8 @@ class TripReviewMain extends React.Component {
           margin: "auto",
           display: "flex",
           justifyContent: "center",
-          padding: "15px 30px",
-          fontSize: "15px",
+          padding: "25px 70px",
+          fontSize: "16px",
           marginBottom: "40px",
           marginTop: "20px",
           }}> Checkout </CheckoutButton>
