@@ -31,7 +31,7 @@ class Experience extends React.Component {
         fontWeight: "bold"
       }}>{this.props.experience.name}</p>
       <p>{this.props.experience.shortDescription}</p>
-      <p>{`$${Number(this.props.experience.price.amount).toFixed(2)}`}</p>
+      <p>{`$${Number(this.props.experience.price.amount).toFixed(0)}`}</p>
     </DetailsContainer>
     </SubContainer>
 

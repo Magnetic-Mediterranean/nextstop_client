@@ -119,6 +119,7 @@ class TripReviewMain extends React.Component {
           returningFlight={returningFlight}
           numberOfNights={numberOfNights}
           totalExperienceCost={totalExperienceCost}
+          experiences={experiences}
         />
         <CheckoutButton
         onClick={this.handleClick}

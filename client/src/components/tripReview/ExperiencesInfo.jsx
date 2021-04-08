@@ -25,6 +25,6 @@ margin: 40px 0px;
 `;
 
 const SectionTitle = styled.div`
-  margin-left: 23.828px;
+  margin-left: 10px;
   font-size: 20px;
 `;

@@ -45,9 +45,9 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
     return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   }
 
-  const departureDate = new Date(departDate).toUTCString();
+  const departureDate = new Date(departDate).toDateString();
   console.log(departDate)
-  const returningDate = new Date(returnDate).toUTCString();
+  const returningDate = new Date(returnDate).toDateString();
 
   return (
     <FlightInfoContainer>
@@ -88,6 +88,7 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
       <InnerP>${departingFlight.price}</InnerP>
 
       </SubContainer>
+      <SubTitle>{`Returning flight on ${returningDate}`}</SubTitle>
       <SubContainer style={{justifyContent: "space-around"}}>
 
       <InnerDiv>
@@ -135,12 +136,12 @@ margin: 40px 0px;
 `;
 
 const SectionTitle = styled.div`
-  margin-left: 23.828px;
+  margin: 10px;
   font-size: 20px;
 `;
 
 const SubTitle = styled.div`
-  margin-left: 23.828px;
+  margin-left: 30px;
   font-size: 15px;
 `;
 

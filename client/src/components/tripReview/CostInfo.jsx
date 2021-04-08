@@ -11,7 +11,7 @@ const CostInfo = (props) => {
       <SectionTitle> Cost Breakdown: </SectionTitle>
       <SubContainer style={{
         flexDirection: "column",
-        height: "300px",
+        height: "auto",
         justifyContent: "center",
       }}>
         <SubDiv style={{
@@ -40,14 +40,17 @@ const CostInfo = (props) => {
             ${Number(props.hotel.original_price) * Number(props.numberOfNights) }
           </CostAmount>
         </SubDiv>
-        <SubDiv>
+
+        {props.experiences.map((experience) => {
+          return         <SubDiv>
           <NameOfCost>
-            Experiences
+            {experience.name}
           </NameOfCost>
           <CostAmount>
-            ${props.totalExperienceCost}
+            ${Number(experience.price.amount).toFixed(0)}
           </CostAmount>
         </SubDiv>
+        })}
         <SubDiv>
           <NameOfCost>
             Taxes &#38; Fees
@@ -56,14 +59,19 @@ const CostInfo = (props) => {
             ${tax}
           </CostAmount>
         </SubDiv>
-        <SubDiv>
+        <SubDiv style ={{
+          borderTop: "1px solid black",
+          padding: "10px 0px"
+        }}>
           <NameOfCost style={{
             fontWeight: "bold",
+            fontSize: "20px",
           }}>
             Total
           </NameOfCost>
           <CostAmount style={{
             fontWeight: "bold",
+            fontSize: "20px",
           }}>
             ${total}
           </CostAmount>
@@ -81,7 +89,7 @@ const CostInfoContainer = styled.div`
 `;
 
 const SectionTitle = styled.div`
-  margin-left: 23.828px;
+  margin-left: 10px;
   font-size: 20px;
 `;
 
