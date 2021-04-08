@@ -87,7 +87,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { displayPage, travelerCnt, dateTo, dateFrom, departFlights, returnFlights } = this.state;
+    const { displayPage, travelerCnt, dateTo, dateFrom,departFlights, returnFlights  } = this.state;
     let navBar;
     switch (displayPage) {
       case 0:
@@ -130,6 +130,7 @@ class App extends React.Component {
     }
     let departFlight = <FlexContainer>Loading...</FlexContainer>;
     if (displayPage === 1 && departFlights.length !== 0) {
+      console.log(departFlights);
       departFlight = <FlexContainer>
         <DepartFlight
           flightData={departFlights}

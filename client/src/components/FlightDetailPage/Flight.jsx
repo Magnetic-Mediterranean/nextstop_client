@@ -25,19 +25,31 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     for (let i = 0; i < array.length; i++) {
       display += array[i];
       if (i !== array.length - 1) {
-        display += '-';
+        display += ' - ';
       }
     }
     return display;
   }
 
-  let stops = 0;
-
   const stop = (FligthDetail) => {
     if (FligthDetail.numberOfStops) {
       let display = FligthDetail.airports.slice(1, FligthDetail.airports.length - 1);
-      stops = display.length;
-      return display;
+      let length = display.length;
+      let displayStop = length === 1 ? "1 stop" : `${length} stops`;
+
+      let legs = '';
+      for (let i = 0; i < display.length; i++) {
+        if (i === display.length - 1) {
+          legs += display[i];
+        } else {
+          legs += display[i] + ", ";
+        }
+      }
+      return (
+        <div>
+          <BigFont>{displayStop}</BigFont>
+          <SmallFont>{legs}</SmallFont>
+        </div>);
     }
     return "Non-stop";
   }
@@ -54,30 +66,26 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
 
   return (
     <FlightContainer>
-      { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected} ></Circle> : <Circle onClick={handleSelected}></Circle>}
+      { flightSelected === FligthDetail ?
+        <Circle selected onClick={handleSelected} ></Circle>
+        : <Circle onClick={handleSelected}></Circle>}
       {
         <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.jpg"} />
       }
 
       <AlignWrapper>
-        <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
+        <Bold> <div>{convertToTime(FligthDetail.departureTime)}</div> - {convertToTime(FligthDetail.arrivalTime)} </Bold>
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
 
       <AlignWrapper>
-        <Bold>{FligthDetail.duration}</Bold>
+        <BigFont>{FligthDetail.duration}</BigFont>
         <SmallFont>{flightLegs(FligthDetail.airports)}</SmallFont>
       </AlignWrapper>
 
       <AlignWrapper>
-        <SmallFont>{stop(FligthDetail)}</SmallFont>
-          {stops !== 0 && (
-            <div>{stops} stop(s)</div>
-          )}
+        {stop(FligthDetail)}
       </AlignWrapper>
-
-      {/* <div> Depart: {convertToTime(FligthDetail.departureTime)} </div>
-      <div> Arrive: {convertToTime(FligthDetail.arrivalTime)} </div> */}
 
       <Bold>${FligthDetail.price}</Bold>
     </FlightContainer>
@@ -93,12 +101,19 @@ const SmallFont = styled.p`
 
 const Bold = styled.p`
   font-weight: bold;
+  font-size: 19px;
+  margin: 0;
+`;
+
+const BigFont = styled.p`
+  font-size: 19px;
   margin: 0;
 `;
 
 const AlignWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 0 0 25%;
 `;
 
 const FlightContainer = styled.div`
