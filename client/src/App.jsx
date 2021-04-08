@@ -70,7 +70,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler}/>
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} dateFrom={this.state.dateFrom}/>
         </React.Fragment>
         // navBar = LargeSearchBar;
         break;
@@ -78,7 +78,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} dateFrom={this.state.dateFrom}/>
         </React.Fragment>;
         break;
       case 5:
@@ -100,7 +100,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler} dateFrom={this.state.dateFrom}/>
         </React.Fragment>;
         // navBar = SmallSearchBar;
     }
