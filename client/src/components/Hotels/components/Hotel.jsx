@@ -5,10 +5,9 @@ import HotelDetails from './HotelDetails.jsx'
 // import SubContainer from '../../sharedStyles/subContainer.js'
 
 const Hotel = ({ hotel , selected, handleSelectedHotel}) => {
-  console.log('selected', selected)
   return (
     <SubContainer className="card">
-      {selected ? <CheckedCircle onClick={() => handleSelectedHotel(hotel.id)}>✓</CheckedCircle> : <Circle onClick={() => handleSelectedHotel(hotel.id)}></Circle>}
+      {selected ? <CheckedCircle onClick={() => handleSelectedHotel(hotel.id)}></CheckedCircle> : <Circle onClick={() => handleSelectedHotel(hotel.id)}></Circle>}
       <HotelAssets image={hotel.image} name={hotel.name} />
       <HotelDetails hotel={hotel} />
     </SubContainer>
