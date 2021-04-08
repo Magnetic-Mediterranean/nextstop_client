@@ -10,7 +10,7 @@ import Hotels from './components/Hotels';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-import Experiences from './components/Experiences';
+import Experiences from './components/Experiences/Experience.jsx';
 
 class App extends React.Component {
   constructor(props) {
