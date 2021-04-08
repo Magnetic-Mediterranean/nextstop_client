@@ -26,39 +26,26 @@ class TripReviewMain extends React.Component {
 
   componentDidMount() {
     // get info from localstorage
-    // const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
-    // console.log('this is departingFlight', departingFlight);
-    // const returningFlight = JSON.parse(window.localStorage.getItem('return'));
-    // console.log('this is returningFlight', returningFlight)
-    const hotel = JSON.parse(window.localStorage.getItem('hotel'));
-    const experiences = JSON.parse(window.localStorage.getItem('experiences'));
+    const departingFlight = JSON.parse(window.localStorage.getItem('depart'));
+    const returningFlight = JSON.parse(window.localStorage.getItem('return'));
 
-    // dummy data
-    const departingFlight = {
-      airline: "Delta",
-      departureTime: "2021-08-06T13:05:00",
-      arrivalTime: "2021-08-08T08:30:00",
-      duration: "29H25M",
-      numberOfStops: 1,
-      airports: ["SFO", "LAX", "ERW"],
-      price: "813.53"
-    };
-    const returningFlight = {
-      airline: "Southwest",
-      departureTime: "2021-08-06T18:05:00",
-      arrivalTime: "2021-08-08T05:30:00",
-      duration: "12H25M",
-      numberOfStops: 0,
-      airports: ["SFO", "ERW"],
-      price: "813.53"
-    };
+    const hotel = JSON.parse(window.localStorage.getItem('hotel'));
+
+    const experiences = JSON.parse(window.localStorage.getItem('experiences'));
+    console.log('this is experiences', experiences);
+
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
-      // hotel: hotel,
+      hotel: hotel,
       // experiences: experiences,
-      infoLoaded: true,
     })
+
+    // setTimeout(() => {
+    //   this.setState({
+    //     infoLoaded: true,
+    //   })
+    // }, 1000)
   }
 
   handleClick() {
@@ -67,27 +54,36 @@ class TripReviewMain extends React.Component {
   }
 
   render () {
-    const { departingFlight, returningFlight, infoLoaded } = this.state;
+    const { departingFlight, returningFlight, infoLoaded, hotel } = this.state;
     return (
       <>
             {!infoLoaded &&
-      (<Container>
-        <div style={{display: "flex", justifyContent:"center"}}>
-          <img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
+      (
+        <div >
+          <img
+
+          src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
         </div>
-      </Container>
+
     )}
       {infoLoaded &&
       (<Container style={{overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
-          <PageTitle> Trip Confirmation </PageTitle>
+          <PageTitle> Trip Review </PageTitle>
           <CheckoutButton onClick={this.props.next}> Checkout </CheckoutButton>
         </Header>
-        <FlightInfo />
-        <HotelInfo />
+          <FlightInfo
+            departingFlight={departingFlight}
+            returningFlight={returningFlight}
+          />
+        <HotelInfo hotel={hotel}/>
         <ExperiencesInfo />
-        <CostInfo />
+        <CostInfo
+          hotel={hotel}
+          departingFlight={departingFlight}
+          returningFlight={returningFlight}
+        />
         <CheckoutButton
         onClick={this.handleClick}
         style={{
@@ -95,7 +91,9 @@ class TripReviewMain extends React.Component {
           display: "flex",
           justifyContent: "center",
           padding: "15px 30px",
-          fontSize: "15px"
+          fontSize: "15px",
+          marginBottom: "40px",
+          marginTop: "20px",
           }}> Checkout </CheckoutButton>
       </Container>
     )}
