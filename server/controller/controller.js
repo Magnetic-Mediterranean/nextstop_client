@@ -16,10 +16,16 @@ module.exports = {
       .catch((err) => console.log(err));
   },
   hotels: (req, res) => {
-
+    axios.get("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/hotels/v2/shopping/hotel-offers", {
+      params: {
+       "cityCode": "PAR",
+       "checkInDate": "2021-04-08",
+       "checkOutDate": "2021-04-09"
+      }
+    })
   },
   experiences: (req, res) => {
-
+    axios.post("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/activities", req.body)
   },
   purchase: (req, res) => {
 
