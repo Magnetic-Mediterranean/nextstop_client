@@ -8,11 +8,11 @@ const ExperiencesInfo = ({experiences}) => {
     <ExperiencesContainer>
       <SectionTitle>Experiences:</SectionTitle>
 
-      {/* {experiences.map((experience, i) =>
+      {experiences.map((experience, i) =>
         <Experience
           experience={experience}
           key={i}
-        />)} */}
+        />)}
     </ExperiencesContainer>
   )
   }
@@ -25,4 +25,5 @@ const ExperiencesContainer = styled.div`
 
 const SectionTitle = styled.div`
   margin-left: 23.828px;
+  font-size: 20px;
 `;

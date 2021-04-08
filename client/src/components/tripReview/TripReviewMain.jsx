@@ -18,10 +18,14 @@ class TripReviewMain extends React.Component {
       departingFlight: {},
       returningFlight: {},
       hotel: {},
-      experiences: [{name: "Hike", price: "$45"}, {name: "Eat", price: "$45"}],
+      experiences: [{name: "Hike", price: "45"}, {name: "Eat", price: "45"}],
       infoLoaded: false,
+      numberOfNights: '4',
+      totalExperienceCost: '',
     }
     this.handleClick = this.handleClick.bind(this);
+    this.calculateNumberOfNights = this.calculateNumberOfNights.bind(this);
+    this.totalExperienceCost = this.totalExperienceCost.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +51,28 @@ class TripReviewMain extends React.Component {
     //     infoLoaded: true,
     //   })
     // }, 1000)
+    this.calculateNumberOfNights();
+    this.totalExperienceCost();
+  }
+
+  calculateNumberOfNights() {
+    var date1 = new Date(this.props.dateFrom);
+    var date2 = new Date(this.props.dateTo);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    console.log('numberOfNights', numberOfNights)
+  }
+
+  totalExperienceCost() {
+    var totalCost = 0;
+    const { experiences } = this.state;
+
+    for (var i = 0; i < experiences.length; i++) {
+      totalCost += Number(experiences[i].price);
+    }
+    this.setState({
+      totalExperienceCost: totalCost
+    })
   }
 
   handleClick() {
@@ -55,7 +81,7 @@ class TripReviewMain extends React.Component {
   }
 
   render () {
-    const { departingFlight, returningFlight, infoLoaded, hotel } = this.state;
+    const { departingFlight, returningFlight, infoLoaded, hotel, experiences, numberOfNights, totalExperienceCost } = this.state;
     return (
       <>
             {!infoLoaded &&
@@ -79,11 +105,15 @@ class TripReviewMain extends React.Component {
             returningFlight={returningFlight}
           />
         <HotelInfo hotel={hotel}/>
-        <ExperiencesInfo />
+        <ExperiencesInfo
+          experiences={experiences}
+        />
         <CostInfo
           hotel={hotel}
           departingFlight={departingFlight}
           returningFlight={returningFlight}
+          numberOfNights={numberOfNights}
+          totalExperienceCost={totalExperienceCost}
         />
         <CheckoutButton
         onClick={this.handleClick}

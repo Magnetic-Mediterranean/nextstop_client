@@ -15,7 +15,16 @@ class TripPurchaseMain extends React.Component {
   }
 
   componentDidMount() {
-
+    var travelerArray = [];
+    var start = 1;
+    while (start <= this.props.travelers) {
+      travelerArray.push(start);
+      start++;
+    }
+    console.log('this is travelerArray', travelerArray)
+    this.setState({
+      travellers: travelerArray,
+    })
   }
 
   compileTravelData (keyValue, value) {

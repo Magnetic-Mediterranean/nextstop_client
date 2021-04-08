@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { displayPage } = this.state;
+    const { displayPage, travelerCnt, dateTo, dateFrom } = this.state;
     let navBar;
     switch (displayPage) {
       case 0:
@@ -153,6 +153,8 @@ class App extends React.Component {
             <TripReviewMain
               next={this.incrementDisplayPage}
               back={this.decrementDisplayPage}
+              dateFrom={dateFrom}
+              dateTo={dateTo}
             />
           )}
 
@@ -161,6 +163,7 @@ class App extends React.Component {
             <TripPurchaseMain
               next={this.incrementDisplayPage}
               back={this.decrementDisplayPage}
+              travelers={travelerCnt}
             />
           )}
 
