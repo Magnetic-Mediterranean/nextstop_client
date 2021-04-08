@@ -108,7 +108,7 @@ class SmallSearch extends React.Component {
             position: 'relative',
             left: '3.5%',
             color: 'black',
-
+            fontFamily: 'Roboto'
           }}
           renderInput={(params) => <TextField {...params} label="From" variant="outlined" />}
           />
@@ -127,6 +127,7 @@ class SmallSearch extends React.Component {
             position: 'relative',
             left: '5%',
             color: 'black',
+            fontFamily: 'Roboto'
           }}
           renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
           />
@@ -139,7 +140,8 @@ class SmallSearch extends React.Component {
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
-            backgroundColor: '#ececec'
+            backgroundColor: '#ececec',
+            fontFamily: 'Roboto'
           }
           } min={this.state.date} required/>
           { this.props.dateFrom ? <Calendar className='Cal' type='date' onChange={this.props.setDateTo} style={
@@ -152,6 +154,7 @@ class SmallSearch extends React.Component {
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               backgroundColor: '#ececec',
+              fontFamily: 'Roboto'
             }
           } min={this.state.departure} required/> : <Calendar className='Cal' type='date' onChange={this.props.setDateTo} style={
             {
@@ -163,6 +166,7 @@ class SmallSearch extends React.Component {
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               backgroundColor: '#ececec',
+              fontFamily: 'Roboto'
             }
           } disabled/>
         }
@@ -180,7 +184,7 @@ class SmallSearch extends React.Component {
             <option>11</option>
           </SelectButton>
           <SubmitButton onClick={() => {
-            this.state.selectedFrom !== '' && this.state.selectedTo !== '' && this.props.dateFrom !== '' && this.props.dateTo !== '' ? this.props.incrementDisplayPage() : alert('Need to choose dates and location');
+            this.state.selectedFrom === '' || this.state.selectedTo === '' || this.props.dateFrom === '' || this.props.dateTo === '' ? alert('Need to choose dates and location') : this.props.incrementDisplayPage();
           }}>Find</SubmitButton>
         </SearchBar>
       </SmallPhotoContainer>

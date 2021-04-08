@@ -24,7 +24,7 @@ const Navbar = styled.div `
   flex-direction: row;
   background-color: #4ECDC4;
   width: 100%;
-  height: 100px;
+  height: 80px;
   position: sticky;
   top: 0px;
   z-index: 2;
@@ -33,15 +33,17 @@ const Navbar = styled.div `
 `;
 
 const Icon = styled.div`
-  border-radius: 50%;
-  background-color: #FFE66D;
-  text-align: center;
-  height: 90px;
-  width: 90px;
-  line-height: 90px;
-  margin-left: 30px;
-  margin-top: 2px;
+  bwidth: 100px;
+	height: 50px;
   border: solid #cccc;
+  display: flex;
+  text-align:center;
+  background-color: #FFE66D;
+  margin-top: 5px;
+  margin-left: 30px;
+  border-radius: 15px;
+  align-items: center;
+  padding: 8px;
 `;
 
 const Login = styled.button`
