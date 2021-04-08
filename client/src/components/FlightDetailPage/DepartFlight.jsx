@@ -13,7 +13,7 @@ const DepartFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
   const handleOnClick = () => {
     incrementDisplayPage();
     console.log(flightSelected);
-    localStorage.setItem('depart', JSON.stringify(flightSelected));
+    localStorage.setItem('depart', JSONstringify.(flightSelected));
   }
 
   const display10 = (index) => {
