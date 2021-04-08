@@ -3,9 +3,28 @@ import styled from 'styled-components';
 import SubContainer from '../sharedStyles/subContainer'
 
 const CostInfo = (props) => {
-  const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + (Number(props.hotel.original_price) * Number(props.numberOfNights)) + Number(props.totalExperienceCost);
+  let totalExperienceCost = 0;
+  props.experiences.forEach((experience) => {
+    totalExperienceCost += Number(experience.price.amount);
+  });
+  const flightsCost = Number(props.departingFlight.price) + Number(props.returningFlight.price);
+  const hotelCost = (Number(props.hotel.original_price) * Number(props.numberOfNights))
+
+  const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + (Number(props.hotel.original_price) * Number(props.numberOfNights)) + Number(totalExperienceCost);
+  console.log('totalCost', totalCost);
   const tax = (totalCost * .20).toFixed(2);
   const total = (Number(totalCost) + Number(tax)).toFixed(2);
+
+  const costObj = {
+    flights: `$${flightsCost}`,
+    hotel: `$${hotelCost}`,
+    experiences: `$${totalExperienceCost}`,
+    taxes: `$${tax}`,
+    total: `$${total}`,
+  }
+
+  window.localStorage.setItem('costDetails', JSON.stringify(costObj));
+
   return (
     <CostInfoContainer>
       <SectionTitle> Cost Breakdown: </SectionTitle>
@@ -18,7 +37,7 @@ const CostInfo = (props) => {
           marginTop: "15px"
         }}>
           <NameOfCost>
-            {props.departingFlight.airline}
+            {`Departure Flight (${props.departingFlight.airline})`}
           </NameOfCost>
           <CostAmount>
             ${props.departingFlight.price}
@@ -26,7 +45,7 @@ const CostInfo = (props) => {
         </SubDiv>
         <SubDiv>
           <NameOfCost>
-            {props.returningFlight.airline}
+            {`Return Flight (${props.returningFlight.airline})`}
           </NameOfCost>
           <CostAmount>
             ${props.returningFlight.price}
