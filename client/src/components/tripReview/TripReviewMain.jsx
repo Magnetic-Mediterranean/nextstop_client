@@ -31,36 +31,21 @@ class TripReviewMain extends React.Component {
 
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
 
-
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
     console.log('this is experiences', experiences);
 
-    // dummy data
-    // const departingFlight = {
-    //   airline: "Delta",
-    //   departureTime: "2021-08-06T13:05:00",
-    //   arrivalTime: "2021-08-08T08:30:00",
-    //   duration: "29H25M",
-    //   numberOfStops: 1,
-    //   airports: ["SFO", "LAX", "ERW"],
-    //   price: "813.53"
-    // };
-    // const returningFlight = {
-    //   airline: "Southwest",
-    //   departureTime: "2021-08-06T18:05:00",
-    //   arrivalTime: "2021-08-08T05:30:00",
-    //   duration: "12H25M",
-    //   numberOfStops: 0,
-    //   airports: ["SFO", "ERW"],
-    //   price: "813.53"
-    // };
     this.setState({
       departingFlight: departingFlight,
       returningFlight: returningFlight,
       hotel: hotel,
       // experiences: experiences,
-      infoLoaded: true,
     })
+
+    // setTimeout(() => {
+    //   this.setState({
+    //     infoLoaded: true,
+    //   })
+    // }, 1000)
   }
 
   handleClick() {
@@ -73,17 +58,19 @@ class TripReviewMain extends React.Component {
     return (
       <>
             {!infoLoaded &&
-      (<Container>
-        <div style={{display: "flex", justifyContent:"center"}}>
-          <img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
+      (
+        <div >
+          <img
+
+          src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
         </div>
-      </Container>
+
     )}
       {infoLoaded &&
       (<Container style={{overflow: 'auto'}}>
         <Header>
           <BackButton onClick={this.props.back}> Back </BackButton>
-          <PageTitle> Trip Confirmation </PageTitle>
+          <PageTitle> Trip Review </PageTitle>
           <CheckoutButton onClick={this.props.next}> Checkout </CheckoutButton>
         </Header>
           <FlightInfo

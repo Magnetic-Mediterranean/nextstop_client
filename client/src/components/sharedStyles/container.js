@@ -7,7 +7,9 @@ const Container = styled.div`
  max-width: 1000px;
  min-height: 500px;
  margin: auto;
- background: #ececec;
+
 `;
 
 export default Container;
+
+// background: #ececec;
