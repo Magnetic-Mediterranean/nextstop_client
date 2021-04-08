@@ -19,7 +19,6 @@ class SmallSearch extends React.Component {
     }
     this.onChangeFrom = this.onChangeFrom.bind(this);
     this.onChangeTo = this.onChangeTo.bind(this);
-    this.dateChange = this.dateChange.bind(this);
     this.onChangeInputFrom = this.onChangeInputFrom.bind(this);
     this.onChangeInputTo = this.onChangeInputTo.bind(this);
   }
@@ -59,12 +58,24 @@ class SmallSearch extends React.Component {
       }
     });
   }
-  dateChange(event) {
-    this.setState({date: event.target.value});
+  componentDidMount() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+      if(dd < 10){
+        dd='0'+dd
+      }
+      if(mm<10){
+        mm='0'+mm
+      }
+
+    today = yyyy+'-'+mm+'-'+dd;
+    this.setState({date: today});
   }
   render() {
     return (
-      <SmallPhotoContainer size={this.props.size ? this.props : undefined}>
+      <SmallPhotoContainer size={this.props.size ? this.props : undefined} id='Search'>
         <SearchBar>
           <Autocomplete
           onInputChange={this.onChangeInputFrom}
@@ -77,7 +88,7 @@ class SmallSearch extends React.Component {
             width: '20%',
             borderRadius: '5px',
             position: 'relative',
-            left: '5%',
+            left: '3.5%',
             color: 'black',
 
           }}
@@ -96,12 +107,24 @@ class SmallSearch extends React.Component {
             width: '20%',
             borderRadius: '5px',
             position: 'relative',
-            left: '7.5%',
+            left: '5%',
             color: 'black',
           }}
           renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
           />
-        <Calendar className='Cal' type='date' onChange={this.dateChange} style={
+        <Calendar className='Cal' type='date' onChange={this.props.setDateFrom} style={
+          {
+            border: '1.5px solid #cccc',
+            textAlign: 'center',
+            position: 'relative',
+            left: '7.5%',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            backgroundColor: '#ececec'
+          }
+          } min={this.state.date} required/>
+          <Calendar className='Cal' type='date' onChange={this.props.setDateTo} style={
           {
             border: '1.5px solid #cccc',
             textAlign: 'center',
@@ -110,22 +133,25 @@ class SmallSearch extends React.Component {
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
-            backgroundColor: '#ececec'
-          }
-          }/>
-          <Calendar className='Cal' type='date' onChange={this.dateChange} style={
-          {
-            border: '1.5px solid #cccc',
-            textAlign: 'center',
-            position: 'relative',
-            left: '12.5%',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
             backgroundColor: '#ececec',
           }
-          }/>
-          <SubmitButton onClick={this.props.incrementDisplayPage}>Find</SubmitButton>
+          } min={this.state.date} required/>
+          <SelectButton onChange={this.props.setTraveler} required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+          </SelectButton>
+          <SubmitButton onClick={() => {
+            this.state.selectedFrom !== '' && this.state.selectedTo !== '' && this.props.dateFrom !== '' && this.props.dateTo !== '' ? this.props.incrementDisplayPage() : alert('Need to choose dates and location');
+          }}>Find</SubmitButton>
         </SearchBar>
       </SmallPhotoContainer>
     )
@@ -141,7 +167,7 @@ const SmallPhotoContainer = styled.div `
   height: ${props => (props.size ? '60vh' : '250px')};
   align-items: center;
   justify-content: center;
-  background-image: url('https://www.jacadatravel.com/wp-content/uploads/fly-images/247256/costa-rica-cloud-forest-1-1600x700-cc.jpg');
+  background-image: url('https://www.jacadatravel.com/wp-content/uploads/fly-images/23481/iStock_000038894412_Large3-1600x700-cc.jpg');
   background-position: center;
   background-repeat: no-repeat;
   top: 100px;
@@ -186,7 +212,6 @@ const SubmitButton = styled.button `
   align-items: center;
   backgroundColor: #ececec;
   border: 1.5px solid #cccc;
-
   &:focus {
     outline: none;
   }
@@ -194,5 +219,23 @@ const SubmitButton = styled.button `
     background-color: #FFE66D;
   }
   transition: 0.2s  ease-in;
+`;
 
+const SelectButton = styled.select `
+  display: flex;
+  position: relative;
+  left: 12.5%;
+  width: 4%;
+  height: 54px;
+  border-radius: 5px;
+  overflow: 'scroll';
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(236, 236, 236);
+  border: 1.5px solid #cccc;
+  text-align-last:center;
+  &:focus {
+    outline: none;
+  }
+  transition: 0.2s  ease-in;
 `;
