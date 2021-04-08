@@ -18,7 +18,7 @@ class TripReviewMain extends React.Component {
       departingFlight: {},
       returningFlight: {},
       hotel: {},
-      experiences: {},
+      experiences: [{name: "Hike", price: "$45"}, {name: "Eat", price: "$45"}],
       infoLoaded: false,
     }
     this.handleClick = this.handleClick.bind(this);
@@ -39,6 +39,7 @@ class TripReviewMain extends React.Component {
       returningFlight: returningFlight,
       hotel: hotel,
       // experiences: experiences,
+      infoLoaded:true,
     })
 
     // setTimeout(() => {
