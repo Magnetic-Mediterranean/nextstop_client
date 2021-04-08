@@ -179,8 +179,8 @@ const SearchBar = styled.div `
   display: flex;
   flex-direction: row;
   background-color: white;
-  width: 60%;
-  height: 100px;
+  width: 70%;
+  height: 125px;
   margin-left: -8px;
   box-shadow: 0 10px 10px -5px #cccc;
   align-items: center;
@@ -192,7 +192,8 @@ const Calendar = styled.input `
   display: flex;
   position: 'relative',
   left: '5%',
-  width: 30%;
+  width: auto;
+  max-width: 30%;
   height: 54px;
   border-radius: 5px;
   textOverflow: 'ellipsis',
