@@ -19,18 +19,33 @@ class App extends React.Component {
       displayPage: 0,
       SelectedFrom: '',
       SelectedTo: '',
+      dateFrom: '',
+      dateTo: '',
+      travelerCnt: 1,
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
     this.setFrom = this.setFrom.bind(this);
     this.setTo = this.setTo.bind(this);
+    this.setDateFrom = this.setDateFrom.bind(this);
+    this.setDateTo = this.setDateTo.bind(this);
+    this.setTraveler = this.setTraveler.bind(this);
 
+  }
+  setDateFrom(event) {
+    this.setState({dateFrom: event.target.value});
+  }
+  setDateTo(event) {
+    this.setState({dateTo: event.target.value});
   }
   setFrom(val) {
     this.setState({SelectedFrom: val});
   }
   setTo(val) {
     this.setState({SelectedTo: val});
+  }
+  setTraveler(event) {
+    this.setState({travelerCnt: event.target.value});
   }
 
   incrementDisplayPage(currentPage) {
@@ -55,7 +70,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} />
+          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo} incrementDisplayPage={this.incrementDisplayPage} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler}/>
         </React.Fragment>
         // navBar = LargeSearchBar;
         break;
@@ -63,21 +78,19 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} />
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler}/>
         </React.Fragment>;
         break;
       case 5:
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>;
         break;
       case 6:
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo}/>
         </React.Fragment>;
         break;
       case 7:
@@ -87,7 +100,7 @@ class App extends React.Component {
         navBar =
         <React.Fragment>
           <NavBar />
-          <SmallSearchBar size={true} setFrom={this.setFrom} setTo={this.setTo}/>
+          <SmallSearchBar size={false} setFrom={this.setFrom} setTo={this.setTo} setDateFrom={this.setDateFrom} setDateTo={this.setDateTo} dateFrom={this.state.dateFrom} dateTo={this.state.dateTo} setTraveler={this.setTraveler}/>
         </React.Fragment>;
         // navBar = SmallSearchBar;
     }
