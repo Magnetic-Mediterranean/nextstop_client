@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.get('/flights', controller.flights);
+app.get('/flights/:originLocationCode/:destinationLocationCode/:departureDate/:adults', controller.flights);
 app.get('/hotels', controller.hotels);
 app.get('/experiences', controller.experiences);
 app.post('/purchase', controller.purchase);

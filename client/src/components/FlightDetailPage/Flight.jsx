@@ -48,7 +48,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
 
   return (
     <FlightContainer>
-      { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected}></Circle> : <Circle onClick={handleSelected}></Circle>}
+      { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected} ></Circle> : <Circle onClick={handleSelected}></Circle>}
       {
         <Icon src={airlineIcon[FligthDetail.airline]} />
       }
@@ -106,6 +106,7 @@ const FlightContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Icon = styled.img`

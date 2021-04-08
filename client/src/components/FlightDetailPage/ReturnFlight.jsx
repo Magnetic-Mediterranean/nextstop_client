@@ -5,9 +5,9 @@ import Flight from './Flight';
 import PageTitle from '../sharedStyles/pageTitle';
 import CheckoutButton from '../sharedStyles/checkoutButton';
 
-const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
+const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
   const [flightSelected, setfligthSelected] = useState();
-  const [displayFlight, setDisplayFlight] = useState(FlightDeals.slice(0, 10));
+  const [displayFlight, setDisplayFlight] = useState(flightData.slice(0, 10));
   const Index = useRef(10);
 
   const handleOnClick = () => {
@@ -16,8 +16,8 @@ const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
   }
 
   const display10 = (index) => {
-    let lastFlightInSet = ( index + 10 ) <= FlightDeals.length - 1 ? index + 10 : FlightDeals.length;
-    setDisplayFlight(FlightDeals.slice(0, lastFlightInSet));
+    let lastFlightInSet = ( index + 10 ) <= flightData.length - 1 ? index + 10 : flightData.length;
+    setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current += 10;
   }
 
@@ -35,9 +35,9 @@ const ReturnFlight = ({ incrementDisplayPage, decrementDisplayPage }) => {
         displayFlight.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
       }
       {
-        FlightDeals.length > 10 && (
+        flightData.length > 10 && (
           <CheckoutButton
-           hidden = { Index.current >= FlightDeals.length ? true : false}
+           hidden = { Index.current >= flightData.length ? true : false}
            onClick={() => {display10(Index.current)}} >SHOW MORE</CheckoutButton>
         )
       }
