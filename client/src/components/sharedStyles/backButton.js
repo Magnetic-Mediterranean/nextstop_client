@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 const BackButton = styled.button `
-  padding: 20px;
   background-color: white;
+  font-size: 15px;
   border-radius: 8px;
   border: solid #cccc;
+  padding: 0;
   width: 100px;
-  height: 30px;
+  height: 50px;
   text-align: center;
   display: flex;
   justify-content: center;

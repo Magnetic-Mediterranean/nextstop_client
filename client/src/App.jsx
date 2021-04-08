@@ -11,7 +11,7 @@ import Hotels from './components/Hotels';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-import Experiences from './components/Experiences/Experience.jsx';
+import Experiences from './components/Experiences';
 
 class App extends React.Component {
   constructor(props) {
@@ -128,7 +128,7 @@ class App extends React.Component {
           </React.Fragment>;
       // navBar = SmallSearchBar;
     }
-    let departFlight = <FlexContainer>Loading...</FlexContainer>;
+    let departFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
     if (displayPage === 1 && departFlights.length !== 0) {
       console.log(departFlights);
       departFlight = <FlexContainer>
@@ -140,7 +140,7 @@ class App extends React.Component {
       </FlexContainer>
     }
 
-    let returnFlight = <FlexContainer>Loading...</FlexContainer>;
+    let returnFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
     if (displayPage === 2 && returnFlights.length !== 0) {
       returnFlight = <FlexContainer>
         <ReturnFlight
@@ -181,8 +181,9 @@ class App extends React.Component {
 
         {displayPage === 4
           && (
-            <Experiences next={this.incrementDisplayPage}
-              back={this.decrementDisplayPage} />
+            <Experiences
+            next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage} />
           )}
 
         {displayPage === 5

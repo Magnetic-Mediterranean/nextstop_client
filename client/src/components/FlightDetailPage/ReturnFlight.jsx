@@ -4,6 +4,7 @@ import FlightDeals from './FlightData';
 import Flight from './Flight';
 import PageTitle from '../sharedStyles/pageTitle';
 import CheckoutButton from '../sharedStyles/checkoutButton';
+import BackButton from '../sharedStyles/backButton';
 
 const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
   const [flightSelected, setfligthSelected] = useState();
@@ -25,9 +26,9 @@ const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
   return (
     <Body>
       <HeaderContainer>
-        <Button onClick={decrementDisplayPage}>Back</Button>
-        <PageTitle>Select a Returning Flight</PageTitle>
-        {flightSelected ? <Button onClick={handleOnClick}>Next</Button> : <ButtonPlacedHolder></ButtonPlacedHolder>}
+        <BackButton onClick={decrementDisplayPage}>Back</BackButton>
+        <PageTitle>Returning Flight</PageTitle>
+        {flightSelected ? <BackButton onClick={handleOnClick}>Next</BackButton> : <ButtonPlacedHolder></ButtonPlacedHolder>}
 
       </HeaderContainer>
       <FlightContainer>
@@ -51,7 +52,6 @@ export default ReturnFlight;
 const Body = styled.div`
   width: 90%;
   height: 100%;
-  background: #E4E5E0;
 `;
 
 const HeaderContainer = styled.div`
@@ -89,7 +89,8 @@ const Button = styled.button`
 `;
 
 const ButtonPlacedHolder = styled.div`
-  width: 100px;
-  height: 30px;
-  margin: 30px;
+  border: solid white;
+  padding: 0;
+  width: 94px;
+  height: 44px;
 `;
