@@ -124,6 +124,7 @@ const FlightInfoContainer = styled.div`
 
 const SectionTitle = styled.div`
   margin-left: 23.828px;
+  font-size: 20px;
 `;
 
 const Icon = styled.img`

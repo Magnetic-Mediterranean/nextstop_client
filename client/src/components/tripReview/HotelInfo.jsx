@@ -10,7 +10,8 @@ const HotelInfo = (props) => {
       <SubContainer
         className="card"
         style={{
-          height: "300px"
+          height: "300px",
+          boxShadow: "none",
         }}>
       <ImageContainer>
       <img
@@ -39,6 +40,7 @@ const HotelInfoContainer = styled.div`
 
 const SectionTitle = styled.div`
   margin-left: 23.828px;
+  font-size: 20px;
 `;
 
 const ImageContainer = styled.div`
@@ -50,6 +52,7 @@ const ImageContainer = styled.div`
     width: 360px;
     height: 300px;
     box-shadow: 0 10px 10px -5px #cccc;
+    margin-right: 40px;
   }
 `;
 

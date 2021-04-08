@@ -9,9 +9,15 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
     "PHILIPPINE AIRLINES": "icons/PhilippineAirlines.png",
     "HAWAIIAN AIRLINES": "icons/haiwaiianAirline.png",
-    "DELTA": "icons/delta.png",
+    "DELTA AIR LINES": "icons/delta.png",
     "SOUTHWEST": "icons/southwest.png",
     "AMERICAN AIRLINES": "icons/AA.png",
+    "TURKISH AIRLINES": "icons/turisk.png",
+    "QATAR AIRWAYS": "icons/qatar.png",
+    "AIR CANADA": "icons/aircanada.png",
+    "JETBLUE AIRWAYS": "icons/jetBlue.png",
+    "ALASKA AIRLINES": "icons/alaska.png",
+    "SPIRIT AIRLINES": "icons/spirit.jpeg"
   }
 
   const flightLegs = (array) => {
@@ -50,7 +56,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     <FlightContainer>
       { flightSelected === FligthDetail ? <Circle selected onClick={handleSelected} ></Circle> : <Circle onClick={handleSelected}></Circle>}
       {
-        <Icon src={airlineIcon[FligthDetail.airline]} />
+        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.jpg"} />
       }
 
       <AlignWrapper>
