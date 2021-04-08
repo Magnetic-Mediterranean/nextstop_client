@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import LandingPage from './components/landingPage/LandingPage';
 import TripReviewMain from './components/tripReview/TripReviewMain';
@@ -10,7 +11,7 @@ import Hotels from './components/Hotels';
 import Checkout from './components/TripBooked/Booked.jsx';
 import DepartFlight from './components/FlightDetailPage/DepartFlight.jsx';
 import ReturnFlight from './components/FlightDetailPage/ReturnFlight.jsx';
-import Experiences from './components/Experiences/Experience.jsx';
+import Experiences from './components/Experiences';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class App extends React.Component {
       dateFrom: '',
       dateTo: '',
       travelerCnt: 1,
+      departFlights: [],
+      returnFlights: [],
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -30,22 +33,32 @@ class App extends React.Component {
     this.setDateFrom = this.setDateFrom.bind(this);
     this.setDateTo = this.setDateTo.bind(this);
     this.setTraveler = this.setTraveler.bind(this);
-
+    this.getFlightData = this.getFlightData.bind(this);
   }
   setDateFrom(event) {
-    this.setState({dateFrom: event.target.value});
+    this.setState({ dateFrom: event.target.value });
   }
   setDateTo(event) {
-    this.setState({dateTo: event.target.value});
+    this.setState({ dateTo: event.target.value });
   }
   setFrom(val) {
-    this.setState({SelectedFrom: val});
+    this.setState({ SelectedFrom: val });
   }
   setTo(val) {
-    this.setState({SelectedTo: val});
+    this.setState({ SelectedTo: val });
   }
   setTraveler(event) {
-    this.setState({travelerCnt: event.target.value});
+    this.setState({ travelerCnt: event.target.value });
+  }
+
+  getFlightData(from, to, date, headcount, flight) {
+    axios.get(`/flights/${from}/${to}/${date}/${headcount}`)
+      .then((data) => {
+        this.setState({
+          [flight]: data.data
+        })
+      })
+      .catch((err) => console.log(err));
   }
 
   incrementDisplayPage(currentPage) {
@@ -62,8 +75,19 @@ class App extends React.Component {
     })
   }
 
+  componentDidUpdate(prevState) {
+    const { SelectedFrom, SelectedTo, dateFrom, dateTo, travelerCnt } = this.state;
+    if (this.state.displayPage !== prevState.displayPage
+      && SelectedFrom && SelectedTo && dateFrom
+      && dateTo && travelerCnt
+      && this.state.displayPage === 0) {
+      this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateFrom, travelerCnt, "departFlights")
+      this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateTo, travelerCnt, "returnFlights")
+    }
+  }
+
   render() {
-    const { displayPage, travelerCnt, dateTo, dateFrom } = this.state;
+    const { displayPage, travelerCnt, dateTo, dateFrom,departFlights, returnFlights  } = this.state;
     let navBar;
     switch (displayPage) {
       case 0:
@@ -83,15 +107,15 @@ class App extends React.Component {
         break;
       case 5:
         navBar =
-        <React.Fragment>
-          <NavBar />
-        </React.Fragment>;
+          <React.Fragment>
+            <NavBar />
+          </React.Fragment>;
         break;
       case 6:
         navBar =
-        <React.Fragment>
-          <NavBar />
-        </React.Fragment>;
+          <React.Fragment>
+            <NavBar />
+          </React.Fragment>;
         break;
       case 7:
         navBar = <NavBar />;
@@ -104,6 +128,29 @@ class App extends React.Component {
         </React.Fragment>;
         // navBar = SmallSearchBar;
     }
+    let departFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
+    if (displayPage === 1 && departFlights.length !== 0) {
+      console.log(departFlights);
+      departFlight = <FlexContainer>
+        <DepartFlight
+          flightData={departFlights}
+          incrementDisplayPage={this.incrementDisplayPage}
+          decrementDisplayPage={this.decrementDisplayPage}
+        />
+      </FlexContainer>
+    }
+
+    let returnFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
+    if (displayPage === 2 && returnFlights.length !== 0) {
+      returnFlight = <FlexContainer>
+        <ReturnFlight
+          flightData={returnFlights}
+          incrementDisplayPage={this.incrementDisplayPage}
+          decrementDisplayPage={this.decrementDisplayPage}
+        />
+      </FlexContainer>
+    }
+
     return (
 
       // Navbar
@@ -117,35 +164,26 @@ class App extends React.Component {
 
         {displayPage === 1
           && (
-            <FlexContainer>
-              <DepartFlight
-                incrementDisplayPage={this.incrementDisplayPage}
-                decrementDisplayPage={this.decrementDisplayPage}
-              />
-            </FlexContainer>
+            departFlight
           )}
 
         {displayPage === 2
           && (
-            <FlexContainer>
-              <ReturnFlight
-                incrementDisplayPage={this.incrementDisplayPage}
-                decrementDisplayPage={this.decrementDisplayPage}
-              />
-            </FlexContainer>
+            returnFlight
           )}
 
         {displayPage === 3
           && (
             <Hotels
-            next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage} />
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage} />
           )}
 
         {displayPage === 4
           && (
-            <Experiences next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage}/>
+            <Experiences
+            next={this.incrementDisplayPage}
+            back={this.decrementDisplayPage} />
           )}
 
         {displayPage === 5

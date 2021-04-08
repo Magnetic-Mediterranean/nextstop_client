@@ -72,7 +72,7 @@ class Hotels extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // hotels: []
+      // hotels: [],
       hotels: dummyData,
       selectedHotelId: null,
     }
@@ -89,10 +89,10 @@ class Hotels extends React.Component {
 
   getHotels() {
     axios.get('hotels', {
-      parmas: {
-       cityCode: 'PAR',
-       checkInData: '2021-04-08',
-       checkOutData: '2021-04-09'
+      params: {
+       "cityCode": "PAR",
+       "checkInDate": "2021-04-08",
+       "checkOutDate": "2021-04-09"
       }
     })
     .then((res) => {
@@ -104,11 +104,11 @@ class Hotels extends React.Component {
   }
 
   handleSelectedHotel(id) {
-    const filtered = this.state.hotels.filter(hotel => {
+    const filteredHotel = this.state.hotels.filter(hotel => {
       this.setState({hotel: hotel})
       return hotel.id === id})
-    if (filtered.length > 0) {
-      const setHotel = window.localStorage.setItem('hotel', JSON.stringify(filtered[0]))
+    if (filteredHotel.length > 0) {
+      const setHotel = window.localStorage.setItem('hotel', JSON.stringify(filteredHotel[0]))
       // this.setState({hotel: setHotel})
       const setId = window.localStorage.setItem('id', id)
       this.setState({selectedHotelId: id})
@@ -118,12 +118,15 @@ class Hotels extends React.Component {
   render() {
     return (
       <Container>
-      <Header>
-        <BackButton onClick={this.props.back}>Back</BackButton>
-        <p>Select a Hotel</p>
-        <BackButton onClick={this.props.next}>Next</BackButton>
-      </Header>
-      <HotelList hotels={this.state.hotels} handleSelectedHotel={this.handleSelectedHotel} selectedHotelId={this.state.selectedHotelId} />
+        <Header>
+          <BackButton onClick={this.props.back}>Back</BackButton>
+          <p>Select a Hotel</p>
+          <BackButton onClick={this.props.next}>Next</BackButton>
+        </Header>
+        <HotelList
+        hotels={this.state.hotels}
+        handleSelectedHotel={this.handleSelectedHotel}
+        selectedHotelId={this.state.selectedHotelId} />
       </Container>
     )
   }

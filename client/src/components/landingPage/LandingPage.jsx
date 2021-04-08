@@ -8,18 +8,16 @@ const LandingPage = ({ incrementDisplayPage }) => {
 
   const handleOnSubmit = () => {
     axios.get('/flights')
-    .then((data) => console.log(data))
+    .then((data) => console.log(data.data))
     .catch((err) => console.log(err));
   }
 
   return (
     <div>
-      <CatchPhrase>Go Anywhere</CatchPhrase>
+      <CatchPhrase>Explore New Places</CatchPhrase>
       <DealContainer>
         {DealData.map((deal) => <FeatureDeal data={deal} />)}
       </DealContainer>
-      <button onClick={handleOnSubmit}>Search</button>
-      <button onClick={incrementDisplayPage}>Click Me</button>
     </div>
   )
 }
@@ -33,6 +31,6 @@ const DealContainer = styled.div`
 
 const CatchPhrase = styled.h2`
   font-weight: bold;
-  letter-spacing: 3px;
-  text-align: center;
+  font-size: 30px;
+  margin-left: 5%;
 `;
