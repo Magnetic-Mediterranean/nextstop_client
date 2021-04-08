@@ -23,7 +23,10 @@ const HotelInfo = (props) => {
           />
     </ImageContainer>
     <DetailsContainer>
-      <p>{props.hotel.type}</p>
+      <p style ={{
+        fontSize: "17px",
+        fontWeight: "Bold"
+      }}>{props.hotel.type}</p>
       <p>{props.hotel.name}</p>
       <p>{`$${props.hotel.original_price} / night`}</p>
     </DetailsContainer>
@@ -36,6 +39,7 @@ export default HotelInfo;
 
 const HotelInfoContainer = styled.div`
   width: 100%;
+  margin: 40px 0px;
 `;
 
 const SectionTitle = styled.div`

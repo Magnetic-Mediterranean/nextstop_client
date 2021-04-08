@@ -46,6 +46,7 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
   }
 
   const departureDate = new Date(departDate).toUTCString();
+  console.log(departDate)
   const returningDate = new Date(returnDate).toUTCString();
 
   return (
@@ -129,7 +130,8 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
 export default FlightInfo;
 
 const FlightInfoContainer = styled.div`
-  width: 100%;
+width: 100%;
+margin: 40px 0px;
 `;
 
 const SectionTitle = styled.div`

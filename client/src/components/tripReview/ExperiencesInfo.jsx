@@ -20,7 +20,8 @@ const ExperiencesInfo = ({experiences}) => {
   export default ExperiencesInfo;
 
 const ExperiencesContainer = styled.div`
-  width: 100%;
+width: 100%;
+margin: 40px 0px;
 `;
 
 const SectionTitle = styled.div`

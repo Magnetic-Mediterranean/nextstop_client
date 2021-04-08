@@ -22,12 +22,16 @@ class Experience extends React.Component {
       <ImageContainer>
       <img
             className="default-image"
-            src={this.state.arr[0]}
+            src={this.props.experience.picture}
           />
     </ImageContainer>
     <DetailsContainer>
-      <p>{this.props.experience.name}</p>
-      <p>{`$${this.props.experience.price} / night`}</p>
+      <p style={{
+        fontSize: "17px",
+        fontWeight: "bold"
+      }}>{this.props.experience.name}</p>
+      <p>{this.props.experience.shortDescription}</p>
+      <p>{`$${Number(this.props.experience.price.amount).toFixed(2)}`}</p>
     </DetailsContainer>
     </SubContainer>
 

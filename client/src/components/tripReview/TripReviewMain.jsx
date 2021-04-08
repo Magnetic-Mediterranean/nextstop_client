@@ -18,7 +18,7 @@ class TripReviewMain extends React.Component {
       departingFlight: {},
       returningFlight: {},
       hotel: {},
-      experiences: [{name: "Hike", price: "45"}, {name: "Eat", price: "45"}],
+      experiences: [],
       infoLoaded: false,
       numberOfNights: '4',
       totalExperienceCost: '',
@@ -43,7 +43,7 @@ class TripReviewMain extends React.Component {
       departingFlight: departingFlight,
       returningFlight: returningFlight,
       hotel: hotel,
-      // experiences: experiences,
+      experiences: experiences,
     })
 
     setTimeout(() => {
