@@ -6,6 +6,7 @@ const CostInfo = (props) => {
   const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + (Number(props.hotel.original_price) * Number(props.numberOfNights)) + Number(props.totalExperienceCost);
   const tax = (totalCost * .20).toFixed(2);
   const total = Number(totalCost) + Number(tax);
+  window.localStorage.setItem('total', total);
   return (
     <CostInfoContainer>
       <SectionTitle> Cost Breakdown: </SectionTitle>

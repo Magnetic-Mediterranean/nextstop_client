@@ -207,7 +207,7 @@ class App extends React.Component {
 
         {displayPage === 7
           && (
-            <Checkout back={this.decrementDisplayPage} />
+            <Checkout back={this.decrementDisplayPage} to={this.state.SelectedTo}/>
           )}
       </>
     )
