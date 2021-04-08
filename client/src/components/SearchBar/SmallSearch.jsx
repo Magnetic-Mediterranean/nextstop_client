@@ -213,7 +213,6 @@ const SubmitButton = styled.button `
   align-items: center;
   backgroundColor: #ececec;
   border: 1.5px solid #cccc;
-
   &:focus {
     outline: none;
   }
@@ -221,7 +220,6 @@ const SubmitButton = styled.button `
     background-color: #FFE66D;
   }
   transition: 0.2s  ease-in;
-
 `;
 
 const SelectButton = styled.select `
@@ -241,5 +239,4 @@ const SelectButton = styled.select `
     outline: none;
   }
   transition: 0.2s  ease-in;
-
 `;
