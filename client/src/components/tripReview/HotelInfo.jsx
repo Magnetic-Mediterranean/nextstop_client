@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SubContainer from '../sharedStyles/subContainer'
 
 const HotelInfo = (props) => {
-
+  const hotelPrice = Number(props.hotel.price).toFixed(0);
   return (
     <HotelInfoContainer>
       <SectionTitle> Hotel Details: </SectionTitle>
@@ -28,7 +28,7 @@ const HotelInfo = (props) => {
         fontWeight: "500"
       }}>{props.hotel.type}</p>
       <p>{props.hotel.name}</p>
-      <p>{`$${props.hotel.original_price} per night`}</p>
+      <p>{`$${hotelPrice} per night`}</p>
     </DetailsContainer>
     </SubContainer>
     </HotelInfoContainer>
