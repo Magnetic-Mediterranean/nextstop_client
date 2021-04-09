@@ -28,7 +28,6 @@ module.exports = {
       .catch((err) => console.log(err));
   },
   experiences: (req, res) => {
-    console.log('body', req.body)
     axios.post("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/activities", req.body)
     .then((data) => {
       console.log('data from post', data.data)
