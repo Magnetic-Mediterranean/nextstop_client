@@ -17,13 +17,14 @@ const HotelDetails = ({ hotel, city }) => {
 export default HotelDetails;
 
 const DetailsContainer = styled.div`
- display: flex;
- width: auto;
- width: 520px;
- height: 300px;
- background: white;
- border-radius: 8px;
- flex-direction: column;
- padding-left: 15px;
- box-shadow: 0 10px 10px -5px #cccc;
+  display: flex;
+  width: 70%;
+  height: 300px;
+  background: white;
+  border-radius: 8px;
+  flex-direction: column;
+  padding-left: 15px;
+  box-shadow: 0 10px 10px -5px #cccc;
+  align-items: center;
+  justify-content: center;
 `;

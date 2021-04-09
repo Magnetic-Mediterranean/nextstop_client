@@ -3,12 +3,17 @@ import axios from 'axios';
 import styled from 'styled-components';
 import HotelList from './components/HotelList.jsx'
 import BackButton from '../../components/sharedStyles/backButton.js'
+import Container from '../sharedStyles/container'
+import Header from '../sharedStyles/header'
+import PageTitle from '../sharedStyles/pageTitle'
 
 class Hotels extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedHotelId: null,
+      infoLoaded: false,
+      // showMore: false,
     }
     this.handleSelectedHotel = this.handleSelectedHotel.bind(this)
   }
@@ -17,6 +22,12 @@ class Hotels extends React.Component {
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
     const hotelId = window.localStorage.getItem('id')
     this.setState({selectedHotelId: hotelId})
+
+    setTimeout(() => {
+      this.setState({
+        infoLoaded: true,
+      })
+    }, 3000)
   }
 
   handleSelectedHotel(id) {
@@ -30,20 +41,46 @@ class Hotels extends React.Component {
     }
   }
 
+  // handleShowMoreClick() {
+  //   this.setState({showMore: true})
+  // }
+
+  // displayTen(index) {
+  //   const hotelLength = this.props.hotels.length = 1
+  //   const lastHotelInSet = (index + 10) <= hotelLength ? index + 10 : this.props.hotels.length
+
+  // }
+
+
   render() {
+    const numberOfItems = this.state.showMore ? this.props.hotels.length : 10
     return (
-      <Container>
-        <Header>
-          <BackButton onClick={this.props.back}>Back</BackButton>
-          <p>Select a Hotel</p>
-          <BackButton onClick={this.props.next}>Next</BackButton>
-        </Header>
-        <HotelList
-        hotels={this.props.hotels}
-        city={this.props.city}
-        handleSelectedHotel={this.handleSelectedHotel}
-        selectedHotelId={this.state.selectedHotelId} />
-      </Container>
+      <>
+        {!this.state.infoLoaded &&
+          (
+            <Container>
+            <div >
+              <img style={{ width: "100%"}}
+              src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
+            </div>
+          </Container>
+          )
+        }
+        {this.state.infoLoaded &&
+          (<Container>
+            <Header>
+              <BackButton onClick={this.props.back}>Back</BackButton>
+              <PageTitle>Select a Hotel</PageTitle>
+              <BackButton onClick={this.props.next}>Next</BackButton>
+            </Header>
+            <HotelList
+            hotels={this.props.hotels}
+            city={this.props.city}
+            handleSelectedHotel={this.handleSelectedHotel}
+            selectedHotelId={this.state.selectedHotelId} />
+          </Container>)
+        }
+      </>
     )
   }
 
@@ -51,18 +88,18 @@ class Hotels extends React.Component {
 
 export default Hotels;
 
-const Container = styled.div`
- width: 90%;
- min-width: 500px;
- max-width: 1000px;
- min-height: 500px;
- margin: auto;
- background: #ececec;
-`;
+// const Container = styled.div`
+//  width: 90%;
+//  min-width: 500px;
+//  max-width: 1000px;
+//  min-height: 500px;
+//  margin: auto;
+//  background: #ececec;
+// `;
 
-const Header = styled.div`
- display: flex;
- justify-content: space-between;
- margin-top: 20px;
- padding: 15px;
-`;
+// const Header = styled.div`
+//  display: flex;
+//  justify-content: space-between;
+//  margin-top: 20px;
+//  padding: 15px;
+// `;
