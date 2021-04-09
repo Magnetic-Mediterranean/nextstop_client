@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
-import CheckoutButton from '../sharedStyles/checkoutButton';
+// import CheckoutButton from '../sharedStyles/checkoutButton';
 import BackButton from '../sharedStyles/backButton';
 
 const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
@@ -16,9 +16,10 @@ const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
   }
 
   const display10 = (index) => {
-    let lastFlightInSet = ( index + 10 ) <= flightData.length - 1 ? index + 10 : flightData.length;
+    let flightLength = flightData.length - 1;
+    let lastFlightInSet = ( index + 10 ) <= flightLength ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
-    Index.current += 10;
+    Index.current = lastFlightInSet;
   }
 
   return (
@@ -34,9 +35,9 @@ const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
       }
       {
         flightData.length > 10 && (
-          <CheckoutButton
+          <Button
            hidden = { Index.current >= flightData.length ? true : false}
-           onClick={() => {display10(Index.current)}} >MORE</CheckoutButton>
+           onClick={() => {display10(Index.current)}} >MORE</Button>
         )
       }
     </FlightContainer>
@@ -69,15 +70,15 @@ const FlightContainer = styled.div`
 `;
 
 const Button = styled.button`
-  display: ${props => props.hidden ? "none" : "block"};
-  background-color: white;
+  display: ${props => props.hidden ? "none" : "flex"};
+  padding: 20px;
+  background-color: #4ECDC4;
   border-radius: 8px;
+  font-size: 15px;
   border: solid #cccc;
   width: 100px;
   height: 30px;
-  margin: 30px;
   text-align: center;
-  display: flex;
   justify-content: center;
   align-items: center;
   &:focus {

@@ -156,7 +156,7 @@ position: absolute;
   box-shadow: 5px 5px 10px 3px #b7b7b7;
 `;
 
-const Bold = styled.p`
+const Bold = styled.span`
   font-weight: bold;
   font-size: 19px;
   margin: 0;
