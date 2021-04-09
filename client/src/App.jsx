@@ -25,6 +25,8 @@ class App extends React.Component {
       travelerCnt: 1,
       departFlights: [],
       returnFlights: [],
+      hotels: [],
+      experiences: []
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -34,6 +36,8 @@ class App extends React.Component {
     this.setDateTo = this.setDateTo.bind(this);
     this.setTraveler = this.setTraveler.bind(this);
     this.getFlightData = this.getFlightData.bind(this);
+    this.getHotels = this.getHotels.bind(this)
+    this.getExperiences = this.getExperiences.bind(this)
   }
   setDateFrom(event) {
     this.setState({ dateFrom: event.target.value });
@@ -61,6 +65,36 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  getHotels(city, from, to) {
+    axios.get('/hotels', {
+      params: {
+       "cityCode": city,
+       "checkInDate": from,
+       "checkOutDate": to
+      }
+    })
+    .then((res) => {
+      this.setState({hotels: res.data})
+    })
+    .catch((err) => {
+      console.log({err: err})
+    })
+  }
+
+  getExperiences(lat, lng) {
+    axios.post('/experiences', {
+       lat: lat,
+       lng: lng
+       //if it comes with n and e, parse them to just be numbers
+    })
+    .then((res) => {
+      this.setState({experiences: res.data})
+    })
+    .catch((err) => {
+      console.log({err: err})
+    })
+  }
+
   incrementDisplayPage(currentPage) {
     const nextPage = this.state.displayPage + 1;
     this.setState({
@@ -75,6 +109,11 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount() {
+    this.getHotels(this.state.SelectedTo.cityCode, this.state.dateFrom, this.state.dateTo)
+    this.getExperiences(this.state.SelectedTo.lat, this.state.SelectedTo.lng)
+  }
+
   componentDidUpdate(prevState) {
     const { SelectedFrom, SelectedTo, dateFrom, dateTo, travelerCnt } = this.state;
     if (this.state.displayPage !== prevState.displayPage
@@ -83,6 +122,8 @@ class App extends React.Component {
       && this.state.displayPage === 0) {
       this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateFrom, travelerCnt, "departFlights")
       this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateTo, travelerCnt, "returnFlights")
+      this.getHotels(SelectedTo.cityCode, dateFrom, dateTo)
+      this.getExperiences(SelectedTo.lat, SelectedTo.lng)
     }
   }
 
@@ -130,7 +171,7 @@ class App extends React.Component {
     }
     let departFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
     if (displayPage === 1 && departFlights.length !== 0) {
-      console.log(departFlights);
+      // console.log(departFlights);
       departFlight = <FlexContainer>
         <DepartFlight
           flightData={departFlights}
@@ -152,7 +193,6 @@ class App extends React.Component {
     }
 
     return (
-
       // Navbar
       <>
         {navBar}
@@ -176,7 +216,9 @@ class App extends React.Component {
           && (
             <Hotels
               next={this.incrementDisplayPage}
-              back={this.decrementDisplayPage} />
+              back={this.decrementDisplayPage}
+              hotels={this.state.hotels}
+              />
           )}
 
         {displayPage === 4
