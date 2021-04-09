@@ -47,6 +47,7 @@ const Icon = styled.div`
   &:hover {
     transform: scale(1.1);
   }
+  transition: 0.3s ease-in;
 `;
 
 const Login = styled.button`
