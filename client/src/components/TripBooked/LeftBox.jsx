@@ -25,7 +25,7 @@ class LeftBox extends React.Component {
       departingFlight: departingFlight,
       returningFlight: returningFlight,
       hotel: hotel,
-      total: total,
+      total: total.toFixed(2),
       // experiences: experiences,
       infoLoaded:true,
     })
