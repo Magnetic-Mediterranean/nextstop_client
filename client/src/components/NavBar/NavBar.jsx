@@ -1,22 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
+import { useAuth0 } from "@auth0/auth0-react";
+
+
+const NavBar = () => {
+  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
   }
 
-  render() {
     return(
       <Navbar id='NavBar'>
         <Icon>NextStop</Icon>
-        <Login> Login </Login>
+        { isAuthenticated ? <Login onClick={() => logout()}> Log Out </Login> : <Login onClick={() => loginWithRedirect()}> Login </Login>}
+
       </Navbar>
 
     )
   }
-}
+
 export default NavBar;
 
 const Navbar = styled.div `
