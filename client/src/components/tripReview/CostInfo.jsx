@@ -8,11 +8,13 @@ const CostInfo = (props) => {
     totalExperienceCost += Number(experience.price.amount);
   });
   const flightsCost = Number(props.departingFlight.price) + Number(props.returningFlight.price);
-  const hotelCost = (Number(props.hotel.original_price) * Number(props.numberOfNights))
+  const hotelCost = (Number(props.hotel.price) * Number(props.numberOfNights)).toFixed(2);
 
-  const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + (Number(props.hotel.original_price) * Number(props.numberOfNights)) + Number(totalExperienceCost);
-  console.log('totalCost', totalCost);
-  const tax = (totalCost * .20).toFixed(2);
+  const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + Number(hotelCost) + Number(totalExperienceCost);
+
+
+  const tax = (totalCost * .15).toFixed(2);
+
   const tot = Number(totalCost) + Number(tax);
   window.localStorage.setItem('total', tot);
   const total = (Number(totalCost) + Number(tax)).toFixed(2);
@@ -58,7 +60,7 @@ const CostInfo = (props) => {
             {`${props.hotel.name} for ${props.numberOfNights} night(s)`}
           </NameOfCost>
           <CostAmount>
-            ${Number(props.hotel.original_price) * Number(props.numberOfNights) }
+            ${hotelCost}
           </CostAmount>
         </SubDiv>
 
