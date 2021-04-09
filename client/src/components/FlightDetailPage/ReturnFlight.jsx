@@ -2,8 +2,6 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
-import PageTitle from '../sharedStyles/pageTitle';
-import CheckoutButton from '../sharedStyles/checkoutButton';
 import BackButton from '../sharedStyles/backButton';
 
 const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
@@ -37,12 +35,13 @@ const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
       }
       {
         flightData.length > 10 && (
-          <CheckoutButton
+          <Button
            hidden = { Index.current >= flightData.length ? true : false}
-           onClick={() => {display10(Index.current)}} >SHOW MORE</CheckoutButton>
+           onClick={() => {display10(Index.current)}}>MORE</Button>
         )
       }
     </FlightContainer>
+    <Footer></Footer>
     </Body>
   )
 }
@@ -52,6 +51,14 @@ export default ReturnFlight;
 const Body = styled.div`
   width: 90%;
   height: 100%;
+`;
+
+const Footer = styled.div`
+  height: 30px;
+`;
+
+const PageTitle = styled.span`
+ font-size: 40px;
 `;
 
 const HeaderContainer = styled.div`
@@ -68,15 +75,15 @@ const FlightContainer = styled.div`
 `;
 
 const Button = styled.button`
-  display: ${props => props.hidden ? "none" : "block"};
-  background-color: white;
+  display: ${props => props.hidden ? "none" : "flex"};
+  padding: 20px;
+  background-color: #4ECDC4;
   border-radius: 8px;
+  font-size: 15px;
   border: solid #cccc;
   width: 100px;
   height: 30px;
-  margin: 30px;
   text-align: center;
-  display: flex;
   justify-content: center;
   align-items: center;
   &:focus {
