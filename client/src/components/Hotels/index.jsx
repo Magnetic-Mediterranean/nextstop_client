@@ -40,6 +40,7 @@ class Hotels extends React.Component {
         </Header>
         <HotelList
         hotels={this.props.hotels}
+        city={this.props.city}
         handleSelectedHotel={this.handleSelectedHotel}
         selectedHotelId={this.state.selectedHotelId} />
       </Container>

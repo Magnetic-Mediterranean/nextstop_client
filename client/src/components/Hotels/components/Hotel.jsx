@@ -4,12 +4,15 @@ import HotelAssets from './HotelAssets.jsx'
 import HotelDetails from './HotelDetails.jsx'
 // import SubContainer from '../../sharedStyles/subContainer.js'
 
-const Hotel = ({ hotel , selected, handleSelectedHotel}) => {
+// const Hotel = ({ hotel , selected, handleSelectedHotel}) => {
+const Hotel = ({ hotel , selected, handleSelectedHotel, city}) => {
   return (
     <SubContainer className="card">
       {selected ? <CheckedCircle onClick={() => handleSelectedHotel(hotel.id)}></CheckedCircle> : <Circle onClick={() => handleSelectedHotel(hotel.id)}></Circle>}
       <HotelAssets image={hotel.image} name={hotel.name} />
-      <HotelDetails hotel={hotel} />
+      <HotelDetails hotel={hotel}
+      city={city}
+      />
     </SubContainer>
   )
 }

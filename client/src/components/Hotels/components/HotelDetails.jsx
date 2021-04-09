@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HotelDetails = ({ hotel }) => {
-
+// const HotelDetails = ({ hotel }) => {
+const HotelDetails = ({ hotel, city }) => {
   return (
     <DetailsContainer>
-      <p>{hotel.type.toUpperCase()}</p>
+      {city ? <p>{`${hotel.type.toUpperCase()} IN ${city.toUpperCase()}`}</p> : <p>{hotel.type.toUpperCase()}</p>}
+      {/* <p>{`${hotel.type.toUpperCase()}`}</p> */}
       <p>{hotel.name}</p>
       {hotel.description ? <p>{`${hotel.description.slice(0,400)}...`}</p> : null}
       <p>{`$${(Math.floor(hotel.price))} / night`}</p>
