@@ -76,9 +76,9 @@ class Experiences extends React.Component {
               <PageTitle>Select One or More Experiences</PageTitle>
               <BackButton onClick={this.props.next}>Next</BackButton>
             </Header>
-            <ExperienceList
+            {this.props.experiences.length > 0 ? <ExperienceList
             experiences={this.props.experiences}
-            handleSelectedExperience={this.handleSelectedExperience} selectedExperienceIds={this.state.selectedExperienceIds} />
+            handleSelectedExperience={this.handleSelectedExperience} selectedExperienceIds={this.state.selectedExperienceIds} /> : <p style={{textAlign: "center", paddingTop: "100px"}} >There are currently no experiences for the dates/destination you've selected at this time</p>}
           </Container>)
         }
       </>

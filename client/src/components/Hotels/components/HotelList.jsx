@@ -31,6 +31,7 @@ const HotelInfoContainer = styled.div`
 const Body = styled.div`
   width: 90%;
   height: 100%;
+  // text-align: center;
 `;
 
 const Footer = styled.div`

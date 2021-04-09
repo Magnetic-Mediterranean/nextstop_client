@@ -6,7 +6,7 @@ const ExperienceDetails = ({ experience }) => {
     <DetailsContainer>
       <p>{experience.name}</p>
       {experience.shortDescription.length > 400 ? <p>{`${experience.shortDescription.slice(0,400)}...`}</p> : <p>{experience.shortDescription}</p>}
-      <p>{`$${Math.floor(experience.price.amount)} / night`}</p>
+      <p>{`$${Math.floor(experience.price.amount)} / person`}</p>
     </DetailsContainer>
   )
 }
@@ -19,9 +19,10 @@ const DetailsContainer = styled.div`
   height: 300px;
   background: white;
   border-radius: 8px;
+  // text-align: "center";
   flex-direction: column;
-  padding-left: 15px;
+  padding: 0px 30px 0px 30px;
   box-shadow: 0 10px 10px -5px #cccc;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
 `;

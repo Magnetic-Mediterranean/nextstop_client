@@ -27,7 +27,7 @@ class Hotels extends React.Component {
       this.setState({
         infoLoaded: true,
       })
-    }, 3000)
+    }, 2000)
   }
 
   handleSelectedHotel(id) {
@@ -73,11 +73,11 @@ class Hotels extends React.Component {
               <PageTitle>Select a Hotel</PageTitle>
               <BackButton onClick={this.props.next}>Next</BackButton>
             </Header>
-            <HotelList
+            {this.props.hotels.length > 0 ? <HotelList
             hotels={this.props.hotels}
             city={this.props.city}
             handleSelectedHotel={this.handleSelectedHotel}
-            selectedHotelId={this.state.selectedHotelId} />
+            selectedHotelId={this.state.selectedHotelId} /> : <p style={{textAlign: "center", paddingTop: "100px"}} >There are currently no hotels for the dates/destination you've selected at this time</p>}
           </Container>)
         }
       </>
