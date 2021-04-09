@@ -25,6 +25,8 @@ class App extends React.Component {
       travelerCnt: 1,
       departFlights: [],
       returnFlights: [],
+      hotels: [],
+      experiences: []
     }
     this.incrementDisplayPage = this.incrementDisplayPage.bind(this);
     this.decrementDisplayPage = this.decrementDisplayPage.bind(this);
@@ -34,6 +36,8 @@ class App extends React.Component {
     this.setDateTo = this.setDateTo.bind(this);
     this.setTraveler = this.setTraveler.bind(this);
     this.getFlightData = this.getFlightData.bind(this);
+    this.getHotels = this.getHotels.bind(this)
+    this.getExperiences = this.getExperiences.bind(this)
     this.landingPage = this.landingPage.bind(this);
   }
   setDateFrom(event) {
@@ -62,6 +66,35 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  getHotels(city, from, to) {
+    axios.get('/hotels', {
+      params: {
+       "cityCode": city,
+       "checkInDate": from,
+       "checkOutDate": to
+      }
+    })
+    .then((res) => {
+      this.setState({hotels: res.data})
+    })
+    .catch((err) => {
+      console.log({err: err})
+    })
+  }
+
+  getExperiences(lat, lng) {
+    axios.post('/experiences', {
+       lat: lat,
+       lng: lng
+    })
+    .then((res) => {
+      this.setState({experiences: res.data})
+    })
+    .catch((err) => {
+      console.log({err: err})
+    })
+  }
+
   incrementDisplayPage(currentPage) {
     const nextPage = this.state.displayPage + 1;
     this.setState({
@@ -87,6 +120,8 @@ class App extends React.Component {
       && this.state.displayPage === 0) {
       this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateFrom, travelerCnt, "departFlights")
       this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateTo, travelerCnt, "returnFlights")
+      this.getHotels(SelectedTo.cityCode, dateFrom, dateTo)
+      this.getExperiences(SelectedTo.lat, SelectedTo.lng)
     }
   }
 
@@ -153,9 +188,7 @@ class App extends React.Component {
         />
       </FlexContainer>
     }
-
     return (
-
       // Navbar
       <>
         {navBar}
@@ -179,14 +212,19 @@ class App extends React.Component {
           && (
             <Hotels
               next={this.incrementDisplayPage}
-              back={this.decrementDisplayPage} />
+              back={this.decrementDisplayPage}
+              hotels={this.state.hotels}
+              city={this.state.SelectedTo.city}
+              />
           )}
 
         {displayPage === 4
           && (
             <Experiences
             next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage} />
+            back={this.decrementDisplayPage}
+            experiences={this.state.experiences}
+            />
           )}
 
         {displayPage === 5
