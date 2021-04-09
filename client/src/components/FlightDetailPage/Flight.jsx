@@ -61,9 +61,9 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     let date = new Date(APIdate);
     let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     return (
-    <Time value={isArrival} onMouseEnter={() => { handleMouseEnter(APIdate, isArrival)}} onMouseLeave={handleMouseLeave}>
-     {time}
-    </Time> )
+      <Time value={isArrival} onMouseEnter={() => { handleMouseEnter(APIdate, isArrival) }} onMouseLeave={handleMouseLeave}>
+        {time}
+      </Time>)
   };
 
   const handleSelected = () => {
@@ -76,13 +76,12 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   };
 
   const handleMouseEnter = (APIdate, isArrival) => {
-    console.log(APIdate, isArrival);
     let date = new Date(APIdate);
-    let weekday = date.toLocaleString('en-us', {  weekday: 'short' });
+    let weekday = date.toLocaleString('en-us', { weekday: 'short' });
     let month = date.toLocaleString('default', { month: 'short' });
     let day = date.toLocaleString('default', { day: 'numeric' });
     let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    displayDate.current = <TimeAndDate arrival={ isArrival ? true : false}> {time} on {weekday}, {month} {day}</TimeAndDate>;
+    displayDate.current = <TimeAndDate arrival={isArrival ? true : false}> {time} on {weekday}, {month} {day}</TimeAndDate>;
     sethoverDate(true);
   };
 
@@ -99,7 +98,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
         <Bold>{convertToTime(FligthDetail.departureTime, false)}-{convertToTime(FligthDetail.arrivalTime, true)} </Bold>
         {
           hoverDate &&
-          ( <div> {displayDate.current} </div>)
+          (<div> {displayDate.current} </div>)
         }
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
@@ -125,25 +124,13 @@ const SmallFont = styled.p`
   margin: 0;
 `;
 
-// const Triangle = styled.div`
-//   width: 0;
-//   height: 0;
-//   left: 18px;
-//   bottom: 25px;
-//   position: absolute;
-//   border-left: 10px solid transparent;
-//   border-right: 10px solid transparent;
-//   border-top: 10px solid white;
-//   filter: drop-shadow(0 -0.0625rem 0.0625rem #b7b7b7);
-// `;
-
 const Time = styled.div`
   position: relative;
 `;
 
 const TimeAndDate = styled.div`
   top: -33px;
-  left: ${props => props.arrival ? "160px" :  "80px"};
+  left: ${props => props.arrival ? "160px" : "80px"};
   background: white;
   width: 200px;
   height: 30px;
@@ -152,7 +139,7 @@ const TimeAndDate = styled.div`
   align-items: center;
   border-radius: 8px;
   border: 10px solid #fff;
-  box-shadow: 5px 5px 10px 3px #b7b7b7;
+  box-shadow: 5px 5px 5px 1px #cccc;
   position: absolute;
   &:before {
     content: "";

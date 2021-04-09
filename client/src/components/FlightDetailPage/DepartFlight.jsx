@@ -16,31 +16,31 @@ const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
 
   const display10 = (index) => {
     let flightLength = flightData.length - 1;
-    let lastFlightInSet = ( index + 10 ) <= flightLength ? index + 10 : flightData.length;
+    let lastFlightInSet = (index + 10) <= flightLength ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current = lastFlightInSet;
   }
 
   return (
     <Body>
-    <HeaderContainer>
+      <HeaderContainer>
         <BackButton onClick={decrementDisplayPage}>Back</BackButton>
         <PageTitle>Departing Flight</PageTitle>
-        { flightSelected ? <BackButton onClick={handleOnClick}>Next</BackButton> : <ButtonPlacedHolder></ButtonPlacedHolder>}
-    </HeaderContainer>
-    <FlightContainer>
-      {
-        displayFlight.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
-      }
-      {
-        flightData.length > 10 && (
-          <Button
-           hidden = { Index.current >= flightData.length ? true : false}
-           onClick={() => {display10(Index.current)}} >MORE</Button>
-        )
-      }
-    </FlightContainer>
-    <Footer></Footer>
+        {flightSelected ? <BackButton onClick={handleOnClick}>Next</BackButton> : <ButtonPlacedHolder></ButtonPlacedHolder>}
+      </HeaderContainer>
+      <FlightContainer>
+        {
+          displayFlight.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
+        }
+        {
+          flightData.length > 10 && (
+            <Button
+              hidden={Index.current >= flightData.length ? true : false}
+              onClick={() => { display10(Index.current) }} >MORE</Button>
+          )
+        }
+      </FlightContainer>
+      <Footer></Footer>
     </Body>
   )
 }
