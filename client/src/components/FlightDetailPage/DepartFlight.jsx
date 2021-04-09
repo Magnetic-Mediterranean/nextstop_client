@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
-// import CheckoutButton from '../sharedStyles/checkoutButton';
 import BackButton from '../sharedStyles/backButton';
 
 const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
