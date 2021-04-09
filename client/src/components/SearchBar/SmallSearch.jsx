@@ -16,6 +16,7 @@ class SmallSearch extends React.Component {
       from: '',
       to: '',
       date: '',
+      departure: '',
     }
     this.onChangeFrom = this.onChangeFrom.bind(this);
     this.onChangeTo = this.onChangeTo.bind(this);
@@ -73,6 +74,23 @@ class SmallSearch extends React.Component {
     today = yyyy+'-'+mm+'-'+dd;
     this.setState({date: today});
   }
+  componentDidUpdate(prevProp) {
+    if (prevProp.dateFrom !== this.props.dateFrom) {
+      var newDate = new Date(this.props.dateFrom);
+      var dd = newDate.getDate() + 2;
+      var mm = newDate.getMonth()+1; //January is 0!
+      var yyyy = newDate.getFullYear();
+      if(dd < 10){
+        dd='0'+dd
+      }
+      if(mm<10){
+        mm='0'+mm
+      }
+      var today = yyyy+'-'+mm+'-'+(dd);
+      this.setState({departure: today});
+    }
+  }
+
   render() {
     return (
       <SmallPhotoContainer size={this.props.size ? this.props : undefined} id='Search'>
@@ -90,7 +108,7 @@ class SmallSearch extends React.Component {
             position: 'relative',
             left: '3.5%',
             color: 'black',
-
+            fontFamily: 'Roboto'
           }}
           renderInput={(params) => <TextField {...params} label="From" variant="outlined" />}
           />
@@ -109,6 +127,7 @@ class SmallSearch extends React.Component {
             position: 'relative',
             left: '5%',
             color: 'black',
+            fontFamily: 'Roboto'
           }}
           renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
           />
@@ -121,21 +140,36 @@ class SmallSearch extends React.Component {
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
-            backgroundColor: '#ececec'
-          }
-          } min={this.state.date} required/>
-          <Calendar className='Cal' type='date' onChange={this.props.setDateTo} style={
-          {
-            border: '1.5px solid #cccc',
-            textAlign: 'center',
-            position: 'relative',
-            left: '10%',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
             backgroundColor: '#ececec',
+            fontFamily: 'Roboto'
           }
           } min={this.state.date} required/>
+          { this.props.dateFrom ? <Calendar className='Cal' type='date' onChange={this.props.setDateTo} style={
+            {
+              border: '1.5px solid #cccc',
+              textAlign: 'center',
+              position: 'relative',
+              left: '10%',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              backgroundColor: '#ececec',
+              fontFamily: 'Roboto'
+            }
+          } min={this.state.departure} required/> : <Calendar className='Cal' type='date' onChange={this.props.setDateTo} style={
+            {
+              border: '1.5px solid #cccc',
+              textAlign: 'center',
+              position: 'relative',
+              left: '10%',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              backgroundColor: '#ececec',
+              fontFamily: 'Roboto'
+            }
+          } disabled/>
+        }
           <SelectButton onChange={this.props.setTraveler} required>
             <option>1</option>
             <option>2</option>
@@ -150,7 +184,7 @@ class SmallSearch extends React.Component {
             <option>11</option>
           </SelectButton>
           <SubmitButton onClick={() => {
-            this.state.selectedFrom !== '' && this.state.selectedTo !== '' && this.props.dateFrom !== '' && this.props.dateTo !== '' ? this.props.incrementDisplayPage() : alert('Need to choose dates and location');
+            this.state.selectedFrom === '' || this.state.selectedTo === '' || this.props.dateFrom === '' || this.props.dateTo === '' ? alert('Need to choose dates and location') : this.props.incrementDisplayPage();
           }}>Find</SubmitButton>
         </SearchBar>
       </SmallPhotoContainer>
@@ -185,7 +219,7 @@ const SearchBar = styled.div `
   box-shadow: 0 10px 10px -5px #cccc;
   align-items: center;
   border-radius: 8px;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 const Calendar = styled.input `

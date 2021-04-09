@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import SubContainer from '../sharedStyles/subContainer';
 
 const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
   const [hoverDate, sethoverDate] = useState(false);
-  const [displayDate, setDisplayDate] = useState();
+  const displayDate = useRef();
+  const arrivalTime = useRef();
 
   const airlineIcon = {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
@@ -18,9 +19,9 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "QATAR AIRWAYS": "icons/qatar.png",
     "AIR CANADA": "icons/aircanada.png",
     "JETBLUE AIRWAYS": "icons/jetBlue.png",
-    "ALASKA AIRLINES": "icons/alaska.png",
+    "ALASKA AIRLINES": "icons/alaska.jpeg",
     "SPIRIT AIRLINES": "icons/spirit.jpeg"
-  }
+  };
 
   const flightLegs = (array) => {
     let display = '';
@@ -31,7 +32,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
       }
     }
     return display;
-  }
+  };
 
   const stop = (FligthDetail) => {
     if (FligthDetail.numberOfStops) {
@@ -54,30 +55,36 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
         </div>);
     }
     return "Non-stop";
-  }
+  };
 
-  const convertToTime = (APIdate) => {
+  const convertToTime = (APIdate, isArrival) => {
     let date = new Date(APIdate);
+    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     return (
-    <div onMouseEnter={() => { handleMouseEnter(APIdate)} }>
-     {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
-    </div> )
-  }
+    <Time value={isArrival} onMouseEnter={() => { handleMouseEnter(APIdate, isArrival)}} onMouseLeave={handleMouseLeave}>
+     {time}
+    </Time> )
+  };
 
   const handleSelected = () => {
     setSelected(!selected);
     setfligthSelected(FligthDetail);
-  }
+  };
 
-  const handleMouseEnter = (APIdate) => {
+  const handleMouseLeave = () => {
+    sethoverDate(false);
+  };
+
+  const handleMouseEnter = (APIdate, isArrival) => {
+    console.log(APIdate, isArrival);
     let date = new Date(APIdate);
     let weekday = date.toLocaleString('en-us', {  weekday: 'short' });
     let month = date.toLocaleString('default', { month: 'short' });
     let day = date.toLocaleString('default', { day: 'numeric' });
     let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    setDisplayDate(`${time} on ${weekday}, ${month} ${day}`);
+    displayDate.current = <TimeAndDate arrival={ isArrival ? true : false}> {time} on {weekday}, {month} {day}</TimeAndDate>;
     sethoverDate(true);
-  }
+  };
 
   return (
     <FlightContainer onClick={handleSelected}>
@@ -85,16 +92,15 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
         <Circle selected ></Circle>
         : <Circle></Circle>}
       {
-        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.jpg"} />
+        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.png"} />
       }
 
       <AlignWrapper>
-      {/* {
-        hoverDate && (
-          {displayDate}
-        )
-      } */}
-        <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
+        <Bold>{convertToTime(FligthDetail.departureTime, false)}-{convertToTime(FligthDetail.arrivalTime, true)} </Bold>
+        {
+          hoverDate &&
+          ( <div> {displayDate.current} </div>)
+        }
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
 
@@ -119,10 +125,67 @@ const SmallFont = styled.p`
   margin: 0;
 `;
 
-const Bold = styled.p`
+// const Triangle = styled.div`
+//   width: 0;
+//   height: 0;
+//   left: 18px;
+//   bottom: 25px;
+//   position: absolute;
+//   border-left: 10px solid transparent;
+//   border-right: 10px solid transparent;
+//   border-top: 10px solid white;
+//   filter: drop-shadow(0 -0.0625rem 0.0625rem #b7b7b7);
+// `;
+
+const Time = styled.div`
+  position: relative;
+`;
+
+const TimeAndDate = styled.div`
+  top: -33px;
+  left: ${props => props.arrival ? "160px" :  "80px"};
+  background: white;
+  width: 200px;
+  height: 30px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 10px solid #fff;
+  box-shadow: 5px 5px 10px 3px #b7b7b7;
+  position: absolute;
+  &:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #4ECDC4;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -30px;
+    filter: drop-shadow(0 -0.0625rem 0.0625rem #b7b7b7);
+  }
+  &:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    right: 50%;
+    bottom: -27px;
+  }
+`;
+
+const Bold = styled.span`
   font-weight: bold;
   font-size: 19px;
   margin: 0;
+  display: flex;
 `;
 
 const BigFont = styled.p`
@@ -141,6 +204,7 @@ const FlightContainer = styled.div`
   width: 95%;
   height: 100px;
   margin: 10px auto;
+  max-width: 1300px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 10px 10px -5px #cccc;

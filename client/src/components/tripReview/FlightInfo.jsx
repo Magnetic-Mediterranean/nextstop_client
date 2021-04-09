@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SubContainer from '../sharedStyles/subContainer'
 
-const FlightInfo = ({departingFlight, returningFlight}) => {
+const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }) => {
   let stops = 0;
   const stop = (FligthDetail) => {
 
@@ -29,26 +29,41 @@ const FlightInfo = ({departingFlight, returningFlight}) => {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
     "PHILIPPINE AIRLINES": "icons/PhilippineAirlines.png",
     "HAWAIIAN AIRLINES": "icons/haiwaiianAirline.png",
-    "Delta": "icons/delta.png",
-    "Southwest": "icons/southwest.png",
-    "American Airline": "icons/AA.png",
-  };
+    "DELTA AIR LINES": "icons/delta.png",
+    "SOUTHWEST": "icons/southwest.png",
+    "AMERICAN AIRLINES": "icons/AA.png",
+    "TURKISH AIRLINES": "icons/turisk.png",
+    "QATAR AIRWAYS": "icons/qatar.png",
+    "AIR CANADA": "icons/aircanada.png",
+    "JETBLUE AIRWAYS": "icons/jetBlue.png",
+    "ALASKA AIRLINES": "icons/alaska.png",
+    "SPIRIT AIRLINES": "icons/spirit.jpeg"
+  }
 
   const convertToTime = (APIdate) => {
     let date = new Date(APIdate);
     return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   }
 
+  const departureDate = new Date(departDate).toDateString();
+  console.log(departDate)
+  const returningDate = new Date(returnDate).toDateString();
+
   return (
     <FlightInfoContainer>
-      <SectionTitle> Flight Details: </SectionTitle>
-      <SubContainer style={{justifyContent: "space-around"}}>
+      <SectionTitle> Your Flights: </SectionTitle>
+      <SubTitle>{`${departingFlight.airline} flight on ${departureDate}`}</SubTitle>
+      <SubContainer
+        style={{
+          justifyContent: "space-around",
+          marginBottom: "30px"
+        }}>
 
       <InnerDiv>
         {
-          <Icon src={airlineIcon[departingFlight.airline]} />
+          <Icon src={airlineIcon[departingFlight.airline] ? airlineIcon[departingFlight.airline] : "icons/airlinelogo.png"} />
         }
-        <p style={{marginTop: "0px"}}>{departingFlight.airline}</p>
+        {/* <p style={{marginTop: "0px"}}>{departingFlight.airline}</p> */}
       </InnerDiv>
 
       <InnerDiv>
@@ -77,13 +92,14 @@ const FlightInfo = ({departingFlight, returningFlight}) => {
       <InnerP>${departingFlight.price}</InnerP>
 
       </SubContainer>
+      <SubTitle>{`${returningFlight.airline} flight on ${returningDate}`}</SubTitle>
       <SubContainer style={{justifyContent: "space-around"}}>
 
       <InnerDiv>
         {
-          <Icon src={airlineIcon[returningFlight.airline]} />
+          <Icon src={airlineIcon[returningFlight.airline] ? airlineIcon[returningFlight.airline] : "icons/airlinelogo.png"} />
         }
-        <p style={{marginTop: "0px"}}>{returningFlight.airline}</p>
+        {/* <p style={{marginTop: "0px"}}>{returningFlight.airline}</p> */}
       </InnerDiv>
 
       <InnerDiv>
@@ -119,17 +135,23 @@ const FlightInfo = ({departingFlight, returningFlight}) => {
 export default FlightInfo;
 
 const FlightInfoContainer = styled.div`
-  width: 100%;
+width: 100%;
+margin: 40px 0px;
 `;
 
 const SectionTitle = styled.div`
-  margin-left: 23.828px;
+  margin: 10px;
   font-size: 20px;
 `;
 
+const SubTitle = styled.div`
+  margin-left: 30px;
+  font-size: 15px;
+`;
+
 const Icon = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 150px;
+  height: 80px;
   border-radius: 5px;
   object-fit: contain;
 `;
