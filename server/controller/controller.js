@@ -16,11 +16,13 @@ module.exports = {
       .catch((err) => console.log(err));
   },
   hotels: (req, res) => {
+    // console.log('q?', req.query)
     axios.get("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/hotels/v2/shopping/hotel-offers", {
       params: {
-       "cityCode": req.query.cityCode,
-       "checkInDate": req.query.checkInDate,
-       "checkOutDate": req.query.checkOutDate
+       "cityCode": req.query.cityCode
+      //  "cityCode": req.query.cityCode,
+      //  "checkInDate": req.query.checkInDate,
+      //  "checkOutDate": req.query.checkOutDate
       }
     }).then((data) => {
       res.status(200).send(data.data)
@@ -30,7 +32,6 @@ module.exports = {
   experiences: (req, res) => {
     axios.post("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/activities", req.body)
     .then((data) => {
-      console.log('data from post', data.data)
       res.status(200).send(data.data)
     })
       .catch((err) => console.log({err: err}));

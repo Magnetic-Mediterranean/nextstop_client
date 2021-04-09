@@ -69,9 +69,10 @@ class App extends React.Component {
   getHotels(city, from, to) {
     axios.get('/hotels', {
       params: {
-       "cityCode": city,
-       "checkInDate": from,
-       "checkOutDate": to
+       "cityCode": city
+      //  "cityCode": city,
+      //  "checkInDate": from,
+      //  "checkOutDate": to
       }
     })
     .then((res) => {
