@@ -119,7 +119,7 @@ class App extends React.Component {
       && dateTo && travelerCnt
       && this.state.displayPage === 0) {
       this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateFrom, travelerCnt, "departFlights")
-      this.getFlightData(SelectedFrom.cityCode, SelectedTo.cityCode, dateTo, travelerCnt, "returnFlights")
+      this.getFlightData(SelectedTo.cityCode, SelectedFrom.cityCode, dateTo, travelerCnt, "returnFlights")
       this.getHotels(SelectedTo.cityCode, dateFrom, dateTo)
       this.getExperiences(SelectedTo.lat, SelectedTo.lng)
     }
