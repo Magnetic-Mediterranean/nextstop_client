@@ -31,9 +31,10 @@ module.exports = {
     console.log('body', req.body)
     axios.post("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/activities", req.body)
     .then((data) => {
+      console.log('data from post', data.data)
       res.status(200).send(data.data)
     })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log({err: err}));
   },
   purchase: (req, res) => {
 

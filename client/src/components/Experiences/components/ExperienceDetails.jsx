@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ExperienceDetails = ({ experience }) => {
-  const needsCondensed = experience.shortDescription.length > 400
-  const condensed = experience.shortDescription.slice(0,400)
   return (
     <DetailsContainer>
       <p>{experience.name}</p>
-      {needsCondensed ? <p>{`${condensed}...`}</p> : <p>{experience.shortDescription}</p>}
+      {experience.shortDescription.length > 400 ? <p>{`${experience.shortDescription.slice(0,400)}...`}</p> : <p>{experience.shortDescription}</p>}
       <p>{`$${Math.floor(experience.price.amount)} / night`}</p>
     </DetailsContainer>
   )

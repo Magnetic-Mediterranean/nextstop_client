@@ -85,7 +85,6 @@ class App extends React.Component {
     axios.post('/experiences', {
        lat: lat,
        lng: lng
-       //if it comes with n and e, parse them to just be numbers
     })
     .then((res) => {
       this.setState({experiences: res.data})
@@ -107,11 +106,6 @@ class App extends React.Component {
     this.setState({
       displayPage: previousPage,
     })
-  }
-
-  componentDidMount() {
-    this.getHotels(this.state.SelectedTo.cityCode, this.state.dateFrom, this.state.dateTo)
-    this.getExperiences(this.state.SelectedTo.lat, this.state.SelectedTo.lng)
   }
 
   componentDidUpdate(prevState) {
@@ -171,7 +165,6 @@ class App extends React.Component {
     }
     let departFlight = <FlexContainer><img src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif" alt="loading page" /></FlexContainer>;
     if (displayPage === 1 && departFlights.length !== 0) {
-      // console.log(departFlights);
       departFlight = <FlexContainer>
         <DepartFlight
           flightData={departFlights}
@@ -191,7 +184,6 @@ class App extends React.Component {
         />
       </FlexContainer>
     }
-
     return (
       // Navbar
       <>
@@ -218,6 +210,7 @@ class App extends React.Component {
               next={this.incrementDisplayPage}
               back={this.decrementDisplayPage}
               hotels={this.state.hotels}
+              city={this.state.SelectedTo.city}
               />
           )}
 
@@ -225,7 +218,9 @@ class App extends React.Component {
           && (
             <Experiences
             next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage} />
+            back={this.decrementDisplayPage}
+            experiences={this.state.experiences}
+            />
           )}
 
         {displayPage === 5
