@@ -9,7 +9,7 @@ class LeftBox extends React.Component {
       returningFlight: '',
       hotel: '',
       infoLoaded: false,
-      total: 4644.72,
+      total: 0,
     }
   }
   componentDidMount() {
@@ -25,6 +25,7 @@ class LeftBox extends React.Component {
       departingFlight: departingFlight,
       returningFlight: returningFlight,
       hotel: hotel,
+      total: total,
       // experiences: experiences,
       infoLoaded:true,
     })
@@ -38,7 +39,7 @@ class LeftBox extends React.Component {
         </Title>
         <Container>
           <TripCheckout style={{position: 'relative', left: '7%'}}>
-            <FN >Congrats! Your package to {this.props.destination} is complete</FN>
+            <FN >Your package to {this.props.to} is complete</FN>
           </TripCheckout>
           <TripCheckout style={{position: 'relative', left: '10%'}}>
             <FN style={{fontSize: '60px'}}>Info</FN>

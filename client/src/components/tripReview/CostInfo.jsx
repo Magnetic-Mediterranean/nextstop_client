@@ -13,6 +13,8 @@ const CostInfo = (props) => {
   const totalCost = Number(props.departingFlight.price) + Number(props.returningFlight.price) + (Number(props.hotel.original_price) * Number(props.numberOfNights)) + Number(totalExperienceCost);
   console.log('totalCost', totalCost);
   const tax = (totalCost * .20).toFixed(2);
+  const tot = Number(totalCost) + Number(tax);
+  window.localStorage.setItem('total', tot);
   const total = (Number(totalCost) + Number(tax)).toFixed(2);
 
   const costObj = {

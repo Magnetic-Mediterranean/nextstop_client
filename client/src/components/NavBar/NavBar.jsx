@@ -10,7 +10,7 @@ class NavBar extends React.Component {
   render() {
     return(
       <Navbar id='NavBar'>
-        <Icon>NextStop</Icon>
+        <Icon onClick={this.props.goback} >NextStop</Icon>
         <Login> Login </Login>
       </Navbar>
 
@@ -44,6 +44,9 @@ const Icon = styled.div`
   border-radius: 15px;
   align-items: center;
   padding: 8px;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Login = styled.button`
