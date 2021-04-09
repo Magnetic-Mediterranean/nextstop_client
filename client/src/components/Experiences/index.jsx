@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import ExperienceData from './components/experienceData.js'
 import ExperienceList from './components/ExperienceList.jsx'
 import BackButton from '../../components/sharedStyles/backButton.js'
+import Container from '../sharedStyles/container'
+import Header from '../sharedStyles/header'
+import PageTitle from '../sharedStyles/pageTitle'
+
 
 class Experiences extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // experiences: [],
-      // experiences: ExperienceData,
+      infoLoaded: false,
       selectedExperiences: [],
       selectedExperienceIds: new Set(),
     }
@@ -20,6 +23,12 @@ class Experiences extends React.Component {
   componentDidMount() {
     const experiences = JSON.parse(window.localStorage.getItem('experiences'));
     this.setState({selectedExperienceIds: new Set(experiences)})
+
+    setTimeout(() => {
+      this.setState({
+        infoLoaded: true,
+      })
+    }, 1000)
   }
 
   handleSelectedExperience(id) {
@@ -48,18 +57,31 @@ class Experiences extends React.Component {
   }
 
   render() {
-    console.log('exp props?', this.props)
     return (
-      <Container>
-        <Header>
-          <BackButton onClick={this.props.back}>Back</BackButton>
-          <p>Select One or More Experiences</p>
-          <BackButton onClick={this.props.next}>Next</BackButton>
-        </Header>
-        <ExperienceList
-        experiences={this.props.experiences}
-        handleSelectedExperience={this.handleSelectedExperience} selectedExperienceIds={this.state.selectedExperienceIds} />
-      </Container>
+      <>
+        {!this.state.infoLoaded &&
+          (
+            <Container>
+            <div >
+              <img style={{ width: "100%"}}
+              src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
+            </div>
+          </Container>
+          )
+        }
+        {this.state.infoLoaded &&
+          (<Container>
+            <Header>
+              <BackButton onClick={this.props.back}>Back</BackButton>
+              <PageTitle>Select One or More Experiences</PageTitle>
+              <BackButton onClick={this.props.next}>Next</BackButton>
+            </Header>
+            <ExperienceList
+            experiences={this.props.experiences}
+            handleSelectedExperience={this.handleSelectedExperience} selectedExperienceIds={this.state.selectedExperienceIds} />
+          </Container>)
+        }
+      </>
     )
   }
 
@@ -67,18 +89,18 @@ class Experiences extends React.Component {
 
 export default Experiences;
 
-const Container = styled.div`
- width: 90%;
- min-width: 500px;
- max-width: 1000px;
- min-height: 500px;
- margin: auto;
- background: #ececec;
-`;
+// const Container = styled.div`
+//  width: 90%;
+//  min-width: 500px;
+//  max-width: 1000px;
+//  min-height: 500px;
+//  margin: auto;
+//  background: #ececec;
+// `;
 
-const Header = styled.div`
- display: flex;
- justify-content: space-between;
- margin-top: 20px;
- padding: 15px;
-`;
+// const Header = styled.div`
+//  display: flex;
+//  justify-content: space-between;
+//  margin-top: 20px;
+//  padding: 15px;
+// `;
