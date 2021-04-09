@@ -3,131 +3,84 @@ import axios from 'axios';
 import styled from 'styled-components';
 import HotelList from './components/HotelList.jsx'
 import BackButton from '../../components/sharedStyles/backButton.js'
-
-const dummyData = [
-  {
-    id: 1,
-    name: "BEAUTIFUL STUDIO in Napa",
-    type: "Hotel in Napa",
-    original_price: 500,
-    discounted_price: null,
-    image: "https://images.unsplash.com/photo-1561409037-c7be81613c1f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8bmFwYSUyMHZhbGxleSUyMGhvdGVsfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    destinationId: 123,
-    destinationName: 'Napa Valley'
-  },
-  {
-    id:2,
-    name: "Private Quaint Cottage Along the Napa River 1BR",
-    type: "Hotel in Napa",
-    original_price: 525,
-    discounted_price: 490,
-    image: "https://images.unsplash.com/photo-1607816420124-038873dbd26b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjN8fG5hcGElMjB2YWxsZXklMjBob3RlbHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    destinationId: 124,
-    destinationName: 'Napa Valley'
-  },
-  {
-    id: 3,
-    name: "BEAUTIFUL STUDIO in Napa",
-    type: "Hotel in Napa",
-    original_price: 500,
-    discounted_price: null,
-    image: "https://images.unsplash.com/photo-1561409037-c7be81613c1f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8bmFwYSUyMHZhbGxleSUyMGhvdGVsfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    destinationId: 123,
-    destinationName: 'Napa Valley'
-  },
-  {
-    id:4,
-    name: "Private Quaint Cottage Along the Napa River 1BR",
-    type: "Hotel in Napa",
-    original_price: 525,
-    discounted_price: 490,
-    image: "https://images.unsplash.com/photo-1607816420124-038873dbd26b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjN8fG5hcGElMjB2YWxsZXklMjBob3RlbHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    destinationId: 124,
-    destinationName: 'Napa Valley'
-  },
-  {
-    id: 5,
-    name: "BEAUTIFUL STUDIO in Napa",
-    type: "Hotel in Napa",
-    original_price: 500,
-    discounted_price: null,
-    image: "https://images.unsplash.com/photo-1561409037-c7be81613c1f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8bmFwYSUyMHZhbGxleSUyMGhvdGVsfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    destinationId: 123,
-    destinationName: 'Napa Valley'
-  },
-  {
-    id:6,
-    name: "Private Quaint Cottage Along the Napa River 1BR",
-    type: "Hotel in Napa",
-    original_price: 525,
-    discounted_price: 490,
-    image: "https://images.unsplash.com/photo-1607816420124-038873dbd26b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjN8fG5hcGElMjB2YWxsZXklMjBob3RlbHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    destinationId: 124,
-    destinationName: 'Napa Valley'
-  }
-]
-
+import Container from '../sharedStyles/container'
+import Header from '../sharedStyles/header'
+import PageTitle from '../sharedStyles/pageTitle'
 
 class Hotels extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // hotels: [],
-      hotels: dummyData,
       selectedHotelId: null,
+      infoLoaded: false,
+      // showMore: false,
     }
-    this.getHotels = this.getHotels.bind(this)
     this.handleSelectedHotel = this.handleSelectedHotel.bind(this)
   }
 
   componentDidMount() {
-    this.getHotels()
     const hotel = JSON.parse(window.localStorage.getItem('hotel'));
-    const hotelId = JSON.parse(window.localStorage.getItem('id'))
+    const hotelId = window.localStorage.getItem('id')
     this.setState({selectedHotelId: hotelId})
-  }
 
-  getHotels() {
-    axios.get('hotels', {
-      params: {
-       "cityCode": "PAR",
-       "checkInDate": "2021-04-08",
-       "checkOutDate": "2021-04-09"
-      }
-    })
-    .then((res) => {
-      this.setState({hotels: res.data})
-    })
-    .catch((err) => {
-      console.log({err: err})
-    })
+    setTimeout(() => {
+      this.setState({
+        infoLoaded: true,
+      })
+    }, 3000)
   }
 
   handleSelectedHotel(id) {
-    const filteredHotel = this.state.hotels.filter(hotel => {
+    const filteredHotel = this.props.hotels.filter(hotel => {
       this.setState({hotel: hotel})
       return hotel.id === id})
     if (filteredHotel.length > 0) {
       const setHotel = window.localStorage.setItem('hotel', JSON.stringify(filteredHotel[0]))
-      // this.setState({hotel: setHotel})
       const setId = window.localStorage.setItem('id', id)
       this.setState({selectedHotelId: id})
     }
   }
 
+  // handleShowMoreClick() {
+  //   this.setState({showMore: true})
+  // }
+
+  // displayTen(index) {
+  //   const hotelLength = this.props.hotels.length = 1
+  //   const lastHotelInSet = (index + 10) <= hotelLength ? index + 10 : this.props.hotels.length
+
+  // }
+
+
   render() {
+    const numberOfItems = this.state.showMore ? this.props.hotels.length : 10
     return (
-      <Container>
-        <Header>
-          <BackButton onClick={this.props.back}>Back</BackButton>
-          <p>Select a Hotel</p>
-          <BackButton onClick={this.props.next}>Next</BackButton>
-        </Header>
-        <HotelList
-        hotels={this.state.hotels}
-        handleSelectedHotel={this.handleSelectedHotel}
-        selectedHotelId={this.state.selectedHotelId} />
-      </Container>
+      <>
+        {!this.state.infoLoaded &&
+          (
+            <Container>
+            <div >
+              <img style={{ width: "100%"}}
+              src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"/>
+            </div>
+          </Container>
+          )
+        }
+        {this.state.infoLoaded &&
+          (<Container>
+            <Header>
+              <BackButton onClick={this.props.back}>Back</BackButton>
+              <PageTitle>Select a Hotel</PageTitle>
+              <BackButton onClick={this.props.next}>Next</BackButton>
+            </Header>
+            <HotelList
+            hotels={this.props.hotels}
+            city={this.props.city}
+            handleSelectedHotel={this.handleSelectedHotel}
+            selectedHotelId={this.state.selectedHotelId} />
+          </Container>)
+        }
+      </>
     )
   }
 
@@ -135,18 +88,18 @@ class Hotels extends React.Component {
 
 export default Hotels;
 
-const Container = styled.div`
- width: 90%;
- min-width: 500px;
- max-width: 1000px;
- min-height: 500px;
- margin: auto;
- background: #ececec;
-`;
+// const Container = styled.div`
+//  width: 90%;
+//  min-width: 500px;
+//  max-width: 1000px;
+//  min-height: 500px;
+//  margin: auto;
+//  background: #ececec;
+// `;
 
-const Header = styled.div`
- display: flex;
- justify-content: space-between;
- margin-top: 20px;
- padding: 15px;
-`;
+// const Header = styled.div`
+//  display: flex;
+//  justify-content: space-between;
+//  margin-top: 20px;
+//  padding: 15px;
+// `;

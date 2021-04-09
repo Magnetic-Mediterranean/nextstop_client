@@ -6,7 +6,6 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
   const [hoverDate, sethoverDate] = useState(false);
   const displayDate = useRef();
-  const arrivalTime = useRef();
 
   const airlineIcon = {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
@@ -15,12 +14,16 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "DELTA AIR LINES": "icons/delta.png",
     "SOUTHWEST": "icons/southwest.png",
     "AMERICAN AIRLINES": "icons/AA.png",
-    "TURKISH AIRLINES": "icons/turkisk.png",
+    "TURKISH AIRLINES": "icons/turkish.png",
     "QATAR AIRWAYS": "icons/qatar.png",
     "AIR CANADA": "icons/aircanada.png",
     "JETBLUE AIRWAYS": "icons/jetBlue.png",
     "ALASKA AIRLINES": "icons/alaska.jpeg",
-    "SPIRIT AIRLINES": "icons/spirit.jpeg"
+    "SPIRIT AIRLINES": "icons/spirit.jpeg",
+    "FRONTIER AIRLINES": "icons/frontier.png",
+    "TAP PORTUGAL": "icons/TAP.png",
+    "LUFTHANSA": "icons/lufthansa.png",
+    "AIR FRANCE": "icons/AirFrance.png",
   };
 
   const flightLegs = (array) => {
@@ -59,10 +62,12 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
 
   const convertToTime = (APIdate, isArrival) => {
     let date = new Date(APIdate);
-    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     return (
-      <Time value={isArrival} onMouseEnter={() => { handleMouseEnter(APIdate, isArrival) }} onMouseLeave={handleMouseLeave}>
-        {time}
+      <Time value={isArrival}
+        onMouseEnter={() => { handleMouseEnter(APIdate, isArrival) }}
+        onMouseLeave={handleMouseLeave}
+      >
+        {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
       </Time>)
   };
 
@@ -95,7 +100,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
       }
 
       <AlignWrapper>
-        <Bold>{convertToTime(FligthDetail.departureTime, false)}-{convertToTime(FligthDetail.arrivalTime, true)} </Bold>
+        <Bold>{convertToTime(FligthDetail.departureTime, false)}-{convertToTime(FligthDetail.arrivalTime, true)}</Bold>
         {
           hoverDate &&
           (<div> {displayDate.current} </div>)

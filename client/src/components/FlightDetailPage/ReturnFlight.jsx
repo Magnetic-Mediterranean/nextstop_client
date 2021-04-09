@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
 import BackButton from '../sharedStyles/backButton';
+import PageTitle from '../sharedStyles/pageTitle';
 
 const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
   const [flightSelected, setfligthSelected] = useState();
@@ -31,7 +32,10 @@ const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
       </HeaderContainer>
       <FlightContainer>
         {
-          displayFlight.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
+          displayFlight.map((flight) => <Flight FligthDetail={flight}
+            setfligthSelected={setfligthSelected}
+            flightSelected={flightSelected}
+          />)
         }
         {
           flightData.length > 10 && (
@@ -51,15 +55,13 @@ export default ReturnFlight;
 const Body = styled.div`
   width: 90%;
   height: 100%;
+  max-width: 1300px;
 `;
 
 const Footer = styled.div`
   height: 30px;
 `;
 
-const PageTitle = styled.span`
- font-size: 40px;
-`;
 
 const HeaderContainer = styled.div`
   display: flex;

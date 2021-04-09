@@ -6,7 +6,11 @@ import ExperienceDetails from './ExperienceDetails.jsx'
 
 const Experience = ({ experience , selected, handleSelectedExperience}) => {
   return (
-    <SubContainer className="card">
+    <SubContainer className="card"
+    style={{
+      height: "300px",
+      boxShadow: "none",
+    }}>
       {selected ? <CheckedCircle onClick={() => handleSelectedExperience(experience.id)}></CheckedCircle> : <Circle onClick={() => handleSelectedExperience(experience.id)}></Circle>}
       <ExperienceAssets image={experience.picture} name={experience.name} />
       <ExperienceDetails experience={experience} />
@@ -17,13 +21,32 @@ const Experience = ({ experience , selected, handleSelectedExperience}) => {
 export default Experience;
 
 const SubContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 95%;
-    height: 300px;
-    margin: 10px auto;
+  display: flex;
+  width: 95%;
+  height: 100px;
+  margin: 10px auto;
+  max-width: 1300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -5px #cccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.01);
+    transition: .5s;
+  }
 `;
+
+// const SubContainer = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     width: 95%;
+//     height: 300px;
+//     margin: 10px auto;
+// `;
 
 const Circle = styled.span`
 height: 25px;

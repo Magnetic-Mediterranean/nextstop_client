@@ -18,14 +18,23 @@ module.exports = {
   hotels: (req, res) => {
     axios.get("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/hotels/v2/shopping/hotel-offers", {
       params: {
-       "cityCode": "PAR",
-       "checkInDate": "2021-04-08",
-       "checkOutDate": "2021-04-09"
+       "cityCode": req.query.cityCode,
+       "checkInDate": req.query.checkInDate,
+       "checkOutDate": req.query.checkOutDate
       }
+    }).then((data) => {
+      res.status(200).send(data.data)
     })
+      .catch((err) => console.log(err));
   },
   experiences: (req, res) => {
+    console.log('body', req.body)
     axios.post("http://ec2-18-144-174-82.us-west-1.compute.amazonaws.com/activities", req.body)
+    .then((data) => {
+      console.log('data from post', data.data)
+      res.status(200).send(data.data)
+    })
+      .catch((err) => console.log({err: err}));
   },
   purchase: (req, res) => {
 

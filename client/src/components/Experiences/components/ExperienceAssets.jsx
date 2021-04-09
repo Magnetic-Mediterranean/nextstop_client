@@ -25,5 +25,7 @@ const ImageContainer = styled.div`
     // border: 2px solid black;
     width: 360px;
     height: 300px;
+    box-shadow: 0 10px 10px -5px #cccc;
+    margin-right: 40px;
   }
 `;
