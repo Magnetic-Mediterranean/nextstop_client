@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
-import PageTitle from '../sharedStyles/pageTitle';
 import CheckoutButton from '../sharedStyles/checkoutButton';
 import BackButton from '../sharedStyles/backButton';
 
@@ -37,7 +36,7 @@ const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
         flightData.length > 10 && (
           <CheckoutButton
            hidden = { Index.current >= flightData.length ? true : false}
-           onClick={() => {display10(Index.current)}} >SHOW MORE</CheckoutButton>
+           onClick={() => {display10(Index.current)}} >MORE</CheckoutButton>
         )
       }
     </FlightContainer>
@@ -50,6 +49,10 @@ export default DepartFlight;
 const Body = styled.div`
   width: 90%;
   height: 100%;
+`;
+
+const PageTitle = styled.span`
+ font-size: 40px;
 `;
 
 const HeaderContainer = styled.div`

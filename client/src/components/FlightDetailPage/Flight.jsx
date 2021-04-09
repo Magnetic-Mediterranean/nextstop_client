@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import SubContainer from '../sharedStyles/subContainer';
 
 const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
   const [hoverDate, sethoverDate] = useState(false);
-  const [displayDate, setDisplayDate] = useState();
+  const displayDate = useRef();
 
   const airlineIcon = {
     "UNITED AIRLINES": "icons/UnitedAirline.png",
@@ -18,7 +18,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "QATAR AIRWAYS": "icons/qatar.png",
     "AIR CANADA": "icons/aircanada.png",
     "JETBLUE AIRWAYS": "icons/jetBlue.png",
-    "ALASKA AIRLINES": "icons/alaska.png",
+    "ALASKA AIRLINES": "icons/alaska.jpeg",
     "SPIRIT AIRLINES": "icons/spirit.jpeg"
   }
 
@@ -58,15 +58,21 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
 
   const convertToTime = (APIdate) => {
     let date = new Date(APIdate);
+    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     return (
-    <div onMouseEnter={() => { handleMouseEnter(APIdate)} }>
-     {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
-    </div> )
+    <Time onMouseEnter={() => { handleMouseEnter(APIdate)}} onMouseLeave={handleMouseLeave}>
+     <Triangle></Triangle>
+     {time}
+    </Time> )
   }
 
   const handleSelected = () => {
     setSelected(!selected);
     setfligthSelected(FligthDetail);
+  }
+
+  const handleMouseLeave = () => {
+    sethoverDate(false);
   }
 
   const handleMouseEnter = (APIdate) => {
@@ -75,7 +81,7 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     let month = date.toLocaleString('default', { month: 'short' });
     let day = date.toLocaleString('default', { day: 'numeric' });
     let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    setDisplayDate(`${time} on ${weekday}, ${month} ${day}`);
+    displayDate.current = `${time} on ${weekday}, ${month} ${day}`;
     sethoverDate(true);
   }
 
@@ -85,16 +91,19 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
         <Circle selected ></Circle>
         : <Circle></Circle>}
       {
-        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.jpg"} />
+        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.png"} />
       }
 
       <AlignWrapper>
-      {/* {
-        hoverDate && (
-          {displayDate}
-        )
-      } */}
-        <Bold>{convertToTime(FligthDetail.departureTime)} - {convertToTime(FligthDetail.arrivalTime)} </Bold>
+
+        <Bold>{convertToTime(FligthDetail.departureTime)}   -   {convertToTime(FligthDetail.arrivalTime)} </Bold>
+        {
+          hoverDate && (
+            <div>
+              <TimeAndDate>{displayDate.current}</TimeAndDate>
+            </div>
+          )
+        }
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
 
@@ -119,10 +128,39 @@ const SmallFont = styled.p`
   margin: 0;
 `;
 
+const Triangle = styled.div`
+  width: 0;
+  height: 0;
+  left: 18px;
+  bottom: 25px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+  filter: drop-shadow(0 -0.0625rem 0.0625rem #b7b7b7);
+`;
+
+const Time = styled.div`
+  position: relative;
+`;
+
+const TimeAndDate = styled.div`
+position: absolute;
+  top: -6px;
+  left: 102px;
+  background: white;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px 3px #b7b7b7;
+`;
+
 const Bold = styled.p`
   font-weight: bold;
   font-size: 19px;
   margin: 0;
+  display: flex;
 `;
 
 const BigFont = styled.p`

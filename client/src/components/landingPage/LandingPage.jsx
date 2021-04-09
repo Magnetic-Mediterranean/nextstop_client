@@ -32,8 +32,8 @@ const PageContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  margin-left: 3%;
-  margin-right: 3%;
+  margin-left: 8.25%;
+  margin-right: 8.25%;
 `;
 
 const DealContainer = styled.div`
