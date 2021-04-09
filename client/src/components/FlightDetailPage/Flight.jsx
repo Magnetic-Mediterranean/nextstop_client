@@ -161,7 +161,7 @@ const TimeAndDate = styled.div`
     position: absolute;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #00bfb6;
+    border-top: 10px solid #4ECDC4;
     border-bottom: 10px solid transparent;
     right: 50%;
     bottom: -30px;

@@ -40,6 +40,7 @@ const DepartFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
         )
       }
     </FlightContainer>
+    <Footer></Footer>
     </Body>
   )
 }
@@ -49,6 +50,10 @@ export default DepartFlight;
 const Body = styled.div`
   width: 90%;
   height: 100%;
+`;
+
+const Footer = styled.div`
+  height: 30px;
 `;
 
 const PageTitle = styled.span`
