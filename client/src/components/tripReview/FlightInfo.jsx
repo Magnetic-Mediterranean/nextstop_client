@@ -51,15 +51,19 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
 
   return (
     <FlightInfoContainer>
-      <SectionTitle> Flight Details: </SectionTitle>
-      <SubTitle>{`Departing flight on ${departureDate}`}</SubTitle>
-      <SubContainer style={{justifyContent: "space-around"}}>
+      <SectionTitle> Your Flights: </SectionTitle>
+      <SubTitle>{`${departingFlight.airline} flight on ${departureDate}`}</SubTitle>
+      <SubContainer
+        style={{
+          justifyContent: "space-around",
+          marginBottom: "30px"
+        }}>
 
       <InnerDiv>
         {
-          <Icon src={airlineIcon[departingFlight.airline] ? airlineIcon[departingFlight.airline] : "icons/airlinelogo.jpg"} />
+          <Icon src={airlineIcon[departingFlight.airline] ? airlineIcon[departingFlight.airline] : "icons/airlinelogo.png"} />
         }
-        <p style={{marginTop: "0px"}}>{departingFlight.airline}</p>
+        {/* <p style={{marginTop: "0px"}}>{departingFlight.airline}</p> */}
       </InnerDiv>
 
       <InnerDiv>
@@ -88,14 +92,14 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
       <InnerP>${departingFlight.price}</InnerP>
 
       </SubContainer>
-      <SubTitle>{`Returning flight on ${returningDate}`}</SubTitle>
+      <SubTitle>{`${returningFlight.airline} flight on ${returningDate}`}</SubTitle>
       <SubContainer style={{justifyContent: "space-around"}}>
 
       <InnerDiv>
         {
-          <Icon src={airlineIcon[returningFlight.airline] ? airlineIcon[returningFlight.airline] : "icons/airlinelogo.jpg"} />
+          <Icon src={airlineIcon[returningFlight.airline] ? airlineIcon[returningFlight.airline] : "icons/airlinelogo.png"} />
         }
-        <p style={{marginTop: "0px"}}>{returningFlight.airline}</p>
+        {/* <p style={{marginTop: "0px"}}>{returningFlight.airline}</p> */}
       </InnerDiv>
 
       <InnerDiv>
@@ -146,8 +150,8 @@ const SubTitle = styled.div`
 `;
 
 const Icon = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 150px;
+  height: 80px;
   border-radius: 5px;
   object-fit: contain;
 `;
