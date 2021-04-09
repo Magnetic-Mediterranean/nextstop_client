@@ -3,13 +3,25 @@ import styled from 'styled-components';
 import SubContainer from '../sharedStyles/subContainer'
 
 const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }) => {
-  let stops = 0;
-  const stop = (FligthDetail) => {
-
+  const stops = (FligthDetail) => {
     if (FligthDetail.numberOfStops) {
       let display = FligthDetail.airports.slice(1, FligthDetail.airports.length - 1);
-      stops = display.length;
-      return display;
+      let length = display.length;
+      let displayStop = length === 1 ? "1 stop" : `${length} stops`;
+
+      let legs = '';
+      for (let i = 0; i < display.length; i++) {
+        if (i === display.length - 1) {
+          legs += display[i];
+        } else {
+          legs += display[i] + ", ";
+        }
+      }
+      return (
+        <div>
+          <BigFont>{displayStop}</BigFont>
+          <SmallFont>{legs}</SmallFont>
+        </div>);
     }
     return "Non-stop";
   };
@@ -59,43 +71,41 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
           marginBottom: "30px"
         }}>
 
-      <InnerDiv>
+      <InnerDiv style={{
+        marginLeft: "-20px",
+      }}>
         {
           <Icon src={airlineIcon[departingFlight.airline] ? airlineIcon[departingFlight.airline] : "icons/airlinelogo.png"} />
         }
         {/* <p style={{marginTop: "0px"}}>{departingFlight.airline}</p> */}
       </InnerDiv>
 
+      <InnerDiv >
+          <Bold>{convertToTime(departingFlight.departureTime, false)}-{convertToTime(departingFlight.arrivalTime, true)} </Bold>
+        <SmallFont>{departingFlight.airline}</SmallFont>
+      </InnerDiv>
+
       <InnerDiv>
-        {stop(departingFlight)}
-        {stops !== 0 && (
-          <InnerP>{stops} stop(s)</InnerP>
-        )}
+      <BigFont>{departingFlight.duration}</BigFont>
+        <SmallFont>{flightLegs(departingFlight.airports)}</SmallFont>
       </InnerDiv>
 
-      <InnerDiv style={{
-        marginLeft: "-15px",
-        marginRight: "-15px"
-      }}>
-      <div style={{
-          display:"flex",
-          justifyContent: "center"}}>
-        {flightLegs(departingFlight.airports)}
-        <br />
-        {departingFlight.duration}
-        </div>
+
+      <InnerDiv>
+        {stops(departingFlight)}
       </InnerDiv>
 
-      <InnerDiv> Depart: {convertToTime(departingFlight.departureTime)} </InnerDiv>
-      <InnerDiv> Arrive: {convertToTime(departingFlight.arrivalTime)} </InnerDiv>
-
-      <InnerP>${departingFlight.price}</InnerP>
+      <InnerP style={{
+        fontWeight: "bold"
+      }}>${departingFlight.price}</InnerP>
 
       </SubContainer>
       <SubTitle>{`${returningFlight.airline} flight on ${returningDate}`}</SubTitle>
       <SubContainer style={{justifyContent: "space-around"}}>
 
-      <InnerDiv>
+      <InnerDiv style={{
+        marginLeft: "-20px",
+      }}>
         {
           <Icon src={airlineIcon[returningFlight.airline] ? airlineIcon[returningFlight.airline] : "icons/airlinelogo.png"} />
         }
@@ -103,29 +113,22 @@ const FlightInfo = ({ departingFlight, returningFlight, departDate, returnDate }
       </InnerDiv>
 
       <InnerDiv>
-        {stop(returningFlight)}
-        {stops !== 0 && (
-          <div>{stops} stop(s)</div>
-        )}
+      <Bold>{convertToTime(returningFlight.departureTime, false)}-{convertToTime(returningFlight.arrivalTime, true)} </Bold>
+        <SmallFont>{returningFlight.airline}</SmallFont>
       </InnerDiv>
 
-      <InnerDiv style={{
-        marginLeft: "-15px",
-        marginRight: "-15px"
-      }}>
-        <div style={{
-          display:"flex",
-          justifyContent: "center"}}>
-        {flightLegs(returningFlight.airports)}
-        <br />
-        {returningFlight.duration}
-        </div>
+      <InnerDiv>
+      <BigFont>{returningFlight.duration}</BigFont>
+        <SmallFont>{flightLegs(returningFlight.airports)}</SmallFont>
       </InnerDiv>
 
-      <InnerDiv> Depart: {convertToTime(returningFlight.departureTime)} </InnerDiv>
-      <InnerDiv> Arrive: {convertToTime(returningFlight.arrivalTime)} </InnerDiv>
+      <InnerDiv>
+        {stops(returningFlight)}
+      </InnerDiv>
 
-      <InnerP>${returningFlight.price}</InnerP>
+      <InnerP style={{
+        fontWeight: "bold",
+      }}>${returningFlight.price}</InnerP>
 
       </SubContainer>
     </FlightInfoContainer>
@@ -161,7 +164,7 @@ const InnerDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 16.6%;
+  width: 15%;
   font-family: 'Roboto', sans-serif;
 `;
 
@@ -180,4 +183,22 @@ box-shadow: 0 10px 10px -5px #cccc;
 display: flex;
 justify-content: space-around;
 align-items: center;
+`;
+
+//
+const BigFont = styled.p`
+  font-size: 19px;
+  margin: 0;
+`;
+
+const SmallFont = styled.p`
+  font-size: 13px;
+  margin: 0;
+`;
+
+const Bold = styled.span`
+  font-weight: bold;
+  font-size: 19px;
+  margin: 0;
+  display: flex;
 `;
