@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FlightDeals from './FlightData';
 import Flight from './Flight';
 import BackButton from '../sharedStyles/backButton';
+import PageTitle from '../sharedStyles/pageTitle';
 
 const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
   const [flightSelected, setfligthSelected] = useState();
@@ -15,7 +16,7 @@ const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
   }
 
   const display10 = (index) => {
-    let lastFlightInSet = ( index + 10 ) <= flightData.length - 1 ? index + 10 : flightData.length;
+    let lastFlightInSet = (index + 10) <= flightData.length - 1 ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current += 10;
   }
@@ -30,18 +31,21 @@ const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }
 
       </HeaderContainer>
       <FlightContainer>
-      {
-        displayFlight.map((flight) => <Flight FligthDetail={flight} setfligthSelected={setfligthSelected} flightSelected={flightSelected} />)
-      }
-      {
-        flightData.length > 10 && (
-          <Button
-           hidden = { Index.current >= flightData.length ? true : false}
-           onClick={() => {display10(Index.current)}}>MORE</Button>
-        )
-      }
-    </FlightContainer>
-    <Footer></Footer>
+        {
+          displayFlight.map((flight) => <Flight FligthDetail={flight}
+            setfligthSelected={setfligthSelected}
+            flightSelected={flightSelected}
+          />)
+        }
+        {
+          flightData.length > 10 && (
+            <Button
+              hidden={Index.current >= flightData.length ? true : false}
+              onClick={() => { display10(Index.current) }}>MORE</Button>
+          )
+        }
+      </FlightContainer>
+      <Footer></Footer>
     </Body>
   )
 }
@@ -51,15 +55,13 @@ export default ReturnFlight;
 const Body = styled.div`
   width: 90%;
   height: 100%;
+  max-width: 1300px;
 `;
 
 const Footer = styled.div`
   height: 30px;
 `;
 
-const PageTitle = styled.span`
- font-size: 40px;
-`;
 
 const HeaderContainer = styled.div`
   display: flex;

@@ -19,7 +19,9 @@ const LandingPage = ({ incrementDisplayPage }) => {
         <Description>Pack your bags — it's time for an adventure</Description>
       </Phrases>
       <DealContainer>
-        {DealData.map((deal) => <FeatureDeal data={deal} />)}
+        {DealData.map((deal) => <FeatureDeal data={deal}
+          key={deal.departure + deal.arrival + deal.price}
+        />)}
       </DealContainer>
       <br />
     </PageContainer>
