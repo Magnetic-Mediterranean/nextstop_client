@@ -26,8 +26,7 @@ const HotelInfo = (props) => {
       <p style ={{
         fontSize: "17px",
         fontWeight: "500"
-      }}>{props.hotel.type}</p>
-      <p>{props.hotel.name}</p>
+      }}>{props.hotel.name}</p>
       <p>{`$${hotelPrice} per night`}</p>
     </DetailsContainer>
     </SubContainer>
