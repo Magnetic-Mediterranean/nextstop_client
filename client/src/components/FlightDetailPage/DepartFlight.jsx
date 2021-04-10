@@ -16,13 +16,12 @@ const DepartFlight = ({
 
   const handleOnClick = () => {
     incrementDisplayPage();
-    localStorage.setItem("  depart", JSON.stringify(flightSelected));
+    localStorage.setItem("depart", JSON.stringify(flightSelected));
   };
 
   const display10 = (index) => {
-    let flightLength = flightData.length - 1;
-    let lastFlightInSet =
-      index + 10 <= flightLength ? index + 10 : flightData.length;
+    const lastFlightInSet =
+      index + 10 <= flightData.length - 1 ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current = lastFlightInSet;
   };

@@ -20,7 +20,7 @@ const ReturnFlight = ({
   };
 
   const display10 = (index) => {
-    let lastFlightInSet =
+    const lastFlightInSet =
       index + 10 <= flightData.length - 1 ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current += 10;
