@@ -61,14 +61,10 @@ Our team strived to meet the expectations of our primary user by organizing deli
 
 * As a user, I should be able to access and utilize NextStop from my phone
 
-
-## Minimum Viable Product (MVP)
-The MVP of the app has an interactive search that allows the display of lost or found dogs from other sources and then find a list of lost/found dogs based on location. The user can also share a specific posting on Facebook.
-
 ## Wireframe
 ![]()
 
-### How the App Works:
+## How the App Works:
 
 #### Home Page
 ![landing_page]()
