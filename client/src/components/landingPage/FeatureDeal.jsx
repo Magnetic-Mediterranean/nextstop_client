@@ -1,21 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const FeatureDeal = ({ data }) => {
-
   return (
     <div>
       <Img src={data.img} alt={`${data.arrival} attraction picture`} />
       <FlexContainer>
-        <Flight>{data.departure} to {data.arrival}</Flight>
+        <Flight>
+          {data.departure} to {data.arrival}
+        </Flight>
         <P>${data.price}</P>
-        {!data.numberOfStops && (
-          <NonStop>NON-STOP</NonStop>
-        )}
+        {!data.numberOfStops && <NonStop>NON-STOP</NonStop>}
       </FlexContainer>
     </div>
-  )
-}
+  );
+};
 
 export default FeatureDeal;
 
@@ -24,7 +23,6 @@ const FlexContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
 `;
-
 
 const Flight = styled.p`
   font-size: 1em;
@@ -39,7 +37,7 @@ const P = styled.p`
 `;
 
 const NonStop = styled.p`
-  color: #4ECDC4;
+  color: #4ecdc4;
   margin: 5px;
   font-weigth: 100;
 `;
@@ -52,10 +50,6 @@ const Img = styled.img`
   box-shadow: 0 10px 10px -5px #cccc;
   &:hover {
     transform: scale(1.01);
-    transition: .5s;
+    transition: 0.5s;
   }
 `;
-
-
-
-

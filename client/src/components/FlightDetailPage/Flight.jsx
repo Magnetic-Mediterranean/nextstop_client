@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
-import SubContainer from '../sharedStyles/subContainer';
+import React, { useState, useRef } from "react";
+import styled from "styled-components";
+import SubContainer from "../sharedStyles/subContainer";
 
 const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
   const [selected, setSelected] = useState(false);
@@ -26,49 +26,54 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     "AIR FRANCE": "icons/AirFrance.png",
   };
 
-  const flightLegs = (array) => {
-    let display = '';
+  const concatInfo = (array, separator) => {
+    let returnString = "";
     for (let i = 0; i < array.length; i++) {
-      display += array[i];
-      if (i !== array.length - 1) {
-        display += ' - ';
+      if (i === array.length - 1) {
+        returnString += array[i];
+      } else {
+        returnString += array[i] + separator;
       }
     }
-    return display;
+    return returnString;
   };
 
   const stop = (FligthDetail) => {
     if (FligthDetail.numberOfStops) {
-      let display = FligthDetail.airports.slice(1, FligthDetail.airports.length - 1);
-      let length = display.length;
-      let displayStop = length === 1 ? "1 stop" : `${length} stops`;
+      const display = FligthDetail.airports.slice(
+        1,
+        FligthDetail.airports.length - 1
+      );
+      const length = display.length;
+      const displayStop = length === 1 ? "1 stop" : `${length} stops`;
 
-      let legs = '';
-      for (let i = 0; i < display.length; i++) {
-        if (i === display.length - 1) {
-          legs += display[i];
-        } else {
-          legs += display[i] + ", ";
-        }
-      }
       return (
         <div>
           <BigFont>{displayStop}</BigFont>
-          <SmallFont>{legs}</SmallFont>
-        </div>);
+          <SmallFont>{concatInfo(display, ", ")}</SmallFont>
+        </div>
+      );
     }
     return "Non-stop";
   };
 
   const convertToTime = (APIdate, isArrival) => {
-    let date = new Date(APIdate);
+    const date = new Date(APIdate);
     return (
-      <Time value={isArrival}
-        onMouseEnter={() => { handleMouseEnter(APIdate, isArrival) }}
+      <Time
+        value={isArrival}
+        onMouseEnter={() => {
+          handleMouseEnter(APIdate, isArrival);
+        }}
         onMouseLeave={handleMouseLeave}
       >
-        {date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
-      </Time>)
+        {date.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })}
+      </Time>
+    );
   };
 
   const handleSelected = () => {
@@ -76,51 +81,66 @@ const Flight = ({ FligthDetail, setfligthSelected, flightSelected }) => {
     setfligthSelected(FligthDetail);
   };
 
+  const handleMouseEnter = (APIdate, isArrival) => {
+    const date = new Date(APIdate);
+    const weekday = date.toLocaleString("en-us", { weekday: "short" });
+    const month = date.toLocaleString("default", { month: "short" });
+    const day = date.toLocaleString("default", { day: "numeric" });
+    const time = date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    displayDate.current = (
+      <TimeAndDate arrival={isArrival ? true : false}>
+        {" "}
+        {time} on {weekday}, {month} {day}
+      </TimeAndDate>
+    );
+    sethoverDate(true);
+  };
+
   const handleMouseLeave = () => {
     sethoverDate(false);
   };
 
-  const handleMouseEnter = (APIdate, isArrival) => {
-    let date = new Date(APIdate);
-    let weekday = date.toLocaleString('en-us', { weekday: 'short' });
-    let month = date.toLocaleString('default', { month: 'short' });
-    let day = date.toLocaleString('default', { day: 'numeric' });
-    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    displayDate.current = <TimeAndDate arrival={isArrival ? true : false}> {time} on {weekday}, {month} {day}</TimeAndDate>;
-    sethoverDate(true);
-  };
-
   return (
     <FlightContainer onClick={handleSelected}>
-      { flightSelected === FligthDetail ?
-        <Circle selected ></Circle>
-        : <Circle></Circle>}
+      {flightSelected === FligthDetail ? (
+        <Circle selected></Circle>
+      ) : (
+        <Circle></Circle>
+      )}
       {
-        <Icon src={airlineIcon[FligthDetail.airline] ? airlineIcon[FligthDetail.airline] : "icons/airlinelogo.png"} />
+        <Icon
+          src={
+            airlineIcon[FligthDetail.airline]
+              ? airlineIcon[FligthDetail.airline]
+              : "icons/airlinelogo.png"
+          }
+        />
       }
 
       <AlignWrapper>
-        <Bold>{convertToTime(FligthDetail.departureTime, false)}-{convertToTime(FligthDetail.arrivalTime, true)}</Bold>
-        {
-          hoverDate &&
-          (<div> {displayDate.current} </div>)
-        }
+        <Bold>
+          {convertToTime(FligthDetail.departureTime, false)}-
+          {convertToTime(FligthDetail.arrivalTime, true)}
+        </Bold>
+        {hoverDate && <div> {displayDate.current} </div>}
         <SmallFont>{FligthDetail.airline}</SmallFont>
       </AlignWrapper>
 
       <AlignWrapper>
         <BigFont>{FligthDetail.duration}</BigFont>
-        <SmallFont>{flightLegs(FligthDetail.airports)}</SmallFont>
+        <SmallFont>{concatInfo(FligthDetail.airports, " - ")}</SmallFont>
       </AlignWrapper>
 
-      <AlignWrapper>
-        {stop(FligthDetail)}
-      </AlignWrapper>
+      <AlignWrapper>{stop(FligthDetail)}</AlignWrapper>
 
       <Bold>${FligthDetail.price}</Bold>
     </FlightContainer>
-  )
-}
+  );
+};
 
 export default Flight;
 
@@ -135,11 +155,11 @@ const Time = styled.div`
 
 const TimeAndDate = styled.div`
   top: -33px;
-  left: ${props => props.arrival ? "160px" : "80px"};
+  left: ${(props) => (props.arrival ? "160px" : "80px")};
   background: white;
   width: 200px;
   height: 30px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
@@ -153,7 +173,7 @@ const TimeAndDate = styled.div`
     position: absolute;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #4ECDC4;
+    border-top: 10px solid #4ecdc4;
     border-bottom: 10px solid transparent;
     right: 50%;
     bottom: -30px;
@@ -206,7 +226,7 @@ const FlightContainer = styled.div`
   cursor: pointer;
   &:hover {
     transform: scale(1.01);
-    transition: .5s;
+    transition: 0.5s;
   }
 `;
 
@@ -220,7 +240,6 @@ const Icon = styled.img`
 const Circle = styled.span`
   height: 25px;
   width: 25px;
-  background-color: ${props => props.selected ? "#4ECDC4" : "#CDCDCD"};
+  background-color: ${(props) => (props.selected ? "#4ECDC4" : "#CDCDCD")};
   border-radius: 50%;
 `;
-
