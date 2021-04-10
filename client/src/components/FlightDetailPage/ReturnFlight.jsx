@@ -1,54 +1,65 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
-import FlightDeals from './FlightData';
-import Flight from './Flight';
-import BackButton from '../sharedStyles/backButton';
-import PageTitle from '../sharedStyles/pageTitle';
+import React, { useState, useRef } from "react";
+import styled from "styled-components";
+import Flight from "./Flight";
+import BackButton from "../sharedStyles/backButton";
+import PageTitle from "../sharedStyles/pageTitle";
+import Footer from "../sharedStyles/footer";
 
-const ReturnFlight = ({ flightData, incrementDisplayPage, decrementDisplayPage }) => {
+const ReturnFlight = ({
+  flightData,
+  incrementDisplayPage,
+  decrementDisplayPage,
+}) => {
   const [flightSelected, setfligthSelected] = useState();
   const [displayFlight, setDisplayFlight] = useState(flightData.slice(0, 10));
   const Index = useRef(10);
 
   const handleOnClick = () => {
     incrementDisplayPage();
-    localStorage.setItem('return', JSON.stringify(flightSelected));
-  }
+    localStorage.setItem("return", JSON.stringify(flightSelected));
+  };
 
   const display10 = (index) => {
-    let lastFlightInSet = (index + 10) <= flightData.length - 1 ? index + 10 : flightData.length;
+    let lastFlightInSet =
+      index + 10 <= flightData.length - 1 ? index + 10 : flightData.length;
     setDisplayFlight(flightData.slice(0, lastFlightInSet));
     Index.current += 10;
-  }
-
+  };
 
   return (
     <Body>
       <HeaderContainer>
         <BackButton onClick={decrementDisplayPage}>Back</BackButton>
         <PageTitle>Returning Flight</PageTitle>
-        {flightSelected ? <BackButton onClick={handleOnClick}>Next</BackButton> : <ButtonPlacedHolder></ButtonPlacedHolder>}
-
+        {flightSelected ? (
+          <BackButton onClick={handleOnClick}>Next</BackButton>
+        ) : (
+          <ButtonPlacedHolder></ButtonPlacedHolder>
+        )}
       </HeaderContainer>
       <FlightContainer>
-        {
-          displayFlight.map((flight) => <Flight FligthDetail={flight}
+        {displayFlight.map((flight) => (
+          <Flight
+            FligthDetail={flight}
             setfligthSelected={setfligthSelected}
             flightSelected={flightSelected}
-          />)
-        }
-        {
-          flightData.length > 10 && (
-            <Button
-              hidden={Index.current >= flightData.length ? true : false}
-              onClick={() => { display10(Index.current) }}>MORE</Button>
-          )
-        }
+          />
+        ))}
+        {flightData.length > 10 && (
+          <Button
+            hidden={Index.current >= flightData.length ? true : false}
+            onClick={() => {
+              display10(Index.current);
+            }}
+          >
+            MORE
+          </Button>
+        )}
       </FlightContainer>
       <Footer></Footer>
     </Body>
-  )
-}
+  );
+};
 
 export default ReturnFlight;
 
@@ -57,11 +68,6 @@ const Body = styled.div`
   height: 100%;
   max-width: 1300px;
 `;
-
-const Footer = styled.div`
-  height: 30px;
-`;
-
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -77,9 +83,9 @@ const FlightContainer = styled.div`
 `;
 
 const Button = styled.button`
-  display: ${props => props.hidden ? "none" : "flex"};
+  display: ${(props) => (props.hidden ? "none" : "flex")};
   padding: 20px;
-  background-color: #4ECDC4;
+  background-color: #4ecdc4;
   border-radius: 8px;
   font-size: 15px;
   border: solid #cccc;
@@ -92,9 +98,9 @@ const Button = styled.button`
     outline: none;
   }
   &:hover {
-    background-color: #FFE66D;
+    background-color: #ffe66d;
   }
-  transition: 0.2s  ease-in;
+  transition: 0.2s ease-in;
 `;
 
 const ButtonPlacedHolder = styled.div`

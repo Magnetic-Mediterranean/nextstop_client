@@ -1,17 +1,10 @@
-import React from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-import DealData from './FeatureDealData';
-import FeatureDeal from './FeatureDeal';
+import React from "react";
+import styled from "styled-components";
+import DealData from "./FeatureDealData";
+import FeatureDeal from "./FeatureDeal";
+import Footer from "../sharedStyles/footer";
 
 const LandingPage = ({ incrementDisplayPage }) => {
-
-  const handleOnSubmit = () => {
-    axios.get('/flights')
-      .then((data) => console.log(data.data))
-      .catch((err) => console.log(err));
-  }
-
   return (
     <PageContainer>
       <Phrases>
@@ -19,14 +12,17 @@ const LandingPage = ({ incrementDisplayPage }) => {
         <Description>Pack your bags — it's time for an adventure</Description>
       </Phrases>
       <DealContainer>
-        {DealData.map((deal) => <FeatureDeal data={deal}
-          key={deal.departure + deal.arrival + deal.price}
-        />)}
+        {DealData.map((deal) => (
+          <FeatureDeal
+            data={deal}
+            key={deal.departure + deal.arrival + deal.price}
+          />
+        ))}
       </DealContainer>
-      <br />
+      <Footer></Footer>
     </PageContainer>
-  )
-}
+  );
+};
 
 export default LandingPage;
 
