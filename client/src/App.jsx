@@ -269,7 +269,7 @@ class App extends React.Component {
       returnFlight = (
         <FlexContainer>
           <FlightDetailPage
-            flightData={departFlights}
+            flightData={returnFlights}
             incrementDisplayPage={this.incrementDisplayPage}
             decrementDisplayPage={this.decrementDisplayPage}
             departOrReturn="return"

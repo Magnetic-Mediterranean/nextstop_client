@@ -31,7 +31,9 @@ const FlightDetailPage = ({
     <Body>
       <HeaderContainer>
         <BackButton onClick={decrementDisplayPage}>Back</BackButton>
-        <PageTitle>{departOrReturn === "depart" ? "Departing" : "Returning"} Flight</PageTitle>
+        <PageTitle>
+          {departOrReturn === "depart" ? "Departing" : "Returning"} Flight
+        </PageTitle>
         {flightSelected ? (
           <BackButton onClick={handleOnClick}>Next</BackButton>
         ) : (
