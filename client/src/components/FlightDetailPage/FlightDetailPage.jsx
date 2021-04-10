@@ -5,10 +5,11 @@ import BackButton from "../sharedStyles/backButton";
 import PageTitle from "../sharedStyles/pageTitle";
 import Footer from "../sharedStyles/footer";
 
-const ReturnFlight = ({
+const FlightDetailPage = ({
   flightData,
   incrementDisplayPage,
   decrementDisplayPage,
+  departOrReturn,
 }) => {
   const [flightSelected, setfligthSelected] = useState();
   const [displayFlight, setDisplayFlight] = useState(flightData.slice(0, 10));
@@ -16,7 +17,7 @@ const ReturnFlight = ({
 
   const handleOnClick = () => {
     incrementDisplayPage();
-    localStorage.setItem("return", JSON.stringify(flightSelected));
+    localStorage.setItem(`${departOrReturn}`, JSON.stringify(flightSelected));
   };
 
   const display10 = (index) => {
@@ -30,7 +31,7 @@ const ReturnFlight = ({
     <Body>
       <HeaderContainer>
         <BackButton onClick={decrementDisplayPage}>Back</BackButton>
-        <PageTitle>Returning Flight</PageTitle>
+        <PageTitle>{departOrReturn === "depart" ? "Departing" : "Returning"} Flight</PageTitle>
         {flightSelected ? (
           <BackButton onClick={handleOnClick}>Next</BackButton>
         ) : (
@@ -62,7 +63,7 @@ const ReturnFlight = ({
   );
 };
 
-export default ReturnFlight;
+export default FlightDetailPage;
 
 const Body = styled.div`
   width: 90%;

@@ -9,8 +9,7 @@ import LargeSearchBar from "./components/SearchBar/LargeSearch.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Hotels from "./components/Hotels";
 import Checkout from "./components/TripBooked/Booked.jsx";
-import DepartFlight from "./components/FlightDetailPage/DepartFlight.jsx";
-import ReturnFlight from "./components/FlightDetailPage/ReturnFlight.jsx";
+import FlightDetailPage from "./components/FlightDetailPage/FlightDetailPage.jsx";
 import Experiences from "./components/Experiences";
 
 class App extends React.Component {
@@ -248,10 +247,11 @@ class App extends React.Component {
     if (displayPage === 1 && departFlights.length !== 0) {
       departFlight = (
         <FlexContainer>
-          <DepartFlight
+          <FlightDetailPage
             flightData={departFlights}
             incrementDisplayPage={this.incrementDisplayPage}
             decrementDisplayPage={this.decrementDisplayPage}
+            departOrReturn="depart"
           />
         </FlexContainer>
       );
@@ -268,10 +268,11 @@ class App extends React.Component {
     if (displayPage === 2 && returnFlights.length !== 0) {
       returnFlight = (
         <FlexContainer>
-          <ReturnFlight
-            flightData={returnFlights}
+          <FlightDetailPage
+            flightData={departFlights}
             incrementDisplayPage={this.incrementDisplayPage}
             decrementDisplayPage={this.decrementDisplayPage}
+            departOrReturn="return"
           />
         </FlexContainer>
       );
