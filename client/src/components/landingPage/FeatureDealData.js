@@ -9,7 +9,7 @@ const FlightDeals = [
     duration: "22H20M",
     numberOfStops: 1,
     price: "1899.78",
-    img: "https://images.unsplash.com/photo-1540158658566-1e618312817b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=682&q=80",
+    img: "/compressed_images/carins.webp",
   },
   {
 
@@ -20,7 +20,7 @@ const FlightDeals = [
     numberOfStops: 0,
     departure: "San Francisco",
     arrival: "Los Angeles",
-    img: "https://images.unsplash.com/photo-1511102135937-044812ec618a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    img: "/compressed_images/hollywood.webp",
     price: "58.40"
   },
   {
@@ -30,7 +30,7 @@ const FlightDeals = [
     duration: "7H15M",
     departure: "Washington DC",
     arrival: "London",
-    img: "https://images.unsplash.com/photo-1494922275507-58dc039ed337?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80",
+    img: "/compressed_images/london.webp",
     numberOfStops: 0,
     price: "265.20"
   },
@@ -41,7 +41,7 @@ const FlightDeals = [
     duration: "3H25M",
     departure: "New York",
     arrival: "Ibiza",
-    img: "https://images.unsplash.com/photo-1563784462029-007624aaefe4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+    img: "/compressed_images/ibiza.webp",
     numberOfStops: 1,
     price: "298.92"
   }
