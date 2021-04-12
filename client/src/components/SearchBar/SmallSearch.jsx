@@ -201,7 +201,7 @@ const SmallPhotoContainer = styled.div `
   height: ${props => (props.size ? '60vh' : '250px')};
   align-items: center;
   justify-content: center;
-  background-image: url('https://www.jacadatravel.com/wp-content/uploads/fly-images/23481/iStock_000038894412_Large3-1600x700-cc.jpg');
+  background-image: url('/compressed_images/searchBackground.webp');
   background-position: center;
   background-repeat: no-repeat;
   top: 100px;
