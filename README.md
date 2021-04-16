@@ -67,10 +67,17 @@ Our team strived to meet the expectations of our primary user by organizing deli
 ## How the App Works:
 
 #### Home Page
-![landing_page]()
+![landing_page](./readMeInfo/LandingPage.gif)
+##### Features:
+- Feature vacation destinations and flight deals
 
 #### Flights
-![flights_page]()
+![flights_page](./readMeInfo/FlightDetailPage.gif)
+
+##### Features:
+- Hover over flight time displays a customized pop over that is incorporated with the company's theme color
+- User cannot move forward to the next step unless a flight is selected
+- Click "More" shows 10 more available flights and the button disappears when no more additional flight is available to display
 
 #### Hotels
 ![hotels_page]()

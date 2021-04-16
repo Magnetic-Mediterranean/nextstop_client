@@ -1,16 +1,32 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import LandingPage from "./components/landingPage/LandingPage";
-import TripReviewMain from "./components/tripReview/TripReviewMain";
-import TripPurchaseMain from "./components/tripPurchase/TripPurchaseMain";
 import SmallSearchBar from "./components/SearchBar/SmallSearch.jsx";
-import LargeSearchBar from "./components/SearchBar/LargeSearch.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
-import Hotels from "./components/Hotels";
-import Checkout from "./components/TripBooked/Booked.jsx";
-import FlightDetailPage from "./components/FlightDetailPage/FlightDetailPage.jsx";
-import Experiences from "./components/Experiences";
+const Hotels = lazy(() => import("./components/Hotels"));
+const Checkout = lazy(() => import("./components/TripBooked/Booked.jsx"));
+const FlightDetailPage = lazy(() =>
+  import("./components/FlightDetailPage/FlightDetailPage.jsx")
+);
+const Experiences = lazy(() => import("./components/Experiences"));
+const TripReviewMain = lazy(() =>
+  import("./components/tripReview/TripReviewMain")
+);
+const TripPurchaseMain = lazy(() =>
+  import("./components/tripPurchase/TripPurchaseMain")
+);
+
+const renderLoader = () => {
+  return (
+    <FlexContainer>
+      <img
+        src="https://i.pinimg.com/originals/65/ba/48/65ba488626025cff82f091336fbf94bb.gif"
+        alt="loading page"
+      />
+    </FlexContainer>
+  );
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -180,7 +196,6 @@ class App extends React.Component {
             />
           </React.Fragment>
         );
-        // navBar = LargeSearchBar;
         break;
       case 4:
         navBar = (
@@ -284,51 +299,52 @@ class App extends React.Component {
         {displayPage === 0 && (
           <LandingPage incrementDisplayPage={this.incrementDisplayPage} />
         )}
+        <Suspense fallback={renderLoader()}>
+          {displayPage === 1 && departFlight}
 
-        {displayPage === 1 && departFlight}
+          {displayPage === 2 && returnFlight}
 
-        {displayPage === 2 && returnFlight}
+          {displayPage === 3 && (
+            <Hotels
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+              hotels={this.state.hotels}
+              city={this.state.SelectedTo.city}
+            />
+          )}
 
-        {displayPage === 3 && (
-          <Hotels
-            next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage}
-            hotels={this.state.hotels}
-            city={this.state.SelectedTo.city}
-          />
-        )}
+          {displayPage === 4 && (
+            <Experiences
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+              experiences={this.state.experiences}
+            />
+          )}
 
-        {displayPage === 4 && (
-          <Experiences
-            next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage}
-            experiences={this.state.experiences}
-          />
-        )}
+          {displayPage === 5 && (
+            <TripReviewMain
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+              dateFrom={dateFrom}
+              dateTo={dateTo}
+            />
+          )}
 
-        {displayPage === 5 && (
-          <TripReviewMain
-            next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage}
-            dateFrom={dateFrom}
-            dateTo={dateTo}
-          />
-        )}
+          {displayPage === 6 && (
+            <TripPurchaseMain
+              next={this.incrementDisplayPage}
+              back={this.decrementDisplayPage}
+              travelers={travelerCnt}
+            />
+          )}
 
-        {displayPage === 6 && (
-          <TripPurchaseMain
-            next={this.incrementDisplayPage}
-            back={this.decrementDisplayPage}
-            travelers={travelerCnt}
-          />
-        )}
-
-        {displayPage === 7 && (
-          <Checkout
-            back={this.decrementDisplayPage}
-            to={this.state.SelectedTo}
-          />
-        )}
+          {displayPage === 7 && (
+            <Checkout
+              back={this.decrementDisplayPage}
+              to={this.state.SelectedTo}
+            />
+          )}
+        </Suspense>
       </>
     );
   }
